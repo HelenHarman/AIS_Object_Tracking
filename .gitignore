@@ -1,0 +1,5 @@
+build/
+external-libs/
+DataSets/
+Results/
+.DS_Store

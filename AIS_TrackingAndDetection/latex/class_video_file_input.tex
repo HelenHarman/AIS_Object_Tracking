@@ -1,0 +1,117 @@
+\hypertarget{class_video_file_input}{}\section{Video\+File\+Input Class Reference}
+\label{class_video_file_input}\index{Video\+File\+Input@{Video\+File\+Input}}
+
+
+Allows the video feed to come from a video file.  
+
+
+
+
+{\ttfamily \#include $<$video\+File\+Input.\+h$>$}
+
+Inheritance diagram for Video\+File\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_video_file_input}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_video_file_input_af95c920576786bb86b06bb25883747b6}{Video\+File\+Input} (string video\+Config\+File\+Path\+Name)
+\begin{DoxyCompactList}\small\item\em Reads in the video\+Config\+File\+Path\+Name to get the location of the video and the inital position and size of the object that we want to track. \end{DoxyCompactList}\item 
+void \hyperlink{class_video_file_input_ad2ad075776eed670dcf7e9e372d993cf}{get\+Initial\+Position} (int $\ast$x, int $\ast$y, int $\ast$width, int $\ast$height)
+\begin{DoxyCompactList}\small\item\em Gets the initial location of the object that will be tracked. \end{DoxyCompactList}\item 
+bool \hyperlink{class_video_file_input_a8d8cc050ab45a3b44403aa53d3d6e697}{start\+Camera} ()
+\item 
+Mat \hyperlink{class_video_file_input_a937889bfedcff9bd01d22fff70b71a61}{get\+Next\+Frame} ()
+\begin{DoxyCompactList}\small\item\em Gets the frame in R\+G\+B colour space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Allows the video feed to come from a video file. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_video_file_input_af95c920576786bb86b06bb25883747b6}{}\index{Video\+File\+Input@{Video\+File\+Input}!Video\+File\+Input@{Video\+File\+Input}}
+\index{Video\+File\+Input@{Video\+File\+Input}!Video\+File\+Input@{Video\+File\+Input}}
+\subsubsection[{Video\+File\+Input}]{\setlength{\rightskip}{0pt plus 5cm}Video\+File\+Input\+::\+Video\+File\+Input (
+\begin{DoxyParamCaption}
+\item[{string}]{video\+Config\+File\+Path\+Name}
+\end{DoxyParamCaption}
+)}\label{class_video_file_input_af95c920576786bb86b06bb25883747b6}
+
+
+Reads in the video\+Config\+File\+Path\+Name to get the location of the video and the inital position and size of the object that we want to track. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em video\+Config\+File\+Path\+Name} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_video_file_input_ad2ad075776eed670dcf7e9e372d993cf}{}\index{Video\+File\+Input@{Video\+File\+Input}!get\+Initial\+Position@{get\+Initial\+Position}}
+\index{get\+Initial\+Position@{get\+Initial\+Position}!Video\+File\+Input@{Video\+File\+Input}}
+\subsubsection[{get\+Initial\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Video\+File\+Input\+::get\+Initial\+Position (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{x, }
+\item[{int $\ast$}]{y, }
+\item[{int $\ast$}]{width, }
+\item[{int $\ast$}]{height}
+\end{DoxyParamCaption}
+)}\label{class_video_file_input_ad2ad075776eed670dcf7e9e372d993cf}
+
+
+Gets the initial location of the object that will be tracked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{[}out\mbox{]} \\
+\hline
+{\em y} & \mbox{[}out\mbox{]} \\
+\hline
+{\em width} & \mbox{[}out\mbox{]} \\
+\hline
+{\em height} & \mbox{[}out\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_video_file_input_a937889bfedcff9bd01d22fff70b71a61}{}\index{Video\+File\+Input@{Video\+File\+Input}!get\+Next\+Frame@{get\+Next\+Frame}}
+\index{get\+Next\+Frame@{get\+Next\+Frame}!Video\+File\+Input@{Video\+File\+Input}}
+\subsubsection[{get\+Next\+Frame}]{\setlength{\rightskip}{0pt plus 5cm}Video\+File\+Input\+::get\+Next\+Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_video_file_input_a937889bfedcff9bd01d22fff70b71a61}
+
+
+Gets the frame in R\+G\+B colour space. 
+
+\begin{DoxyReturn}{Returns}
+The frame 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_video_input_base_a2d289ea71410a736496a180363e219b4}{Video\+Input\+Base}.
+
+\hypertarget{class_video_file_input_a8d8cc050ab45a3b44403aa53d3d6e697}{}\index{Video\+File\+Input@{Video\+File\+Input}!start\+Camera@{start\+Camera}}
+\index{start\+Camera@{start\+Camera}!Video\+File\+Input@{Video\+File\+Input}}
+\subsubsection[{start\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Video\+File\+Input\+::start\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_video_file_input_a8d8cc050ab45a3b44403aa53d3d6e697}
+\begin{DoxyReturn}{Returns}
+true if camera has successfully been started 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_video_input_base_aff0dba9ff7bebd2d6d3fe55bc6f1c0c0}{Video\+Input\+Base}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Video\+Device\+Interaction/\hyperlink{video_file_input_8h}{video\+File\+Input.\+h}\item 
+Video\+Device\+Interaction/\hyperlink{video_file_input_8cpp}{video\+File\+Input.\+cpp}\end{DoxyCompactItemize}

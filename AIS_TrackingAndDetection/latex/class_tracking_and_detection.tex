@@ -1,0 +1,319 @@
+\hypertarget{class_tracking_and_detection}{}\section{Tracking\+And\+Detection Class Reference}
+\label{class_tracking_and_detection}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+
+
+The class that handles and runs the tracking and detection of an object.  
+
+
+
+
+{\ttfamily \#include $<$tracking\+And\+Detection.\+h$>$}
+
+Inheritance diagram for Tracking\+And\+Detection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tracking_and_detection}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tracking_and_detection_a8ca5a5cadb863fb27398d30726f41deb}{}void {\bfseries distance\+Measure\+Changed} (Distance\+Measure\+Type distance\+Measure\+Type)\label{class_tracking_and_detection_a8ca5a5cadb863fb27398d30726f41deb}
+
+\item 
+void \hyperlink{class_tracking_and_detection_a8ebab1c0f4615155db5fc87f477b5133}{use\+Rotation\+Changed} (bool use\+Rotation)
+\item 
+void \hyperlink{class_tracking_and_detection_a0288d1f356c9eaa5bf6074b6eef5b8d8}{use\+Scale\+Changed} (bool use\+Scale)
+\item 
+void \hyperlink{class_tracking_and_detection_a8c9a4536964366076a76ba0bb52c5c5f}{which\+A\+R\+Bs\+To\+Search\+With\+Changed} (A\+R\+Bs\+To\+Search\+With which\+A\+R\+Bs\+To\+Search\+With)
+\item 
+void \hyperlink{class_tracking_and_detection_a56ae5d619bb8f38f58c9c2d58a1c9590}{use\+Predicted\+Location\+Changed} (bool use\+Predicted\+Location)
+\item 
+void \hyperlink{class_tracking_and_detection_ac115a3770df344a0b5dfbd626094a85d}{state\+Changed} (Program\+State state)
+\item 
+\hypertarget{class_tracking_and_detection_a0fb0b246ec71cb4efdf55114d54f733d}{}void {\bfseries get\+Network} ()\label{class_tracking_and_detection_a0fb0b246ec71cb4efdf55114d54f733d}
+
+\item 
+void \hyperlink{class_tracking_and_detection_aad697a8cd333e516098e44c5bab33bab}{change\+Video\+Config\+File\+Path} (string file\+Path\+Name)
+\begin{DoxyCompactList}\small\item\em Called when the user selects the video config file that should be used. \end{DoxyCompactList}\item 
+void \hyperlink{class_tracking_and_detection_a88b3a6b164c4e3038090d2e8b9069914}{reset} (Video\+Input\+Type input\+Type)
+\begin{DoxyCompactList}\small\item\em When a new video type is selected by the user we need to reset the tracking. \end{DoxyCompactList}\item 
+\hypertarget{class_tracking_and_detection_a3d909c374ab512204cc78e85168f9ecc}{}void {\bfseries run\+Video\+Feed} ()\label{class_tracking_and_detection_a3d909c374ab512204cc78e85168f9ecc}
+
+\item 
+void \hyperlink{class_tracking_and_detection_a8bb8cf4b4bf79c3605c450f0a998ff63}{initialise\+Tracking\+From\+Position} (int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Initialises the artifical immunue network with the initial appearance. \end{DoxyCompactList}\item 
+void \hyperlink{class_tracking_and_detection_a8eafd41240df57ed65ae67550f18d540}{stimulation\+Threshold\+Changed} (double stimulation\+Threshold)
+\item 
+void \hyperlink{class_tracking_and_detection_aa2c2aa4f8901f92b101a99013eb55551}{object\+Threshold\+Changed} (double object\+Threshold)
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_tracking_and_detection_a218aab354939b487503031ddc2b913d3}{update\+Image} (uchar $\ast$data, int cols, int rows)
+\begin{DoxyCompactList}\small\item\em Allows the qt\+Widget\+Image\+Display to show the image. \end{DoxyCompactList}\item 
+void \hyperlink{class_tracking_and_detection_af709dac7ba7d396a837ae9fe3997dd7a}{update\+Objects\+Position} (int x, int y, int rotation, int width, int height)
+\begin{DoxyCompactList}\small\item\em Allows the U\+I to show the objects location. \end{DoxyCompactList}\item 
+void \hyperlink{class_tracking_and_detection_a3526dce8ac46f591dde4725d33ba8869}{update\+Num\+A\+R\+Bs} (int num\+A\+R\+Bs)
+\item 
+\hypertarget{class_tracking_and_detection_a1bce1d598c2d2a53d3f41c0a25b91037}{}void {\bfseries grab\+Video\+File\+Config} ()\label{class_tracking_and_detection_a1bce1d598c2d2a53d3f41c0a25b91037}
+
+\item 
+void \hyperlink{class_tracking_and_detection_a96867b74b33b67c0a8ddb4ebd07af60e}{set\+Network} (\hyperlink{class_network}{Network} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Allows the network to be saved to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tracking_and_detection_ae9c1d968d4fd3b298fb3ba423de5a4f0}{Tracking\+And\+Detection} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The class that handles and runs the tracking and detection of an object. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tracking_and_detection_ae9c1d968d4fd3b298fb3ba423de5a4f0}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{Tracking\+And\+Detection}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::\+Tracking\+And\+Detection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_tracking_and_detection_ae9c1d968d4fd3b298fb3ba423de5a4f0}
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Type} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tracking_and_detection_aad697a8cd333e516098e44c5bab33bab}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!change\+Video\+Config\+File\+Path@{change\+Video\+Config\+File\+Path}}
+\index{change\+Video\+Config\+File\+Path@{change\+Video\+Config\+File\+Path}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{change\+Video\+Config\+File\+Path}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::change\+Video\+Config\+File\+Path (
+\begin{DoxyParamCaption}
+\item[{string}]{file\+Path\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_aad697a8cd333e516098e44c5bab33bab}
+
+
+Called when the user selects the video config file that should be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path\+Name} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a8bb8cf4b4bf79c3605c450f0a998ff63}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!initialise\+Tracking\+From\+Position@{initialise\+Tracking\+From\+Position}}
+\index{initialise\+Tracking\+From\+Position@{initialise\+Tracking\+From\+Position}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{initialise\+Tracking\+From\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::initialise\+Tracking\+From\+Position (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a8bb8cf4b4bf79c3605c450f0a998ff63}
+
+
+Initialises the artifical immunue network with the initial appearance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{[}in\mbox{]} \\
+\hline
+{\em y} & \mbox{[}in\mbox{]} \\
+\hline
+{\em width} & \mbox{[}in\mbox{]} \\
+\hline
+{\em height} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_aa2c2aa4f8901f92b101a99013eb55551}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!object\+Threshold\+Changed@{object\+Threshold\+Changed}}
+\index{object\+Threshold\+Changed@{object\+Threshold\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{object\+Threshold\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::object\+Threshold\+Changed (
+\begin{DoxyParamCaption}
+\item[{double}]{object\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_aa2c2aa4f8901f92b101a99013eb55551}
+
+\begin{DoxyParams}{Parameters}
+{\em object\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a88b3a6b164c4e3038090d2e8b9069914}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!reset@{reset}}
+\index{reset@{reset}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::reset (
+\begin{DoxyParamCaption}
+\item[{Video\+Input\+Type}]{input\+Type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a88b3a6b164c4e3038090d2e8b9069914}
+
+
+When a new video type is selected by the user we need to reset the tracking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Type} & \mbox{[}in\mbox{]} \+: What video source should be used \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a96867b74b33b67c0a8ddb4ebd07af60e}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!set\+Network@{set\+Network}}
+\index{set\+Network@{set\+Network}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{set\+Network}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::set\+Network (
+\begin{DoxyParamCaption}
+\item[{{\bf Network} $\ast$}]{network}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_tracking_and_detection_a96867b74b33b67c0a8ddb4ebd07af60e}
+
+
+Allows the network to be saved to file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em network} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_ac115a3770df344a0b5dfbd626094a85d}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!state\+Changed@{state\+Changed}}
+\index{state\+Changed@{state\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{state\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::state\+Changed (
+\begin{DoxyParamCaption}
+\item[{Program\+State}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_ac115a3770df344a0b5dfbd626094a85d}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a8eafd41240df57ed65ae67550f18d540}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!stimulation\+Threshold\+Changed@{stimulation\+Threshold\+Changed}}
+\index{stimulation\+Threshold\+Changed@{stimulation\+Threshold\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{stimulation\+Threshold\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::stimulation\+Threshold\+Changed (
+\begin{DoxyParamCaption}
+\item[{double}]{stimulation\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a8eafd41240df57ed65ae67550f18d540}
+
+\begin{DoxyParams}{Parameters}
+{\em stimulation\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a218aab354939b487503031ddc2b913d3}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!update\+Image@{update\+Image}}
+\index{update\+Image@{update\+Image}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{update\+Image}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::update\+Image (
+\begin{DoxyParamCaption}
+\item[{uchar $\ast$}]{data, }
+\item[{int}]{cols, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_tracking_and_detection_a218aab354939b487503031ddc2b913d3}
+
+
+Allows the qt\+Widget\+Image\+Display to show the image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \mbox{[}in\mbox{]} \\
+\hline
+{\em cols} & \mbox{[}in\mbox{]} \\
+\hline
+{\em rows} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a3526dce8ac46f591dde4725d33ba8869}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!update\+Num\+A\+R\+Bs@{update\+Num\+A\+R\+Bs}}
+\index{update\+Num\+A\+R\+Bs@{update\+Num\+A\+R\+Bs}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{update\+Num\+A\+R\+Bs}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::update\+Num\+A\+R\+Bs (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+A\+R\+Bs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_tracking_and_detection_a3526dce8ac46f591dde4725d33ba8869}
+
+\begin{DoxyParams}{Parameters}
+{\em num\+A\+R\+Bs} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_af709dac7ba7d396a837ae9fe3997dd7a}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!update\+Objects\+Position@{update\+Objects\+Position}}
+\index{update\+Objects\+Position@{update\+Objects\+Position}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{update\+Objects\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::update\+Objects\+Position (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{rotation, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_tracking_and_detection_af709dac7ba7d396a837ae9fe3997dd7a}
+
+
+Allows the U\+I to show the objects location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{[}in\mbox{]} \\
+\hline
+{\em y} & \mbox{[}in\mbox{]} \\
+\hline
+{\em rotation} & \mbox{[}in\mbox{]} \\
+\hline
+{\em width} & \mbox{[}in\mbox{]} \\
+\hline
+{\em height} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a56ae5d619bb8f38f58c9c2d58a1c9590}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!use\+Predicted\+Location\+Changed@{use\+Predicted\+Location\+Changed}}
+\index{use\+Predicted\+Location\+Changed@{use\+Predicted\+Location\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{use\+Predicted\+Location\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::use\+Predicted\+Location\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Predicted\+Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a56ae5d619bb8f38f58c9c2d58a1c9590}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a8ebab1c0f4615155db5fc87f477b5133}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!use\+Rotation\+Changed@{use\+Rotation\+Changed}}
+\index{use\+Rotation\+Changed@{use\+Rotation\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{use\+Rotation\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::use\+Rotation\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a8ebab1c0f4615155db5fc87f477b5133}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Rotation} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a0288d1f356c9eaa5bf6074b6eef5b8d8}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!use\+Scale\+Changed@{use\+Scale\+Changed}}
+\index{use\+Scale\+Changed@{use\+Scale\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{use\+Scale\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::use\+Scale\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a0288d1f356c9eaa5bf6074b6eef5b8d8}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Scale} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tracking_and_detection_a8c9a4536964366076a76ba0bb52c5c5f}{}\index{Tracking\+And\+Detection@{Tracking\+And\+Detection}!which\+A\+R\+Bs\+To\+Search\+With\+Changed@{which\+A\+R\+Bs\+To\+Search\+With\+Changed}}
+\index{which\+A\+R\+Bs\+To\+Search\+With\+Changed@{which\+A\+R\+Bs\+To\+Search\+With\+Changed}!Tracking\+And\+Detection@{Tracking\+And\+Detection}}
+\subsubsection[{which\+A\+R\+Bs\+To\+Search\+With\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Tracking\+And\+Detection\+::which\+A\+R\+Bs\+To\+Search\+With\+Changed (
+\begin{DoxyParamCaption}
+\item[{A\+R\+Bs\+To\+Search\+With}]{which\+A\+R\+Bs\+To\+Search\+With}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_tracking_and_detection_a8c9a4536964366076a76ba0bb52c5c5f}
+
+\begin{DoxyParams}{Parameters}
+{\em which\+A\+R\+Bs\+To\+Search\+With} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tracking_and_detection_8h}{tracking\+And\+Detection.\+h}\item 
+\hyperlink{tracking_and_detection_8cpp}{tracking\+And\+Detection.\+cpp}\end{DoxyCompactItemize}

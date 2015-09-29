@@ -1,0 +1,109 @@
+\hypertarget{class_distance_base}{}\section{Distance\+Base Class Reference}
+\label{class_distance_base}\index{Distance\+Base@{Distance\+Base}}
+
+
+This acts as and interface and holds the implementation common to Euclidean\+Distanace and \hyperlink{class_sum_of_squared_difference}{Sum\+Of\+Squared\+Difference}.  
+
+
+
+
+{\ttfamily \#include $<$distance\+Base.\+h$>$}
+
+Inheritance diagram for Distance\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_distance_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \hyperlink{class_distance_base_aafc76227a800dd0827bedefded215646}{get\+Distance} (Mat image, Mat appearance)=0
+\begin{DoxyCompactList}\small\item\em Gets the distance normalised between 0 and 1. \end{DoxyCompactList}\item 
+double \hyperlink{class_distance_base_af22d9248a5ac76c62b7f0dbe5ee99251}{get\+Max\+Distance} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest distance value between the initial appearance and the intial frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_distance_base_aa98d8e96cd683f814d9a8b6e5ad93836}{calculate\+S\+S\+D} (Mat image, Mat appearance)
+\begin{DoxyCompactList}\small\item\em Both euclidean\+Distance and sum\+Of\+Squared\+Difference use a similar method to calculate the distance, so this is used to prevent repeared code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_distance_base_a29ed8af6966be2917dd4037bde9d8797}{}double {\bfseries max\+Distance}\label{class_distance_base_a29ed8af6966be2917dd4037bde9d8797}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This acts as and interface and holds the implementation common to Euclidean\+Distanace and \hyperlink{class_sum_of_squared_difference}{Sum\+Of\+Squared\+Difference}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_distance_base_aa98d8e96cd683f814d9a8b6e5ad93836}{}\index{Distance\+Base@{Distance\+Base}!calculate\+S\+S\+D@{calculate\+S\+S\+D}}
+\index{calculate\+S\+S\+D@{calculate\+S\+S\+D}!Distance\+Base@{Distance\+Base}}
+\subsubsection[{calculate\+S\+S\+D}]{\setlength{\rightskip}{0pt plus 5cm}Distance\+Base\+::calculate\+S\+S\+D (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_distance_base_aa98d8e96cd683f814d9a8b6e5ad93836}
+
+
+Both euclidean\+Distance and sum\+Of\+Squared\+Difference use a similar method to calculate the distance, so this is used to prevent repeared code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between the image and the appearance 
+\end{DoxyReturn}
+\hypertarget{class_distance_base_aafc76227a800dd0827bedefded215646}{}\index{Distance\+Base@{Distance\+Base}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Distance\+Base@{Distance\+Base}}
+\subsubsection[{get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}Distance\+Base\+::get\+Distance (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_distance_base_aafc76227a800dd0827bedefded215646}
+
+
+Gets the distance normalised between 0 and 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_euclidean_distance_a1b3123ed61577c68d3c5fa1767950314}{Euclidean\+Distance}, and \hyperlink{class_sum_of_squared_difference_acd647d0817edf9cce383caa657ab46fa}{Sum\+Of\+Squared\+Difference}.
+
+\hypertarget{class_distance_base_af22d9248a5ac76c62b7f0dbe5ee99251}{}\index{Distance\+Base@{Distance\+Base}!get\+Max\+Distance@{get\+Max\+Distance}}
+\index{get\+Max\+Distance@{get\+Max\+Distance}!Distance\+Base@{Distance\+Base}}
+\subsubsection[{get\+Max\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}Distance\+Base\+::get\+Max\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_distance_base_af22d9248a5ac76c62b7f0dbe5ee99251}
+
+
+Gets the highest distance value between the initial appearance and the intial frame. 
+
+\begin{DoxyReturn}{Returns}
+the maximum distance 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Distance\+Measures/distance\+Base.\+h\item 
+Distance\+Measures/\hyperlink{distance_base_8cpp}{distance\+Base.\+cpp}\end{DoxyCompactItemize}

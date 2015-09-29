@@ -1,0 +1,526 @@
+\hypertarget{class_qt_widget_image_display}{}\section{Qt\+Widget\+Image\+Display Class Reference}
+\label{class_qt_widget_image_display}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+
+
+Allows the video to be displayed and shows the position of the object being tracked.  
+
+
+
+
+{\ttfamily \#include $<$qt\+Widget\+Image\+Display.\+h$>$}
+
+Inheritance diagram for Qt\+Widget\+Image\+Display\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_qt_widget_image_display}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_qt_widget_image_display_aa65978984820243b551d99592342e8bc}{}void \hyperlink{class_qt_widget_image_display_aa65978984820243b551d99592342e8bc}{print\+Number\+Arbs\+In\+Network} ()\label{class_qt_widget_image_display_aa65978984820243b551d99592342e8bc}
+
+\begin{DoxyCompactList}\small\item\em Asks the user for the file that the list of the number of A\+R\+Bs should be written to. \end{DoxyCompactList}\item 
+\hypertarget{class_qt_widget_image_display_af1ec2373cfac14c17d4be8ea014aac7a}{}void \hyperlink{class_qt_widget_image_display_af1ec2373cfac14c17d4be8ea014aac7a}{save\+Network} ()\label{class_qt_widget_image_display_af1ec2373cfac14c17d4be8ea014aac7a}
+
+\begin{DoxyCompactList}\small\item\em Asks the user for a directory to save the appearances in the network to. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_af57a98200b443711d226b079fa3a886a}{set\+Network\+To\+Save\+Network} (\hyperlink{class_network}{Network} $\ast$)
+\begin{DoxyCompactList}\small\item\em The request for a copy of the \hyperlink{class_network}{Network} gets passed to here. \end{DoxyCompactList}\item 
+\hypertarget{class_qt_widget_image_display_a5730944e528e82ec7bbe6ef71fd02e6b}{}void \hyperlink{class_qt_widget_image_display_a5730944e528e82ec7bbe6ef71fd02e6b}{get\+Video\+File\+Config} ()\label{class_qt_widget_image_display_a5730944e528e82ec7bbe6ef71fd02e6b}
+
+\begin{DoxyCompactList}\small\item\em Allows the user to select the video configuration file that should be used. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a67a3b1543b70d23c30c73b571a778cf2}{display\+Mat} (uchar $\ast$data, int cols, int rows)
+\begin{DoxyCompactList}\small\item\em Shows the current video frame. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a2f224c2a74780308829f77f915f82af5}{set\+Tracking\+Position} (int x, int y, int rotation, int width, int height)
+\begin{DoxyCompactList}\small\item\em Sets the current position of the object being track, so that the box can be drawn. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_ad0e8669aaa03e5d49a9e9d63ee76655b}{set\+Num\+A\+R\+Bs} (int num\+A\+R\+Bs)
+\begin{DoxyCompactList}\small\item\em Sets the number of A\+R\+Bs so that it can be displayed to the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_qt_widget_image_display_ae8d9428c993c2963636527fe6a5de437}{set\+Stimulation\+Threshold} (double stimulation\+Threshold)
+\item 
+void \hyperlink{class_qt_widget_image_display_a2458d0c43ad30f76425378d1af12c28c}{set\+Object\+Threshold} (double object\+Threshold)
+\item 
+void \hyperlink{class_qt_widget_image_display_aa45cd7ccb44eed2ffe8906bb638bbff8}{set\+Initial\+Tracking\+Postion} (int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Sets the initial position of the object. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a4a319442190375dc4c6292cfdf0eb5d5}{set\+State} (Program\+State state)
+\begin{DoxyCompactList}\small\item\em Sets if an obejct is being tracked or selected. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a40b886057dfcebf207c50deb7a01ad76}{set\+Video\+Type} (Video\+Input\+Type input\+Type)
+\item 
+void \hyperlink{class_qt_widget_image_display_a7c6789b7f9e7abfa3fb514084fd45811}{set\+Video\+File\+Config\+File\+Path} (string file\+Path\+Name)
+\item 
+void \hyperlink{class_qt_widget_image_display_aad205e732e07afc1928cb4a4a58c5b97}{set\+Use\+Rotation} (bool use\+Rotation)
+\item 
+void \hyperlink{class_qt_widget_image_display_a2dabda43142dffe1416d3296087b2a3f}{set\+Use\+Scale} (bool use\+Scale)
+\item 
+void \hyperlink{class_qt_widget_image_display_a0eea72b2c4ce840d49e9d46502ae81b0}{set\+Use\+Predicted\+Location} (bool use\+Predicted\+Location)
+\item 
+void \hyperlink{class_qt_widget_image_display_ae99fa698ae5da37da20cd94192a7b0db}{set\+Distance\+Measure} (Distance\+Measure\+Type distance\+Measure\+Type)
+\item 
+\hypertarget{class_qt_widget_image_display_a6adb17100e4abae17a7e9074b7531e8e}{}void {\bfseries set\+Which\+A\+R\+Bs\+To\+Search\+With} (A\+R\+Bs\+To\+Search\+With which\+A\+R\+Bs\+To\+Search\+With)\label{class_qt_widget_image_display_a6adb17100e4abae17a7e9074b7531e8e}
+
+\item 
+\hypertarget{class_qt_widget_image_display_aaaf8f08ea03050bbee5aea48c3161e9f}{}void \hyperlink{class_qt_widget_image_display_aaaf8f08ea03050bbee5aea48c3161e9f}{get\+Network} ()\label{class_qt_widget_image_display_aaaf8f08ea03050bbee5aea48c3161e9f}
+
+\begin{DoxyCompactList}\small\item\em A request for a copy of the network to be emited to this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_qt_widget_image_display_a9ea3610dc3cae789d500b4f53cdb56b2}{Qt\+Widget\+Image\+Display} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Calls parent constuctor and sets default variables. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a26454c4394b3ae3bc9cb430f1107b27f}{which\+A\+R\+Bs\+To\+Search\+With\+Changed} (A\+R\+Bs\+To\+Search\+With which\+A\+R\+Bs\+To\+Search\+With)
+\item 
+void \hyperlink{class_qt_widget_image_display_ad8ff14b5736c02451e9671049377f804}{use\+Predicted\+Location\+Changed} (bool use\+Predicted\+Location)
+\item 
+void \hyperlink{class_qt_widget_image_display_a0ffc0b84135973ba32c75e2b42d9bb14}{distance\+Measure\+Changed} (Distance\+Measure\+Type distance\+Measure\+Type)
+\item 
+void \hyperlink{class_qt_widget_image_display_ab17105b0117339be323f990ff8089045}{use\+Rotation\+Changed} (bool use\+Rotation)
+\item 
+void \hyperlink{class_qt_widget_image_display_af598a9cee6959fcac05e8574bb2829ef}{use\+Scale\+Changed} (bool use\+Scale)
+\item 
+void \hyperlink{class_qt_widget_image_display_ab8581f2118716a98efda55054ab8b38c}{video\+Input\+Changed} (Video\+Input\+Type video\+Input\+Type)
+\item 
+void \hyperlink{class_qt_widget_image_display_a25b3298891cc5f2c085eadee653bb997}{stimulation\+Threshold\+Changed} (double stimulation\+Threshold)
+\item 
+void \hyperlink{class_qt_widget_image_display_a2fa5da388332212c0eff72bdc6ce0131}{object\+Threshold\+Changed} (double object\+Threshold)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_qt_widget_image_display_a04130803d15b2efd86e7dc7b943d6508}{}void {\bfseries paint\+Event} (Q\+Paint\+Event $\ast$)\label{class_qt_widget_image_display_a04130803d15b2efd86e7dc7b943d6508}
+
+\item 
+void \hyperlink{class_qt_widget_image_display_a6235f02715be56b1d0c79a0162b3b3f5}{mouse\+Press\+Event} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Allows the user to select the object they wish to track. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_ac299992cba352e07584839bb5e407cae}{mouse\+Move\+Event} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Allows the user to select the object they wish to track. \end{DoxyCompactList}\item 
+void \hyperlink{class_qt_widget_image_display_a1436ddfbe1ea7b4f2eb58552d50d077e}{mouse\+Release\+Event} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Allows the user to select the object they wish to track. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_qt_widget_image_display_a2d153ae169f34e0cfa9d8b491e6ef579}{}Q\+Image {\bfseries \+\_\+qimage}\label{class_qt_widget_image_display_a2d153ae169f34e0cfa9d8b491e6ef579}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Allows the video to be displayed and shows the position of the object being tracked. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_qt_widget_image_display_a9ea3610dc3cae789d500b4f53cdb56b2}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{Qt\+Widget\+Image\+Display}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::\+Qt\+Widget\+Image\+Display (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}\label{class_qt_widget_image_display_a9ea3610dc3cae789d500b4f53cdb56b2}
+
+
+Calls parent constuctor and sets default variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_qt_widget_image_display_a67a3b1543b70d23c30c73b571a778cf2}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!display\+Mat@{display\+Mat}}
+\index{display\+Mat@{display\+Mat}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{display\+Mat}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::display\+Mat (
+\begin{DoxyParamCaption}
+\item[{uchar $\ast$}]{data, }
+\item[{int}]{cols, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_qt_widget_image_display_a67a3b1543b70d23c30c73b571a778cf2}
+
+
+Shows the current video frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \mbox{[}in\mbox{]} \+: the image data \\
+\hline
+{\em cols} & \mbox{[}in\mbox{]} \+: number of columns the image has \\
+\hline
+{\em rows} & \mbox{[}in\mbox{]} \+: number of rows the image has \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a0ffc0b84135973ba32c75e2b42d9bb14}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!distance\+Measure\+Changed@{distance\+Measure\+Changed}}
+\index{distance\+Measure\+Changed@{distance\+Measure\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{distance\+Measure\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::distance\+Measure\+Changed (
+\begin{DoxyParamCaption}
+\item[{Distance\+Measure\+Type}]{distance\+Measure\+Type}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_a0ffc0b84135973ba32c75e2b42d9bb14}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em distance\+Measure\+Type} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ac299992cba352e07584839bb5e407cae}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!mouse\+Move\+Event@{mouse\+Move\+Event}}
+\index{mouse\+Move\+Event@{mouse\+Move\+Event}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{mouse\+Move\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::mouse\+Move\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_qt_widget_image_display_ac299992cba352e07584839bb5e407cae}
+
+
+Allows the user to select the object they wish to track. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a6235f02715be56b1d0c79a0162b3b3f5}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!mouse\+Press\+Event@{mouse\+Press\+Event}}
+\index{mouse\+Press\+Event@{mouse\+Press\+Event}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{mouse\+Press\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::mouse\+Press\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_qt_widget_image_display_a6235f02715be56b1d0c79a0162b3b3f5}
+
+
+Allows the user to select the object they wish to track. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a1436ddfbe1ea7b4f2eb58552d50d077e}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!mouse\+Release\+Event@{mouse\+Release\+Event}}
+\index{mouse\+Release\+Event@{mouse\+Release\+Event}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{mouse\+Release\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::mouse\+Release\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_qt_widget_image_display_a1436ddfbe1ea7b4f2eb58552d50d077e}
+
+
+Allows the user to select the object they wish to track. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a2fa5da388332212c0eff72bdc6ce0131}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!object\+Threshold\+Changed@{object\+Threshold\+Changed}}
+\index{object\+Threshold\+Changed@{object\+Threshold\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{object\+Threshold\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::object\+Threshold\+Changed (
+\begin{DoxyParamCaption}
+\item[{double}]{object\+Threshold}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_a2fa5da388332212c0eff72bdc6ce0131}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em object\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ae99fa698ae5da37da20cd94192a7b0db}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Distance\+Measure@{set\+Distance\+Measure}}
+\index{set\+Distance\+Measure@{set\+Distance\+Measure}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Distance\+Measure}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Distance\+Measure (
+\begin{DoxyParamCaption}
+\item[{Distance\+Measure\+Type}]{distance\+Measure\+Type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_ae99fa698ae5da37da20cd94192a7b0db}
+
+\begin{DoxyParams}{Parameters}
+{\em distance\+Measure\+Type} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_aa45cd7ccb44eed2ffe8906bb638bbff8}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Initial\+Tracking\+Postion@{set\+Initial\+Tracking\+Postion}}
+\index{set\+Initial\+Tracking\+Postion@{set\+Initial\+Tracking\+Postion}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Initial\+Tracking\+Postion}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Initial\+Tracking\+Postion (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_aa45cd7ccb44eed2ffe8906bb638bbff8}
+
+
+Sets the initial position of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{[}in\mbox{]} \\
+\hline
+{\em y} & \mbox{[}in\mbox{]} \\
+\hline
+{\em width} & \mbox{[}in\mbox{]} \\
+\hline
+{\em height} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_af57a98200b443711d226b079fa3a886a}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Network\+To\+Save\+Network@{set\+Network\+To\+Save\+Network}}
+\index{set\+Network\+To\+Save\+Network@{set\+Network\+To\+Save\+Network}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Network\+To\+Save\+Network}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Network\+To\+Save\+Network (
+\begin{DoxyParamCaption}
+\item[{{\bf Network} $\ast$}]{network}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_qt_widget_image_display_af57a98200b443711d226b079fa3a886a}
+
+
+The request for a copy of the \hyperlink{class_network}{Network} gets passed to here. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_qt_widget_image_display_aaaf8f08ea03050bbee5aea48c3161e9f}{get\+Network()} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em network} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ad0e8669aaa03e5d49a9e9d63ee76655b}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Num\+A\+R\+Bs@{set\+Num\+A\+R\+Bs}}
+\index{set\+Num\+A\+R\+Bs@{set\+Num\+A\+R\+Bs}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Num\+A\+R\+Bs}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Num\+A\+R\+Bs (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+A\+R\+Bs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_qt_widget_image_display_ad0e8669aaa03e5d49a9e9d63ee76655b}
+
+
+Sets the number of A\+R\+Bs so that it can be displayed to the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+A\+R\+Bs} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a2458d0c43ad30f76425378d1af12c28c}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Object\+Threshold@{set\+Object\+Threshold}}
+\index{set\+Object\+Threshold@{set\+Object\+Threshold}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Object\+Threshold}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Object\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{object\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a2458d0c43ad30f76425378d1af12c28c}
+
+\begin{DoxyParams}{Parameters}
+{\em object\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a4a319442190375dc4c6292cfdf0eb5d5}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+State}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+State (
+\begin{DoxyParamCaption}
+\item[{Program\+State}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a4a319442190375dc4c6292cfdf0eb5d5}
+
+
+Sets if an obejct is being tracked or selected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ae8d9428c993c2963636527fe6a5de437}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Stimulation\+Threshold@{set\+Stimulation\+Threshold}}
+\index{set\+Stimulation\+Threshold@{set\+Stimulation\+Threshold}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Stimulation\+Threshold}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Stimulation\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{stimulation\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_ae8d9428c993c2963636527fe6a5de437}
+
+\begin{DoxyParams}{Parameters}
+{\em stimulation\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a2f224c2a74780308829f77f915f82af5}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Tracking\+Position@{set\+Tracking\+Position}}
+\index{set\+Tracking\+Position@{set\+Tracking\+Position}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Tracking\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Tracking\+Position (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{rotation, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_qt_widget_image_display_a2f224c2a74780308829f77f915f82af5}
+
+
+Sets the current position of the object being track, so that the box can be drawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{[}in\mbox{]} \\
+\hline
+{\em y} & \mbox{[}in\mbox{]} \\
+\hline
+{\em rotation} & \mbox{[}in\mbox{]} \\
+\hline
+{\em width} & \mbox{[}in\mbox{]} \\
+\hline
+{\em height} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a0eea72b2c4ce840d49e9d46502ae81b0}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Use\+Predicted\+Location@{set\+Use\+Predicted\+Location}}
+\index{set\+Use\+Predicted\+Location@{set\+Use\+Predicted\+Location}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Use\+Predicted\+Location}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Use\+Predicted\+Location (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Predicted\+Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a0eea72b2c4ce840d49e9d46502ae81b0}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_aad205e732e07afc1928cb4a4a58c5b97}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Use\+Rotation@{set\+Use\+Rotation}}
+\index{set\+Use\+Rotation@{set\+Use\+Rotation}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Use\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Use\+Rotation (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_aad205e732e07afc1928cb4a4a58c5b97}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Rotation} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a2dabda43142dffe1416d3296087b2a3f}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Use\+Scale@{set\+Use\+Scale}}
+\index{set\+Use\+Scale@{set\+Use\+Scale}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Use\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Use\+Scale (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a2dabda43142dffe1416d3296087b2a3f}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Scale} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a7c6789b7f9e7abfa3fb514084fd45811}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Video\+File\+Config\+File\+Path@{set\+Video\+File\+Config\+File\+Path}}
+\index{set\+Video\+File\+Config\+File\+Path@{set\+Video\+File\+Config\+File\+Path}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Video\+File\+Config\+File\+Path}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Video\+File\+Config\+File\+Path (
+\begin{DoxyParamCaption}
+\item[{string}]{file\+Path\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a7c6789b7f9e7abfa3fb514084fd45811}
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path\+Name} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a40b886057dfcebf207c50deb7a01ad76}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!set\+Video\+Type@{set\+Video\+Type}}
+\index{set\+Video\+Type@{set\+Video\+Type}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{set\+Video\+Type}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::set\+Video\+Type (
+\begin{DoxyParamCaption}
+\item[{Video\+Input\+Type}]{input\+Type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_qt_widget_image_display_a40b886057dfcebf207c50deb7a01ad76}
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Type} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a25b3298891cc5f2c085eadee653bb997}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!stimulation\+Threshold\+Changed@{stimulation\+Threshold\+Changed}}
+\index{stimulation\+Threshold\+Changed@{stimulation\+Threshold\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{stimulation\+Threshold\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::stimulation\+Threshold\+Changed (
+\begin{DoxyParamCaption}
+\item[{double}]{stimulation\+Threshold}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_a25b3298891cc5f2c085eadee653bb997}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em stimulation\+Threshold} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ad8ff14b5736c02451e9671049377f804}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!use\+Predicted\+Location\+Changed@{use\+Predicted\+Location\+Changed}}
+\index{use\+Predicted\+Location\+Changed@{use\+Predicted\+Location\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{use\+Predicted\+Location\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::use\+Predicted\+Location\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Predicted\+Location}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_ad8ff14b5736c02451e9671049377f804}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ab17105b0117339be323f990ff8089045}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!use\+Rotation\+Changed@{use\+Rotation\+Changed}}
+\index{use\+Rotation\+Changed@{use\+Rotation\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{use\+Rotation\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::use\+Rotation\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Rotation}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_ab17105b0117339be323f990ff8089045}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Rotation} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_af598a9cee6959fcac05e8574bb2829ef}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!use\+Scale\+Changed@{use\+Scale\+Changed}}
+\index{use\+Scale\+Changed@{use\+Scale\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{use\+Scale\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::use\+Scale\+Changed (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Scale}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_af598a9cee6959fcac05e8574bb2829ef}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Scale} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_ab8581f2118716a98efda55054ab8b38c}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!video\+Input\+Changed@{video\+Input\+Changed}}
+\index{video\+Input\+Changed@{video\+Input\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{video\+Input\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::video\+Input\+Changed (
+\begin{DoxyParamCaption}
+\item[{Video\+Input\+Type}]{video\+Input\+Type}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_ab8581f2118716a98efda55054ab8b38c}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em video\+Input\+Type} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_qt_widget_image_display_a26454c4394b3ae3bc9cb430f1107b27f}{}\index{Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}!which\+A\+R\+Bs\+To\+Search\+With\+Changed@{which\+A\+R\+Bs\+To\+Search\+With\+Changed}}
+\index{which\+A\+R\+Bs\+To\+Search\+With\+Changed@{which\+A\+R\+Bs\+To\+Search\+With\+Changed}!Qt\+Widget\+Image\+Display@{Qt\+Widget\+Image\+Display}}
+\subsubsection[{which\+A\+R\+Bs\+To\+Search\+With\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}Qt\+Widget\+Image\+Display\+::which\+A\+R\+Bs\+To\+Search\+With\+Changed (
+\begin{DoxyParamCaption}
+\item[{A\+R\+Bs\+To\+Search\+With}]{which\+A\+R\+Bs\+To\+Search\+With}
+\end{DoxyParamCaption}
+)}\label{class_qt_widget_image_display_a26454c4394b3ae3bc9cb430f1107b27f}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mainwindow_8h}{mainwindow.\+h} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em which\+A\+R\+Bs\+To\+Search\+With} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+U\+I/\hyperlink{qt_widget_image_display_8h}{qt\+Widget\+Image\+Display.\+h}\item 
+U\+I/\hyperlink{qt_widget_image_display_8cpp}{qt\+Widget\+Image\+Display.\+cpp}\end{DoxyCompactItemize}

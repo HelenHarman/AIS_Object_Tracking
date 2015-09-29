@@ -1,0 +1,85 @@
+\hypertarget{class_video_input_interface}{}\section{Video\+Input\+Interface Class Reference}
+\label{class_video_input_interface}\index{Video\+Input\+Interface@{Video\+Input\+Interface}}
+
+
+The \hyperlink{class_video_input_interface}{Video\+Input\+Interface} class.  
+
+
+
+
+{\ttfamily \#include $<$video\+Input\+Interface.\+h$>$}
+
+Inheritance diagram for Video\+Input\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_video_input_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{class_video_input_interface_a11be5c9dc74c58e24acf4b2ee71468f6}{start\+Camera} ()=0
+\begin{DoxyCompactList}\small\item\em start\+Camera \end{DoxyCompactList}\item 
+virtual Mat \hyperlink{class_video_input_interface_ad013678c645a2171bc31fd68851f2e3b}{get\+Next\+Frame} ()=0
+\begin{DoxyCompactList}\small\item\em get\+Next\+Frame \end{DoxyCompactList}\item 
+\hypertarget{class_video_input_interface_a701da28013bda686c93ffef702a4ff7f}{}virtual void \hyperlink{class_video_input_interface_a701da28013bda686c93ffef702a4ff7f}{close} ()=0\label{class_video_input_interface_a701da28013bda686c93ffef702a4ff7f}
+
+\begin{DoxyCompactList}\small\item\em close \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_video_input_interface_a10f3961497fd3e4deb1e9149fc23ac29}{}const double {\bfseries S\+C\+A\+L\+E\+\_\+\+F\+A\+C\+T\+O\+R} = 0.\+5\label{class_video_input_interface_a10f3961497fd3e4deb1e9149fc23ac29}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_video_input_interface}{Video\+Input\+Interface} class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_video_input_interface_ad013678c645a2171bc31fd68851f2e3b}{}\index{Video\+Input\+Interface@{Video\+Input\+Interface}!get\+Next\+Frame@{get\+Next\+Frame}}
+\index{get\+Next\+Frame@{get\+Next\+Frame}!Video\+Input\+Interface@{Video\+Input\+Interface}}
+\subsubsection[{get\+Next\+Frame}]{\setlength{\rightskip}{0pt plus 5cm}virtual Mat Video\+Input\+Interface\+::get\+Next\+Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_video_input_interface_ad013678c645a2171bc31fd68851f2e3b}
+
+
+get\+Next\+Frame 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_video_file_input_a8acead6bd5c37a4379db648eebd07f86}{Video\+File\+Input}, and \hyperlink{class_webcam_input_abefdf2c3f370b1727e018747b78f22f8}{Webcam\+Input}.
+
+\hypertarget{class_video_input_interface_a11be5c9dc74c58e24acf4b2ee71468f6}{}\index{Video\+Input\+Interface@{Video\+Input\+Interface}!start\+Camera@{start\+Camera}}
+\index{start\+Camera@{start\+Camera}!Video\+Input\+Interface@{Video\+Input\+Interface}}
+\subsubsection[{start\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Video\+Input\+Interface\+::start\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_video_input_interface_a11be5c9dc74c58e24acf4b2ee71468f6}
+
+
+start\+Camera 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the video input has been successfully opened 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_video_file_input_ab570941156fbeb7658956b0f5473a192}{Video\+File\+Input}, and \hyperlink{class_webcam_input_abe46aee8fb45e4953b37a90152430620}{Webcam\+Input}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Video\+Device\+Interaction/video\+Input\+Interface.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\hypertarget{class_sum_of_squared_difference}{}\section{Sum\+Of\+Squared\+Difference Class Reference}
+\label{class_sum_of_squared_difference}\index{Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}}
+
+
+Used to calculate the Sum Of Squared Difference between two appearances.  
+
+
+
+
+{\ttfamily \#include $<$sum\+Of\+Squared\+Difference.\+h$>$}
+
+Inheritance diagram for Sum\+Of\+Squared\+Difference\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sum_of_squared_difference}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_sum_of_squared_difference_af922c956c34c21fd1f361ff17c8e74dd}{Sum\+Of\+Squared\+Difference} (Mat frame, Mat appearance)
+\begin{DoxyCompactList}\small\item\em Will set the max\+Distance the unnormalised S\+S\+D should return. \end{DoxyCompactList}\item 
+\hypertarget{class_sum_of_squared_difference_ac9d3e8ddd24e68dab66f712f7810e6bd}{}\hyperlink{class_sum_of_squared_difference_ac9d3e8ddd24e68dab66f712f7810e6bd}{Sum\+Of\+Squared\+Difference} ()\label{class_sum_of_squared_difference_ac9d3e8ddd24e68dab66f712f7810e6bd}
+
+\begin{DoxyCompactList}\small\item\em Used by the unit tests. \end{DoxyCompactList}\item 
+double \hyperlink{class_sum_of_squared_difference_acd647d0817edf9cce383caa657ab46fa}{get\+Distance} (Mat image, Mat appearance)
+\begin{DoxyCompactList}\small\item\em Calculates the distance between the image and the appearance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to calculate the Sum Of Squared Difference between two appearances. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_sum_of_squared_difference_af922c956c34c21fd1f361ff17c8e74dd}{}\index{Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}!Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}}
+\index{Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}!Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}}
+\subsubsection[{Sum\+Of\+Squared\+Difference}]{\setlength{\rightskip}{0pt plus 5cm}Sum\+Of\+Squared\+Difference\+::\+Sum\+Of\+Squared\+Difference (
+\begin{DoxyParamCaption}
+\item[{Mat}]{frame, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)}\label{class_sum_of_squared_difference_af922c956c34c21fd1f361ff17c8e74dd}
+
+
+Will set the max\+Distance the unnormalised S\+S\+D should return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & \mbox{[}in\mbox{]}\+: The frame whch the appearance has been selected from \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]}\+: The appearance the user has selected \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_sum_of_squared_difference_acd647d0817edf9cce383caa657ab46fa}{}\index{Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Sum\+Of\+Squared\+Difference@{Sum\+Of\+Squared\+Difference}}
+\subsubsection[{get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}Sum\+Of\+Squared\+Difference\+::get\+Distance (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_sum_of_squared_difference_acd647d0817edf9cce383caa657ab46fa}
+
+
+Calculates the distance between the image and the appearance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normalised Euclidean distance (value between 0 and 1). 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_distance_base_aafc76227a800dd0827bedefded215646}{Distance\+Base}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Distance\+Measures/\hyperlink{sum_of_squared_difference_8h}{sum\+Of\+Squared\+Difference.\+h}\item 
+Distance\+Measures/\hyperlink{sum_of_squared_difference_8cpp}{sum\+Of\+Squared\+Difference.\+cpp}\end{DoxyCompactItemize}

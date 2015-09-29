@@ -1,0 +1,192 @@
+\hypertarget{class_network}{}\section{Network Class Reference}
+\label{class_network}\index{Network@{Network}}
+
+
+Holds the network of A\+R\+Bs. Handles the adding and removing of A\+R\+Bs.  
+
+
+
+
+{\ttfamily \#include $<$network.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_network_abf40cbcbed14ec61e7a6d2b8e1dc6a1a}{Network} (Mat initial\+Apperance, \hyperlink{struct_a_i_s___options_1_1_location}{Location} current\+Location, \hyperlink{class_distance_base}{Distance\+Base} $\ast$distance\+Measure, double object\+Threshold, double stimulation\+Threshold)
+\begin{DoxyCompactList}\small\item\em Constructor for the \hyperlink{class_network}{Network}. \end{DoxyCompactList}\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_network_a13011652e7fb84154942625ad3eb66c8}{add\+Appearance} (Mat appearance, \hyperlink{struct_a_i_s___options_1_1_location}{Location} current\+Location)
+\begin{DoxyCompactList}\small\item\em Finds the closest \hyperlink{class_a_r_b}{A\+R\+B} and if the distance is below the S\+T\+I\+M\+U\+L\+A\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+D increases the resource of that \hyperlink{class_a_r_b}{A\+R\+B}. If the distance is not below the S\+T\+I\+M\+U\+L\+A\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+D then creates a new \hyperlink{class_a_r_b}{A\+R\+B}. The \hyperlink{class_a_r_b}{A\+R\+B} is linked to the previous known \hyperlink{class_a_r_b}{A\+R\+B}. \end{DoxyCompactList}\item 
+vector$<$ Mat $>$ \hyperlink{class_network_afcd78f9225ca2f2f92d1b1db870ffb65}{get\+A\+R\+Bs\+With\+Above\+Average\+R\+L} ()
+\begin{DoxyCompactList}\small\item\em Gets the nodes that performs the inital search for the object within a video frame. \end{DoxyCompactList}\item 
+vector$<$ Mat $>$ \hyperlink{class_network_a976fa4622de1dc318bd5af89ebd17ac6}{get\+All\+Appearances} ()
+\item 
+vector$<$ Mat $>$ \hyperlink{class_network_afc66817b2698ce006c508ee8842375b9}{get\+Last\+And\+Highest\+A\+R\+Bs} ()
+\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_network_a0b0624d5507f67a840e96821b81e472f}{get\+Predicted\+Location} ()
+\item 
+int \hyperlink{class_network_aa711dad35933517182c6cbe32b1997b2}{get\+Number\+Of\+A\+R\+Bs} ()
+\item 
+vector$<$ \hyperlink{class_a_r_b}{A\+R\+B} $\ast$ $>$ \hyperlink{class_network_a833cd5788cfe15365bfc67c8db8e8cb6}{get\+A\+R\+Bs} ()
+\item 
+void \hyperlink{class_network_a652c03f659bba278fd7b5fd345c61f5d}{set\+Use\+Predicted\+Location} (bool use\+Predicted\+Location)
+\item 
+void \hyperlink{class_network_a4c9a48c5a3b025d44e3febbedac3bfe3}{set\+Obejct\+Threshold} (double object\+Threshold)
+\item 
+void \hyperlink{class_network_a91de437f331fdac84919c3606c1b6f83}{set\+Stimulation\+Threshold} (double stimulation\+Threshold)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds the network of A\+R\+Bs. Handles the adding and removing of A\+R\+Bs. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_network_abf40cbcbed14ec61e7a6d2b8e1dc6a1a}{}\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\subsubsection[{Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::\+Network (
+\begin{DoxyParamCaption}
+\item[{Mat}]{initial\+Apperance, }
+\item[{{\bf Location}}]{current\+Location, }
+\item[{{\bf Distance\+Base} $\ast$}]{distance\+Measure, }
+\item[{double}]{object\+Threshold, }
+\item[{double}]{stimulation\+Threshold}
+\end{DoxyParamCaption}
+)}\label{class_network_abf40cbcbed14ec61e7a6d2b8e1dc6a1a}
+
+
+Constructor for the \hyperlink{class_network}{Network}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Apperance} & \mbox{[}in\mbox{]} \+: The appearance that the user has selected. \\
+\hline
+{\em current\+Location} & \mbox{[}in\mbox{]} \+: The initial location. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_network_a13011652e7fb84154942625ad3eb66c8}{}\index{Network@{Network}!add\+Appearance@{add\+Appearance}}
+\index{add\+Appearance@{add\+Appearance}!Network@{Network}}
+\subsubsection[{add\+Appearance}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::add\+Appearance (
+\begin{DoxyParamCaption}
+\item[{Mat}]{appearance, }
+\item[{{\bf Location}}]{current\+Location}
+\end{DoxyParamCaption}
+)}\label{class_network_a13011652e7fb84154942625ad3eb66c8}
+
+
+Finds the closest \hyperlink{class_a_r_b}{A\+R\+B} and if the distance is below the S\+T\+I\+M\+U\+L\+A\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+D increases the resource of that \hyperlink{class_a_r_b}{A\+R\+B}. If the distance is not below the S\+T\+I\+M\+U\+L\+A\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+D then creates a new \hyperlink{class_a_r_b}{A\+R\+B}. The \hyperlink{class_a_r_b}{A\+R\+B} is linked to the previous known \hyperlink{class_a_r_b}{A\+R\+B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em appearance} & \mbox{[}in\mbox{]} \+: The appearance the network is being exposed to \\
+\hline
+{\em current\+Location} & \mbox{[}in\mbox{]} \+: The location the appearance is at \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_network_a976fa4622de1dc318bd5af89ebd17ac6}{}\index{Network@{Network}!get\+All\+Appearances@{get\+All\+Appearances}}
+\index{get\+All\+Appearances@{get\+All\+Appearances}!Network@{Network}}
+\subsubsection[{get\+All\+Appearances}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+All\+Appearances (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_a976fa4622de1dc318bd5af89ebd17ac6}
+\begin{DoxyReturn}{Returns}
+A list of all appearances in the network 
+\end{DoxyReturn}
+\hypertarget{class_network_a833cd5788cfe15365bfc67c8db8e8cb6}{}\index{Network@{Network}!get\+A\+R\+Bs@{get\+A\+R\+Bs}}
+\index{get\+A\+R\+Bs@{get\+A\+R\+Bs}!Network@{Network}}
+\subsubsection[{get\+A\+R\+Bs}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+A\+R\+Bs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_a833cd5788cfe15365bfc67c8db8e8cb6}
+\begin{DoxyReturn}{Returns}
+A list of all A\+R\+Bs in the network 
+\end{DoxyReturn}
+\hypertarget{class_network_afcd78f9225ca2f2f92d1b1db870ffb65}{}\index{Network@{Network}!get\+A\+R\+Bs\+With\+Above\+Average\+R\+L@{get\+A\+R\+Bs\+With\+Above\+Average\+R\+L}}
+\index{get\+A\+R\+Bs\+With\+Above\+Average\+R\+L@{get\+A\+R\+Bs\+With\+Above\+Average\+R\+L}!Network@{Network}}
+\subsubsection[{get\+A\+R\+Bs\+With\+Above\+Average\+R\+L}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+A\+R\+Bs\+With\+Above\+Average\+R\+L (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_afcd78f9225ca2f2f92d1b1db870ffb65}
+
+
+Gets the nodes that performs the inital search for the object within a video frame. 
+
+\begin{DoxyReturn}{Returns}
+The previous appearance and the most stimulated appearance 
+\end{DoxyReturn}
+\hypertarget{class_network_afc66817b2698ce006c508ee8842375b9}{}\index{Network@{Network}!get\+Last\+And\+Highest\+A\+R\+Bs@{get\+Last\+And\+Highest\+A\+R\+Bs}}
+\index{get\+Last\+And\+Highest\+A\+R\+Bs@{get\+Last\+And\+Highest\+A\+R\+Bs}!Network@{Network}}
+\subsubsection[{get\+Last\+And\+Highest\+A\+R\+Bs}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+Last\+And\+Highest\+A\+R\+Bs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_afc66817b2698ce006c508ee8842375b9}
+\begin{DoxyReturn}{Returns}
+The last \hyperlink{class_a_r_b}{A\+R\+B} to be used and the \hyperlink{class_a_r_b}{A\+R\+B} which has the highest resource level 
+\end{DoxyReturn}
+\hypertarget{class_network_aa711dad35933517182c6cbe32b1997b2}{}\index{Network@{Network}!get\+Number\+Of\+A\+R\+Bs@{get\+Number\+Of\+A\+R\+Bs}}
+\index{get\+Number\+Of\+A\+R\+Bs@{get\+Number\+Of\+A\+R\+Bs}!Network@{Network}}
+\subsubsection[{get\+Number\+Of\+A\+R\+Bs}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+Number\+Of\+A\+R\+Bs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_aa711dad35933517182c6cbe32b1997b2}
+\begin{DoxyReturn}{Returns}
+The number of A\+R\+Bs 
+\end{DoxyReturn}
+\hypertarget{class_network_a0b0624d5507f67a840e96821b81e472f}{}\index{Network@{Network}!get\+Predicted\+Location@{get\+Predicted\+Location}}
+\index{get\+Predicted\+Location@{get\+Predicted\+Location}!Network@{Network}}
+\subsubsection[{get\+Predicted\+Location}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::get\+Predicted\+Location (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_network_a0b0624d5507f67a840e96821b81e472f}
+\begin{DoxyReturn}{Returns}
+The objects predicted location 
+\end{DoxyReturn}
+\hypertarget{class_network_a4c9a48c5a3b025d44e3febbedac3bfe3}{}\index{Network@{Network}!set\+Obejct\+Threshold@{set\+Obejct\+Threshold}}
+\index{set\+Obejct\+Threshold@{set\+Obejct\+Threshold}!Network@{Network}}
+\subsubsection[{set\+Obejct\+Threshold}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::set\+Obejct\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{object\+Threshold}
+\end{DoxyParamCaption}
+)}\label{class_network_a4c9a48c5a3b025d44e3febbedac3bfe3}
+
+\begin{DoxyParams}{Parameters}
+{\em object\+Threshold} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_network_a91de437f331fdac84919c3606c1b6f83}{}\index{Network@{Network}!set\+Stimulation\+Threshold@{set\+Stimulation\+Threshold}}
+\index{set\+Stimulation\+Threshold@{set\+Stimulation\+Threshold}!Network@{Network}}
+\subsubsection[{set\+Stimulation\+Threshold}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::set\+Stimulation\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{stimulation\+Threshold}
+\end{DoxyParamCaption}
+)}\label{class_network_a91de437f331fdac84919c3606c1b6f83}
+
+\begin{DoxyParams}{Parameters}
+{\em stimulation\+Threshold} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_network_a652c03f659bba278fd7b5fd345c61f5d}{}\index{Network@{Network}!set\+Use\+Predicted\+Location@{set\+Use\+Predicted\+Location}}
+\index{set\+Use\+Predicted\+Location@{set\+Use\+Predicted\+Location}!Network@{Network}}
+\subsubsection[{set\+Use\+Predicted\+Location}]{\setlength{\rightskip}{0pt plus 5cm}Network\+::set\+Use\+Predicted\+Location (
+\begin{DoxyParamCaption}
+\item[{bool}]{use\+Predicted\+Location}
+\end{DoxyParamCaption}
+)}\label{class_network_a652c03f659bba278fd7b5fd345c61f5d}
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+A\+I\+S/\hyperlink{network_8h}{network.\+h}\item 
+A\+I\+S/\hyperlink{network_8cpp}{network.\+cpp}\end{DoxyCompactItemize}

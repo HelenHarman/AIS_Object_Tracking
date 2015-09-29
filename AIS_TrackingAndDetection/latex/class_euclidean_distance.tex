@@ -1,0 +1,88 @@
+\hypertarget{class_euclidean_distance}{}\section{Euclidean\+Distance Class Reference}
+\label{class_euclidean_distance}\index{Euclidean\+Distance@{Euclidean\+Distance}}
+
+
+Used to calculate the Euclidean distance between two appearances.  
+
+
+
+
+{\ttfamily \#include $<$euclidean\+Distance.\+h$>$}
+
+Inheritance diagram for Euclidean\+Distance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_euclidean_distance}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_euclidean_distance_a5e83b718959ef7c4b41d88b6b2f1cc97}{Euclidean\+Distance} (Mat frame, Mat appearance)
+\begin{DoxyCompactList}\small\item\em Will set the max\+Distance the unnormalised euclidean distance should return. \end{DoxyCompactList}\item 
+\hypertarget{class_euclidean_distance_a345c01bfb2649bb9c7f93eb04edf3c03}{}\hyperlink{class_euclidean_distance_a345c01bfb2649bb9c7f93eb04edf3c03}{Euclidean\+Distance} ()\label{class_euclidean_distance_a345c01bfb2649bb9c7f93eb04edf3c03}
+
+\begin{DoxyCompactList}\small\item\em Used by the unit tests. \end{DoxyCompactList}\item 
+double \hyperlink{class_euclidean_distance_a1b3123ed61577c68d3c5fa1767950314}{get\+Distance} (Mat image, Mat appearance)
+\begin{DoxyCompactList}\small\item\em Gets the distance normalised between 0 and 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to calculate the Euclidean distance between two appearances. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_euclidean_distance_a5e83b718959ef7c4b41d88b6b2f1cc97}{}\index{Euclidean\+Distance@{Euclidean\+Distance}!Euclidean\+Distance@{Euclidean\+Distance}}
+\index{Euclidean\+Distance@{Euclidean\+Distance}!Euclidean\+Distance@{Euclidean\+Distance}}
+\subsubsection[{Euclidean\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}Euclidean\+Distance\+::\+Euclidean\+Distance (
+\begin{DoxyParamCaption}
+\item[{Mat}]{frame, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)}\label{class_euclidean_distance_a5e83b718959ef7c4b41d88b6b2f1cc97}
+
+
+Will set the max\+Distance the unnormalised euclidean distance should return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & \mbox{[}in\mbox{]} \+: The frame whch the appearance has been selected from \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]} \+: The appearance the user has selected \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_euclidean_distance_a1b3123ed61577c68d3c5fa1767950314}{}\index{Euclidean\+Distance@{Euclidean\+Distance}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Euclidean\+Distance@{Euclidean\+Distance}}
+\subsubsection[{get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}double Euclidean\+Distance\+::get\+Distance (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_euclidean_distance_a1b3123ed61577c68d3c5fa1767950314}
+
+
+Gets the distance normalised between 0 and 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearance} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_distance_base_aafc76227a800dd0827bedefded215646}{Distance\+Base}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Distance\+Measures/\hyperlink{euclidean_distance_8h}{euclidean\+Distance.\+h}\item 
+Distance\+Measures/\hyperlink{euclidean_distance_8cpp}{euclidean\+Distance.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,174 @@
+\hypertarget{class_simplex_object_detector}{}\section{Simplex\+Object\+Detector Class Reference}
+\label{class_simplex_object_detector}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+
+
+Uses the Simplex functionality of G\+S\+L to locate the object being tracked.  
+
+
+
+
+{\ttfamily \#include $<$simplex\+Object\+Detector.\+h$>$}
+
+Inheritance diagram for Simplex\+Object\+Detector\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_simplex_object_detector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_simplex_object_detector_a808e69553c4b8ff683e187416fde7f56}{Simplex\+Object\+Detector} (\hyperlink{class_distance_base}{Distance\+Base} $\ast$distance\+Measure)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_simplex_object_detector_a6b09b0c1629feffb2523d9ed6038545b}{find\+Object\+All\+Transformations} (\hyperlink{struct_a_i_s___options_1_1_location}{Location} predicted\+Location, Mat frame, vector$<$ Mat $>$ appearances, int $\ast$most\+Matched\+Appearance\+Index)
+\begin{DoxyCompactList}\small\item\em Find the object using rotation and scale. \end{DoxyCompactList}\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_simplex_object_detector_ac6e9fcfe1427b93308b69f950d6ba88e}{find\+Object\+With\+Scale} (\hyperlink{struct_a_i_s___options_1_1_location}{Location} predicted\+Location, Mat frame, vector$<$ Mat $>$ appearances, int $\ast$most\+Matched\+Appearance\+Index)
+\begin{DoxyCompactList}\small\item\em Finds the object using just the scale transformation. \end{DoxyCompactList}\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_simplex_object_detector_af245a74403f3b2098042b0e1e567e999}{find\+Object\+With\+Rotation} (\hyperlink{struct_a_i_s___options_1_1_location}{Location} predicted\+Location, Mat frame, vector$<$ Mat $>$ appearances, int $\ast$most\+Matched\+Appearance\+Index)
+\begin{DoxyCompactList}\small\item\em Finds the object using just the rotation transformation. \end{DoxyCompactList}\item 
+\hyperlink{struct_a_i_s___options_1_1_location}{Location} \hyperlink{class_simplex_object_detector_ae62a15fe369dfd1698358f2cb36e0d63}{find\+Object\+No\+Transformations} (\hyperlink{struct_a_i_s___options_1_1_location}{Location} predicted\+Location, Mat frame, vector$<$ Mat $>$ appearances, int $\ast$most\+Matched\+Appearance\+Index)
+\begin{DoxyCompactList}\small\item\em Finds the object without the use of scale or rotation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Uses the Simplex functionality of G\+S\+L to locate the object being tracked. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_simplex_object_detector_a808e69553c4b8ff683e187416fde7f56}{}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\subsubsection[{Simplex\+Object\+Detector}]{\setlength{\rightskip}{0pt plus 5cm}Simplex\+Object\+Detector\+::\+Simplex\+Object\+Detector (
+\begin{DoxyParamCaption}
+\item[{{\bf Distance\+Base} $\ast$}]{distance\+Measure}
+\end{DoxyParamCaption}
+)}\label{class_simplex_object_detector_a808e69553c4b8ff683e187416fde7f56}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance\+Measure} & \mbox{[}in\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_simplex_object_detector_a6b09b0c1629feffb2523d9ed6038545b}{}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!find\+Object\+All\+Transformations@{find\+Object\+All\+Transformations}}
+\index{find\+Object\+All\+Transformations@{find\+Object\+All\+Transformations}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\subsubsection[{find\+Object\+All\+Transformations}]{\setlength{\rightskip}{0pt plus 5cm}Simplex\+Object\+Detector\+::find\+Object\+All\+Transformations (
+\begin{DoxyParamCaption}
+\item[{{\bf Location}}]{predicted\+Location, }
+\item[{Mat}]{frame, }
+\item[{vector$<$ Mat $>$}]{appearances, }
+\item[{int $\ast$}]{most\+Matched\+Appearance\+Index}
+\end{DoxyParamCaption}
+)}\label{class_simplex_object_detector_a6b09b0c1629feffb2523d9ed6038545b}
+
+
+Find the object using rotation and scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em predicted\+Location} & \mbox{[}in\mbox{]} \+: The location to start looking for the object \\
+\hline
+{\em frame} & \mbox{[}in\mbox{]} \+: The image the search is being performed on \\
+\hline
+{\em appearances} & \mbox{[}in\mbox{]} \+: The apperances used to find the object in the frame \\
+\hline
+{\em most\+Matched\+Appearance\+Index} & \mbox{[}out\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The location of the object. 
+\end{DoxyReturn}
+\hypertarget{class_simplex_object_detector_ae62a15fe369dfd1698358f2cb36e0d63}{}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!find\+Object\+No\+Transformations@{find\+Object\+No\+Transformations}}
+\index{find\+Object\+No\+Transformations@{find\+Object\+No\+Transformations}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\subsubsection[{find\+Object\+No\+Transformations}]{\setlength{\rightskip}{0pt plus 5cm}Simplex\+Object\+Detector\+::find\+Object\+No\+Transformations (
+\begin{DoxyParamCaption}
+\item[{{\bf Location}}]{predicted\+Location, }
+\item[{Mat}]{frame, }
+\item[{vector$<$ Mat $>$}]{appearances, }
+\item[{int $\ast$}]{most\+Matched\+Appearance\+Index}
+\end{DoxyParamCaption}
+)}\label{class_simplex_object_detector_ae62a15fe369dfd1698358f2cb36e0d63}
+
+
+Finds the object without the use of scale or rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+{\em frame} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearances} & \mbox{[}in\mbox{]} \\
+\hline
+{\em most\+Matched\+Appearance\+Index} & \mbox{[}out\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The location of the object. 
+\end{DoxyReturn}
+\hypertarget{class_simplex_object_detector_af245a74403f3b2098042b0e1e567e999}{}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!find\+Object\+With\+Rotation@{find\+Object\+With\+Rotation}}
+\index{find\+Object\+With\+Rotation@{find\+Object\+With\+Rotation}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\subsubsection[{find\+Object\+With\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}Simplex\+Object\+Detector\+::find\+Object\+With\+Rotation (
+\begin{DoxyParamCaption}
+\item[{{\bf Location}}]{predicted\+Location, }
+\item[{Mat}]{frame, }
+\item[{vector$<$ Mat $>$}]{appearances, }
+\item[{int $\ast$}]{most\+Matched\+Appearance\+Index}
+\end{DoxyParamCaption}
+)}\label{class_simplex_object_detector_af245a74403f3b2098042b0e1e567e999}
+
+
+Finds the object using just the rotation transformation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+{\em frame} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearances} & \mbox{[}in\mbox{]} \\
+\hline
+{\em most\+Matched\+Appearance\+Index} & \mbox{[}out\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The location of the object. 
+\end{DoxyReturn}
+\hypertarget{class_simplex_object_detector_ac6e9fcfe1427b93308b69f950d6ba88e}{}\index{Simplex\+Object\+Detector@{Simplex\+Object\+Detector}!find\+Object\+With\+Scale@{find\+Object\+With\+Scale}}
+\index{find\+Object\+With\+Scale@{find\+Object\+With\+Scale}!Simplex\+Object\+Detector@{Simplex\+Object\+Detector}}
+\subsubsection[{find\+Object\+With\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}Simplex\+Object\+Detector\+::find\+Object\+With\+Scale (
+\begin{DoxyParamCaption}
+\item[{{\bf Location}}]{predicted\+Location, }
+\item[{Mat}]{frame, }
+\item[{vector$<$ Mat $>$}]{appearances, }
+\item[{int $\ast$}]{most\+Matched\+Appearance\+Index}
+\end{DoxyParamCaption}
+)}\label{class_simplex_object_detector_ac6e9fcfe1427b93308b69f950d6ba88e}
+
+
+Finds the object using just the scale transformation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em predicted\+Location} & \mbox{[}in\mbox{]} \\
+\hline
+{\em frame} & \mbox{[}in\mbox{]} \\
+\hline
+{\em appearances} & \mbox{[}in\mbox{]} \\
+\hline
+{\em most\+Matched\+Appearance\+Index} & \mbox{[}out\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The location of the object. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+simplex\+Object\+Detector.\+h\item 
+simplex\+Object\+Detector.\+cpp\end{DoxyCompactItemize}

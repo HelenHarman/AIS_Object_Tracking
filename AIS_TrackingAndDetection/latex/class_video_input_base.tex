@@ -1,0 +1,89 @@
+\hypertarget{class_video_input_base}{}\section{Video\+Input\+Base Class Reference}
+\label{class_video_input_base}\index{Video\+Input\+Base@{Video\+Input\+Base}}
+
+
+This acts as and interface and holds the implementation common to \hyperlink{class_video_file_input}{Video\+File\+Input} and \hyperlink{class_webcam_input}{Webcam\+Input}.  
+
+
+
+
+{\ttfamily \#include $<$video\+Input\+Base.\+h$>$}
+
+Inheritance diagram for Video\+Input\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_video_input_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{class_video_input_base_aff0dba9ff7bebd2d6d3fe55bc6f1c0c0}{start\+Camera} ()=0
+\begin{DoxyCompactList}\small\item\em Opens the connection to the webcam. \end{DoxyCompactList}\item 
+virtual Mat \hyperlink{class_video_input_base_a2d289ea71410a736496a180363e219b4}{get\+Next\+Frame} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the video frame in R\+G\+B colour space. \end{DoxyCompactList}\item 
+\hypertarget{class_video_input_base_af2d32b5797e19abe6f1084f81f29554b}{}void \hyperlink{class_video_input_base_af2d32b5797e19abe6f1084f81f29554b}{close} ()\label{class_video_input_base_af2d32b5797e19abe6f1084f81f29554b}
+
+\begin{DoxyCompactList}\small\item\em Closes the connection to the Webcam. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_video_input_base_ac7c36d8f4df7e18c1f8dffa3972a3620}{}const double \hyperlink{class_video_input_base_ac7c36d8f4df7e18c1f8dffa3972a3620}{S\+C\+A\+L\+E\+\_\+\+F\+A\+C\+T\+O\+R} = 0.\+5\label{class_video_input_base_ac7c36d8f4df7e18c1f8dffa3972a3620}
+
+\begin{DoxyCompactList}\small\item\em Video input is too high a resolution to work in real-\/time when using semi-\/exustive appearance matching. \end{DoxyCompactList}\item 
+\hypertarget{class_video_input_base_ac780b7966a6d11a890bc7c9ea3103be9}{}Video\+Capture \hyperlink{class_video_input_base_ac780b7966a6d11a890bc7c9ea3103be9}{capture}\label{class_video_input_base_ac780b7966a6d11a890bc7c9ea3103be9}
+
+\begin{DoxyCompactList}\small\item\em The capture object the frame will be read from. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This acts as and interface and holds the implementation common to \hyperlink{class_video_file_input}{Video\+File\+Input} and \hyperlink{class_webcam_input}{Webcam\+Input}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_video_input_base_a2d289ea71410a736496a180363e219b4}{}\index{Video\+Input\+Base@{Video\+Input\+Base}!get\+Next\+Frame@{get\+Next\+Frame}}
+\index{get\+Next\+Frame@{get\+Next\+Frame}!Video\+Input\+Base@{Video\+Input\+Base}}
+\subsubsection[{get\+Next\+Frame}]{\setlength{\rightskip}{0pt plus 5cm}Video\+Input\+Base\+::get\+Next\+Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_video_input_base_a2d289ea71410a736496a180363e219b4}
+
+
+Gets the video frame in R\+G\+B colour space. 
+
+\begin{DoxyReturn}{Returns}
+the video frame 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_video_file_input_a937889bfedcff9bd01d22fff70b71a61}{Video\+File\+Input}, and \hyperlink{class_webcam_input_a991fd28f2e4e9dd8608becdb4976cfde}{Webcam\+Input}.
+
+\hypertarget{class_video_input_base_aff0dba9ff7bebd2d6d3fe55bc6f1c0c0}{}\index{Video\+Input\+Base@{Video\+Input\+Base}!start\+Camera@{start\+Camera}}
+\index{start\+Camera@{start\+Camera}!Video\+Input\+Base@{Video\+Input\+Base}}
+\subsubsection[{start\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Video\+Input\+Base\+::start\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_video_input_base_aff0dba9ff7bebd2d6d3fe55bc6f1c0c0}
+
+
+Opens the connection to the webcam. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the video input has been successfully opened 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_video_file_input_a8d8cc050ab45a3b44403aa53d3d6e697}{Video\+File\+Input}, and \hyperlink{class_webcam_input_a716c7ae34722a6760bed160a5a127f73}{Webcam\+Input}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Video\+Device\+Interaction/video\+Input\+Base.\+h\item 
+Video\+Device\+Interaction/\hyperlink{video_input_base_8cpp}{video\+Input\+Base.\+cpp}\end{DoxyCompactItemize}

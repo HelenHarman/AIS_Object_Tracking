@@ -1,0 +1,190 @@
+\hypertarget{class_a_r_b}{}\section{A\+R\+B Class Reference}
+\label{class_a_r_b}\index{A\+R\+B@{A\+R\+B}}
+
+
+\hyperlink{class_a_r_b}{A\+R\+B}\textquotesingle{}s are the nodes within the network, which contain an appearace of the object.  
+
+
+
+
+{\ttfamily \#include $<$arb.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_a_r_b_a63baffccea281b3131c527c9c1f7f75d}{A\+R\+B} (Mat appearance)
+\begin{DoxyCompactList}\small\item\em Constructor for the first node within the network. \end{DoxyCompactList}\item 
+\hyperlink{class_a_r_b_ad3e230c460681d7a8d25f854d54a7068}{A\+R\+B} (Mat appearance, \hyperlink{class_a_r_b}{A\+R\+B} $\ast$node\+Linked\+To, double distance)
+\begin{DoxyCompactList}\small\item\em Constructor which adds a link to (and from) node\+Linked\+To. \end{DoxyCompactList}\item 
+void \hyperlink{class_a_r_b_aa3f04bd47ff47fb9c04ec5172bd299e9}{add\+New\+Link} (\hyperlink{class_a_r_b}{A\+R\+B} $\ast$new\+Arb\+Node, double distance)
+\begin{DoxyCompactList}\small\item\em Adds a link from this node to the new\+Arb\+Node. \end{DoxyCompactList}\item 
+void \hyperlink{class_a_r_b_ab8f2944c4604d2fff3771bf3306e2070}{remove\+Link} (\hyperlink{class_a_r_b}{A\+R\+B} $\ast$rm\+Arb\+Node)
+\begin{DoxyCompactList}\small\item\em Removes the link to the rm\+Arb\+Node. \end{DoxyCompactList}\item 
+double \hyperlink{class_a_r_b_a8df8e8956b9454bd7341cc6aeae2ae88}{increase\+Resource\+Level} (double distance)
+\begin{DoxyCompactList}\small\item\em Increases the resource level based on the distance and the stimulation level. \end{DoxyCompactList}\item 
+double \hyperlink{class_a_r_b_a3665160a394713d42ee9b787602ce741}{decay\+Resource\+Level} ()
+\begin{DoxyCompactList}\small\item\em Decrease the resource level based on the D\+E\+C\+A\+Y\+\_\+\+R\+A\+T\+E. \end{DoxyCompactList}\item 
+double \hyperlink{class_a_r_b_a314d01f3bac14f571a7d7b1534511447}{get\+Resource\+Level} ()
+\item 
+Mat \hyperlink{class_a_r_b_a86a497207363be0943fbda129f51f2d4}{get\+Appearance} ()
+\item 
+vector$<$ \hyperlink{class_a_r_b}{A\+R\+B} $\ast$ $>$ \hyperlink{class_a_r_b_a0bb9d1811fe67f59e957b7bc17ed3331}{get\+Links} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector of the A\+R\+Bs which this \hyperlink{class_a_r_b}{A\+R\+B} is linked to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_a_r_b}{A\+R\+B}\textquotesingle{}s are the nodes within the network, which contain an appearace of the object. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_a_r_b_a63baffccea281b3131c527c9c1f7f75d}{}\index{A\+R\+B@{A\+R\+B}!A\+R\+B@{A\+R\+B}}
+\index{A\+R\+B@{A\+R\+B}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{A\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::\+A\+R\+B (
+\begin{DoxyParamCaption}
+\item[{Mat}]{appearance}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a63baffccea281b3131c527c9c1f7f75d}
+
+
+Constructor for the first node within the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em appearance} & \mbox{[}in\mbox{]} \+: An appearance of the object being tracked. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_a_r_b_ad3e230c460681d7a8d25f854d54a7068}{}\index{A\+R\+B@{A\+R\+B}!A\+R\+B@{A\+R\+B}}
+\index{A\+R\+B@{A\+R\+B}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{A\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::\+A\+R\+B (
+\begin{DoxyParamCaption}
+\item[{Mat}]{appearance, }
+\item[{{\bf A\+R\+B} $\ast$}]{node\+Linked\+To, }
+\item[{double}]{distance}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_ad3e230c460681d7a8d25f854d54a7068}
+
+
+Constructor which adds a link to (and from) node\+Linked\+To. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em appearance} & \mbox{[}in\mbox{]} \+: An appearance of the object being tracked. \\
+\hline
+{\em node\+Linked\+To} & \mbox{[}in, out\mbox{]} \+: The previous node to be used, so that the link in the network can be created. Link will be created in both directions. \\
+\hline
+{\em distance} & \mbox{[}in\mbox{]} \+: Distance between this node and the node\+Linked\+To. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_a_r_b_aa3f04bd47ff47fb9c04ec5172bd299e9}{}\index{A\+R\+B@{A\+R\+B}!add\+New\+Link@{add\+New\+Link}}
+\index{add\+New\+Link@{add\+New\+Link}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{add\+New\+Link}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::add\+New\+Link (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+R\+B} $\ast$}]{new\+Arb\+Node, }
+\item[{double}]{distance}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_aa3f04bd47ff47fb9c04ec5172bd299e9}
+
+
+Adds a link from this node to the new\+Arb\+Node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Arb\+Node} & \mbox{[}in\mbox{]} \+: Node that the link will be created to. \\
+\hline
+{\em distance} & \mbox{[}in\mbox{]} \+: Distance to the new\+Arb\+Node. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_a_r_b_a3665160a394713d42ee9b787602ce741}{}\index{A\+R\+B@{A\+R\+B}!decay\+Resource\+Level@{decay\+Resource\+Level}}
+\index{decay\+Resource\+Level@{decay\+Resource\+Level}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{decay\+Resource\+Level}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::decay\+Resource\+Level (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a3665160a394713d42ee9b787602ce741}
+
+
+Decrease the resource level based on the D\+E\+C\+A\+Y\+\_\+\+R\+A\+T\+E. 
+
+\begin{DoxyReturn}{Returns}
+The new resource level 
+\end{DoxyReturn}
+\hypertarget{class_a_r_b_a86a497207363be0943fbda129f51f2d4}{}\index{A\+R\+B@{A\+R\+B}!get\+Appearance@{get\+Appearance}}
+\index{get\+Appearance@{get\+Appearance}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{get\+Appearance}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::get\+Appearance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a86a497207363be0943fbda129f51f2d4}
+\begin{DoxyReturn}{Returns}
+An appearance of the object being tracked. 
+\end{DoxyReturn}
+\hypertarget{class_a_r_b_a0bb9d1811fe67f59e957b7bc17ed3331}{}\index{A\+R\+B@{A\+R\+B}!get\+Links@{get\+Links}}
+\index{get\+Links@{get\+Links}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{get\+Links}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::get\+Links (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a0bb9d1811fe67f59e957b7bc17ed3331}
+
+
+Gets a vector of the A\+R\+Bs which this \hyperlink{class_a_r_b}{A\+R\+B} is linked to. 
+
+\begin{DoxyReturn}{Returns}
+Vector of A\+R\+Bs 
+\end{DoxyReturn}
+\hypertarget{class_a_r_b_a314d01f3bac14f571a7d7b1534511447}{}\index{A\+R\+B@{A\+R\+B}!get\+Resource\+Level@{get\+Resource\+Level}}
+\index{get\+Resource\+Level@{get\+Resource\+Level}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{get\+Resource\+Level}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::get\+Resource\+Level (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a314d01f3bac14f571a7d7b1534511447}
+\begin{DoxyReturn}{Returns}
+The resource level 
+\end{DoxyReturn}
+\hypertarget{class_a_r_b_a8df8e8956b9454bd7341cc6aeae2ae88}{}\index{A\+R\+B@{A\+R\+B}!increase\+Resource\+Level@{increase\+Resource\+Level}}
+\index{increase\+Resource\+Level@{increase\+Resource\+Level}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{increase\+Resource\+Level}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::increase\+Resource\+Level (
+\begin{DoxyParamCaption}
+\item[{double}]{distance}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_a8df8e8956b9454bd7341cc6aeae2ae88}
+
+
+Increases the resource level based on the distance and the stimulation level. 
+
+\begin{DoxySeeAlso}{See also}
+get\+Stimulation\+Level(). 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & \mbox{[}in\mbox{]} \+: Distance between the this.\+appearance and the appearance in the latest frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new resource level 
+\end{DoxyReturn}
+\hypertarget{class_a_r_b_ab8f2944c4604d2fff3771bf3306e2070}{}\index{A\+R\+B@{A\+R\+B}!remove\+Link@{remove\+Link}}
+\index{remove\+Link@{remove\+Link}!A\+R\+B@{A\+R\+B}}
+\subsubsection[{remove\+Link}]{\setlength{\rightskip}{0pt plus 5cm}A\+R\+B\+::remove\+Link (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+R\+B} $\ast$}]{rm\+Arb\+Node}
+\end{DoxyParamCaption}
+)}\label{class_a_r_b_ab8f2944c4604d2fff3771bf3306e2070}
+
+
+Removes the link to the rm\+Arb\+Node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rm\+Arb\+Node} & \mbox{[}in\mbox{]} \+: \hyperlink{class_a_r_b}{A\+R\+B} that is being removed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+A\+I\+S/\hyperlink{arb_8h}{arb.\+h}\item 
+A\+I\+S/\hyperlink{arb_8cpp}{arb.\+cpp}\end{DoxyCompactItemize}
