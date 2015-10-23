@@ -74,8 +74,9 @@ void QtWidgetImageDisplay::paintEvent(QPaintEvent *)
         double framesPerSecond = this->numberOfFrames / difftime(currentTime, this->startedTime);
         this->frameRates.push_back(framesPerSecond);
         painter.drawText(QPoint(_qimage.width()-100,_qimage.height()-5), QString::number(framesPerSecond));
-
+//std::cout <<this->numberOfFrames << std::endl;
     }
+
     painter.end();
 }
 

@@ -43,7 +43,7 @@ TrackingAndDetection::TrackingAndDetection()
 */
 
 TrackingAndDetection::TrackingAndDetection(bool rotation, bool scale, ARBsToSearchWith whichARBsToSearchWith, DistanceMeasureType distanceMeasureType,
-                                           bool usePredictedLocation, double stimulationThreshold, double objectThreshold, VideoInputType inputType, string configPathName, string directoryOutput)
+                                           bool usePredictedLocation, double stimulationThreshold, double objectThreshold, double linkingThreshold, VideoInputType inputType, string configPathName, string directoryOutput, int numberOfinitialARBs, int numIteration)
 {
     this->useRotation = rotation;
     this->useScale = scale;
@@ -52,15 +52,21 @@ TrackingAndDetection::TrackingAndDetection(bool rotation, bool scale, ARBsToSear
     this->usePredictedLocation = usePredictedLocation;
 
     this->state = UNINITIALISED;
-    this->simplexObjectDetector = NULL;
+    this->objectDetector = NULL;
     this->videoInput = NULL;
     this->network = NULL;
     this->distanceMeasure = NULL;
 
     this->stimulationThreshold = stimulationThreshold;
     this->objectThreshold = objectThreshold;
+    this->linkingThreshold = linkingThreshold;
+
+    this->numberOfinitialARBs = numberOfinitialARBs;
+
 
     this->directoryOutput = directoryOutput;
+
+    this->numIteration = numIteration;
 
     this->inputType = inputType;
     switch(inputType)
@@ -87,8 +93,8 @@ void TrackingAndDetection::reset(VideoInputType inputType)
         network = NULL;
         delete(distanceMeasure);
         distanceMeasure = NULL;
-        delete(this->simplexObjectDetector);
-        this->simplexObjectDetector = NULL;
+        delete(this->objectDetector);
+        this->objectDetector = NULL;
     }
     state = UNINITIALISED;
     this->setupVideoInput(inputType);
@@ -154,8 +160,8 @@ void TrackingAndDetection::runVideoFeed()
                 this->stimulationThreshold = thresholdValues[numberOfVideoRun/5].stimulationThreshold;
                 this->objectThreshold = thresholdValues[numberOfVideoRun/5].objectThresholds[numberOfVideoRun%5];
 
-                std::cout << "this->stimulationThreshold : " << this->stimulationThreshold << std::endl;
-                std::cout << "this->objectThreshold : " << this->objectThreshold << std::endl;
+                //std::cout << "this->stimulationThreshold : " << this->stimulationThreshold << std::endl;
+                //std::cout << "this->objectThreshold : " << this->objectThreshold << std::endl;
                 this->videoInput->close();
                 this->videoInput->startCamera();
 
@@ -179,6 +185,23 @@ void TrackingAndDetection::runVideoFeed()
             exit(EXIT_SUCCESS);
         }
 
+        if((inputType == FILE_INPUT) && (this->iteration < this->numIteration))
+        {
+            this->videoInput->startCamera();
+            int x, y, width, height;
+            ((VideoFileInput*)this->videoInput)->getInitialPosition(&x, &y, &width, &height);
+
+            Location initalLocation;
+            initalLocation.x = x;
+            initalLocation.y = y;
+            initalLocation.scaleX = 1;
+            initalLocation.scaleY = 1;
+            initalLocation.rotation = 0;
+            network->resetLocation(initalLocation);
+
+            this->iteration = this->iteration + 1;
+        }
+
         return;
     }
 
@@ -189,7 +212,9 @@ void TrackingAndDetection::runVideoFeed()
     cvtColor(currentFrame, labFrame, CV_RGB2Lab);
     if(state == TRACKING)
     {
+        this->numberOfFrames++;
         this->detectObject(labFrame);
+        //std::cout << "this->network->getNumberOfARBs() : " << this->network->getNumberOfARBs() << std::endl;
         emit(updateNumARBs(this->network->getNumberOfARBs()));
     }
     else
@@ -217,6 +242,8 @@ void TrackingAndDetection::initialiseTrackingFromPosition(int x, int y, int widt
     initalLocation.scaleX = 1.0;
     initalLocation.scaleY = 1.0;
 
+    iteration = 0;
+
     Rect selectionRect(initalLocation.x, initalLocation.y, width, height);
     Mat selectedAppearance;
     //this->initialFrame(selectionRect).copyTo(selectedAppearance);
@@ -231,9 +258,9 @@ void TrackingAndDetection::initialiseTrackingFromPosition(int x, int y, int widt
             this->distanceMeasure = new SumOfSquaredDifference(this->initialFrame, selectedAppearance);
             break;
     }
-    this->simplexObjectDetector = new SimplexObjectDetector(this->distanceMeasure);    
+    this->objectDetector = new SimplexObjectDetector(this->distanceMeasure);//new GlobalObjectDetector(this->distanceMeasure);//
 
-    this->network = new Network(selectedAppearance, initalLocation, this->distanceMeasure, this->objectThreshold, this->stimulationThreshold, this->usePredictedLocation);
+    this->network = new Network(selectedAppearance, initalLocation, this->distanceMeasure, this->objectThreshold, this->stimulationThreshold, this->usePredictedLocation, this->linkingThreshold);
 
     //namedWindow( "selectedAppearance", WINDOW_AUTOSIZE );
    // imshow( "selectedAppearance", selectedAppearance);
@@ -246,14 +273,15 @@ void TrackingAndDetection::initialiseTrackingFromPosition(int x, int y, int widt
 
 void TrackingAndDetection::detectObject(Mat currentFrame)
 {
+  //  std::cout << "detectObject start" << std::endl;
  /*   namedWindow( "initialFrame", WINDOW_AUTOSIZE );
     imshow( "initialFrame", initialFrame);
 
     namedWindow( "currentFrame", WINDOW_AUTOSIZE );
     imshow( "currentFrame", currentFrame);
 */
-    vector<Mat> appearances;
-    switch (this->whichARBsToSearchWith) {
+
+    /*switch (this->whichARBsToSearchWith) {
     case ABOVE_AVERAGE:
         appearances = this->network->getARBsWithAboveAverageRL();
         break;
@@ -269,7 +297,11 @@ void TrackingAndDetection::detectObject(Mat currentFrame)
     default:
         appearances = this->network->getHighestRLAndConnectedARBs();
         break;
-    }
+    }*/
+
+    vector<Mat> appearances;
+   // appearances = this->network->getHighestRLAndConnectedARBs();
+    appearances = this->network->getNearestAndConnectedARBs();
 
     Location predictedLoc = this->network->getPredictedLocation();
     Location closestLoc = predictedLoc;
@@ -278,34 +310,38 @@ void TrackingAndDetection::detectObject(Mat currentFrame)
     // find object : bellow object threshold, and closest measure and closest transformation
     if(!this->useRotation && !this->useScale)
     {
-        closestLoc = this->simplexObjectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
     }
     else if(!this->useRotation && this->useScale)
     {
-        closestLoc = this->simplexObjectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
     }
     else if(this->useRotation && !this->useScale)
     {
-        closestLoc = this->simplexObjectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
     }
     else
     {
-        closestLoc = this->simplexObjectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
     }
-
+//std::cout << "detectObject after simplex" << std::endl;
     int width = appearances[mostMatchedAppearanceIndex].size().width;
     int height = appearances[mostMatchedAppearanceIndex].size().height;
 
     if(closestLoc.x != -1)
     {
-
-    Mat foundAppearance = this->createAppearance(currentFrame, closestLoc, width, height);
-
-    appearances.clear();
-    predictedLoc = this->network->addAppearance(foundAppearance, closestLoc);
+        Mat foundAppearance = this->createAppearance(currentFrame, closestLoc, width, height);
+        if(this->numberOfFrames < this->numberOfinitialARBs)
+        {
+            predictedLoc = this->network->initialAppearanceAddition(foundAppearance, closestLoc);
+        }
+        else
+        {
+            predictedLoc = this->network->addAppearance(foundAppearance, closestLoc);
+        }
     }
+    //std::cout << "detectObject before emit" << std::endl;
     emit(updateObjectsPosition(predictedLoc.x, predictedLoc.y, predictedLoc.rotation, width * predictedLoc.scaleX, height * predictedLoc.scaleY));
-    //emit(updateObjectsPosition(closestLoc.x, closestLoc.y, closestLoc.rotation, width * closestLoc.scaleX, height * closestLoc.scaleY));
 }
 
 //--------------------------------------------------------------
@@ -370,11 +406,11 @@ void TrackingAndDetection::useScaleChanged(bool useScale)
 }
 
 //--------------------------------------------------------------
-
+/*
 void TrackingAndDetection::whichARBsToSearchWithChanged(ARBsToSearchWith whichARBsToSearchWith)
 {
     this->whichARBsToSearchWith = whichARBsToSearchWith;
-}
+}*/
 
 //--------------------------------------------------------------
 
@@ -427,8 +463,8 @@ void TrackingAndDetection::objectThresholdChanged(double objectThreshold)
 
 TrackingAndDetection::~TrackingAndDetection()
 {
-    if (simplexObjectDetector != NULL)
-        delete(simplexObjectDetector);
+    if (objectDetector != NULL)
+        delete(objectDetector);
     if (videoInput != NULL)
         delete(videoInput);
     if (network != NULL)

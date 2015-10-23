@@ -31,7 +31,7 @@ LinkTrackingAndUi::LinkTrackingAndUi(QtWidgetImageDisplay * imageWidget, Trackin
     connect(imageWidget, SIGNAL(setUseRotation(bool)), trackingAndDetection, SLOT(useRotationChanged(bool)));
     connect(imageWidget, SIGNAL(setUseScale(bool)), trackingAndDetection, SLOT(useScaleChanged(bool)));
     connect(imageWidget, SIGNAL(setDistanceMeasure(DistanceMeasureType)), trackingAndDetection, SLOT(distanceMeasureChanged(DistanceMeasureType)));
-    connect(imageWidget, SIGNAL(setWhichARBsToSearchWith(ARBsToSearchWith)), trackingAndDetection, SLOT(whichARBsToSearchWithChanged(ARBsToSearchWith)));
+    //connect(imageWidget, SIGNAL(setWhichARBsToSearchWith(ARBsToSearchWith)), trackingAndDetection, SLOT(whichARBsToSearchWithChanged(ARBsToSearchWith)));
     connect(imageWidget, SIGNAL(setUsePredictedLocation(bool)), trackingAndDetection, SLOT(usePredictedLocationChanged(bool)));
 
     connect(imageWidget, SIGNAL(setStimulationThreshold(double)), trackingAndDetection, SLOT(stimulationThresholdChanged(double)));

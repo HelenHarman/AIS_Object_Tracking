@@ -70,17 +70,17 @@ EuclideanDistance::EuclideanDistance(Mat frame, Mat appearance)
             }
 
             AIS_Options::Location location = {i, j, 1, 1, 0}; // x, y, scaleX, scaleY, rotation
-            double distance = this->getUnnormalisedDistance(frame, appearance, location) / sqrt(appearance.size().height * appearance.size().width);
+            double distance = this->getUnnormalisedDistance(frame, appearance, location);// / sqrt(appearance.size().height * appearance.size().width);
 
             if (distance > this->maxDistance)
             {
                 this->maxDistance = distance;
-               // cout << this->maxDistance << endl;
             }
+
         }
     }
 
-    this->maxDistance = this->maxDistance ;//+ (this->maxDistance ); // Add 10% contingency to the maxDistance,
+    this->maxDistance = this->maxDistance / sqrt(appearance.size().width * appearance.size().height);//+ (this->maxDistance ); // Add 10% contingency to the maxDistance,
                         // this will allow lighting to change overtime, hopefully will not change by more than 10%
 }
 
@@ -90,7 +90,8 @@ double EuclideanDistance::getDistance(Mat image, Mat appearance, AIS_Options::Lo
 {   
     int imageWidth = appearance.size().width * location.scaleX;
     int imageHeight = appearance.size().height * location.scaleY;
-    double distance = (this->getUnnormalisedDistance(image, appearance, location) / sqrt(MIN(imageHeight, appearance.size().height) * MIN(imageWidth, appearance.size().width))) / this->maxDistance; //TODO sqrt?
+    double size = MIN(imageHeight, appearance.size().height) * MIN(imageWidth, appearance.size().width);
+    double distance = (this->getUnnormalisedDistance(image, appearance, location) / sqrt(size)) / (this->maxDistance * size);
     //distance = sigmoid(distance);
     //cout << "distance : " << distance << endl;
     //return distance;
@@ -109,7 +110,10 @@ double EuclideanDistance::getDistance(Mat image, Mat appearance, AIS_Options::Lo
 double EuclideanDistance::getDistanceBetweenAppearances(Mat image, Mat appearance)
 {
     double distance = 0;
-    distance = (sqrt(distanceBetweenAppearancesSSD(image, appearance)) / sqrt(MIN(image.size().height, appearance.size().height) * MIN(image.size().width, appearance.size().width))) / this->maxDistance;
+    double size = MIN(image.size().height, appearance.size().height) * MIN(image.size().width, appearance.size().width);
+    //distance = (sqrt(distanceBetweenAppearancesSSD(image, appearance)) / sqrt(size))  / (this->maxDistance * size);
+    distance = (sqrt(distanceBetweenAppearancesSSD(image, appearance)))  / (this->maxDistance * sqrt(size));
+
     //distance = sigmoid(distance);
     //cout << "distance : " << distance << endl;
     //return distance;

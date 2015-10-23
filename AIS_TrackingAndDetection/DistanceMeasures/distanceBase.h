@@ -73,6 +73,9 @@ protected:
     double calculateSSD(Mat image, Mat appearance, AIS_Options::Location location);
 
     double distanceBetweenAppearancesSSD(Mat image, Mat appearance);
+
+private:
+    double calculateDistance(Mat image, Mat appearance, double appearanceScaleX, double imageScaleX, double appearanceScaleY, double imageScaleY, int imageWidth, int imageHeight, int rotation, int offSetX, int offSetY);
 };
 
 #endif // DISTANCEBASE_H

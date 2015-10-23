@@ -30,6 +30,8 @@ public:
      */
     VideoFileInput(string videoConfigFilePathName);
 
+    VideoFileInput(){}
+
     /*!
      * \fn getInitialPosition
      * \brief Gets the initial location of the object that will be tracked
@@ -46,6 +48,7 @@ public:
      */
     bool startCamera();
 
+    bool startCamera(string videoFilePathName);
     /*!
      * \fn getNextFrame
      * \brief Gets the frame in RGB colour space.

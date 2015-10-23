@@ -27,7 +27,7 @@ public:
      *
      * \param appearance [in] : An appearance of the object being tracked.
      */
-    ARB(Mat appearance);
+    ARB(Mat appearance, double resourceLevel = 1);
 
     /*!
      * \fn ARB(Mat appearance, ARB * nodeLinkedTo, double distance)
@@ -88,6 +88,9 @@ public:
      */
     vector<ARB*> getLinks();
 
+    bool shouldAlwaysKeep();
+    void setAlwaysKeep(bool alwaysKeep);
+
      ~ARB();
 
 private:
@@ -95,7 +98,9 @@ private:
      * \var DECAY_RATE
      * \brief Used to decay the network each time it is exposed to a new appearance
      */
-    const double DECAY_RATE = 0.999;
+    const double DECAY_RATE = 0.95;
+
+    bool alwaysKeep = false;
 
     /*!
      * \struct Link

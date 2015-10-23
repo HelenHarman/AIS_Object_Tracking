@@ -22,7 +22,6 @@ LIBS += -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_nonfree -lopenc
 INCLUDEPATH += /usr/local/Cellar/gsl/1.16/include
 LIBS += -L/usr/local/Cellar/gsl/1.16/lib -lcblas -lgsl -lgslcblas -lm
 
-
 SOURCES += main.cpp\
         UI/mainwindow.cpp \
         VideoDeviceInteraction/webcamInput.cpp \
@@ -39,7 +38,10 @@ SOURCES += main.cpp\
     UI/outputData.cpp \
     DistanceMeasures/distanceBase.cpp \
     VideoDeviceInteraction/videoInputBase.cpp \
-    argumentParser.cpp
+    argumentParser.cpp \
+    objectDetector.cpp \
+    globalObjectDetector.cpp \
+    groundTruthDistances.cpp
 
 HEADERS  += UI/mainwindow.h \
             VideoDeviceInteraction/webcamInput.h \
@@ -57,7 +59,10 @@ HEADERS  += UI/mainwindow.h \
     options.h \
     DistanceMeasures/distanceBase.h \
     VideoDeviceInteraction/videoInputBase.h \
-    argumentParser.h
+    argumentParser.h \
+    objectDetector.h \
+    globalObjectDetector.h \
+    groundTruthDistances.h
 
 FORMS    += UI/mainwindow.ui
 

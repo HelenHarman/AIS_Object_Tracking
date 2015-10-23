@@ -15,16 +15,15 @@
 #include <gsl/gsl_multimin.h>
 #include <gsl/gsl_vector.h>
 
-#include "distanceBase.h"
-#include "network.h"
-#include "transformations.h"
-#include "options.h"
+//#include "network.h"
+
+#include "objectDetector.h"
 
 /*!
  * \class SimplexObjectDetector
  * \brief Uses the Simplex functionality of GSL to locate the object being tracked.
  */
-class SimplexObjectDetector : public Transformations
+class SimplexObjectDetector : public ObjectDetector
 {
 public:
     /*!
@@ -88,6 +87,8 @@ public:
     static double SCALE_X_STEP_SIZE;// = 0.01;//0.01;//0.02//0.05;
     static double SCALE_Y_STEP_SIZE;// = 0.01;//0.01;//0.02//0.05;
     static double ROTATION_STEP_SIZE;// = 1.0;
+
+    ~SimplexObjectDetector(){}
 private:
     /*!
      * \var distanceMeasure

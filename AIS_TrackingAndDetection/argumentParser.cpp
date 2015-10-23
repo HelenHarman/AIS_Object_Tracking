@@ -6,7 +6,7 @@ ArgumentParser::ArgumentParser(int argc, char *argv[])
     this->argv = argv;
 }
 
-void ArgumentParser::getArguments(bool *rotation, bool *scale, ARBsToSearchWith *whichARBsToSearchWith, DistanceMeasureType *distanceMeasureType, bool *usePredictedLocation, double *stimulationThreshold, double *objectThreshold, VideoInputType *inputType, string *configPathName, string *directoryOutput)
+void ArgumentParser::getArguments(bool *rotation, bool *scale, ARBsToSearchWith *whichARBsToSearchWith, DistanceMeasureType *distanceMeasureType, bool *usePredictedLocation, double *stimulationThreshold, double *objectThreshold, double *linkingThreshold, VideoInputType *inputType, string *configPathName, string *directoryOutput, int *numberOfinitialARBs, int *numIteration)
 {
     if (argc > 0)
     {
@@ -78,6 +78,12 @@ void ArgumentParser::getArguments(bool *rotation, bool *scale, ARBsToSearchWith 
             *objectThreshold = atof(argv[argumentIndex+1]);
         }
 
+        argumentIndex = getArgument("-nat", argv, argc);
+        if (argumentIndex != -1)
+        {
+            *linkingThreshold = atof(argv[argumentIndex+1]);
+        }
+
         argumentIndex = getArgument("-conf", argv, argc);
         if (argumentIndex != -1)
         {
@@ -121,6 +127,18 @@ void ArgumentParser::getArguments(bool *rotation, bool *scale, ARBsToSearchWith 
         {
             *directoryOutput = argv[argumentIndex+1];
         }
+
+        argumentIndex = getArgument("-NIA", argv, argc);
+        if (argumentIndex != -1)
+        {
+            *numberOfinitialARBs = stoi(argv[argumentIndex+1]);
+        }
+
+        argumentIndex = getArgument("-iterations", argv, argc);
+        if (argumentIndex != -1)
+        {
+            *numIteration = stoi(argv[argumentIndex+1]);
+        }
     }
 }
 
@@ -138,6 +156,5 @@ int ArgumentParser::getArgument(const char *id, char *argv[], int argc)
 
 ArgumentParser::~ArgumentParser()
 {
-
 }
 

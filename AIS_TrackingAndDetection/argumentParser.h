@@ -13,7 +13,7 @@ class ArgumentParser
 public:
     ArgumentParser(int argc, char *argv[]);
 
-    void getArguments(bool *rotation, bool *scale, ARBsToSearchWith *whichARBsToSearchWith, DistanceMeasureType *distanceMeasureType, bool *usePredictedLocation, double *stimulationThreshold, double *objectThreshold, VideoInputType *inputType, string *configPathName, string *directoryOutput);
+    void getArguments(bool *rotation, bool *scale, ARBsToSearchWith *whichARBsToSearchWith, DistanceMeasureType *distanceMeasureType, bool *usePredictedLocation, double *stimulationThreshold, double *objectThreshold, double *linkingThreshold, VideoInputType *inputType, string *configPathName, string *directoryOutput, int *numberOfinitialARBs, int *numIteration);
 
     ~ArgumentParser();
 

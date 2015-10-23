@@ -51,6 +51,14 @@ bool VideoFileInput::startCamera()
 
 //--------------------------------------------------------------
 
+bool VideoFileInput::startCamera(string videoFilePathName)
+{
+    this->videoFilePathName = videoFilePathName;
+    return this->capture.open(this->videoFilePathName);
+}
+
+//--------------------------------------------------------------
+
 Mat VideoFileInput::getNextFrame()
 {
     Mat frame;

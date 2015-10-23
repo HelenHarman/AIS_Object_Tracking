@@ -27,6 +27,7 @@
 #include "options.h"
 
 #include "simplexObjectDetector.h"
+#include "globalObjectDetector.h"
 
 using namespace AIS_Options;
 
@@ -45,7 +46,7 @@ public:
      */
     //TrackingAndDetection();
     TrackingAndDetection(bool rotation = false, bool scale = false, ARBsToSearchWith whichARBsToSearchWith = HIGHEST_AND_CONNECTED, DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE,
-                                               bool usePredictedLocation = false, double stimulationThreshold = 0.6, double objectThreshold = 0.8, VideoInputType inputType = WEBCAM, string configPathName = "", string directoryOutput = "");
+                                               bool usePredictedLocation = false, double stimulationThreshold = 0.6, double objectThreshold = 0.8, double linkingThreshold = 0, VideoInputType inputType = WEBCAM, string configPathName = "", string directoryOutput = "", int numberOfinitialARBs = 0, int numIteration = 0);
 
 
     ~TrackingAndDetection();
@@ -115,7 +116,7 @@ public slots:
      * \fn whichARBsToSearchWithChanged
      * \param whichARBsToSearchWith [in]
      */
-    void whichARBsToSearchWithChanged(ARBsToSearchWith whichARBsToSearchWith);
+    //void whichARBsToSearchWithChanged(ARBsToSearchWith whichARBsToSearchWith);
 
     /*!
      * \fn usePredictedLocationChanged
@@ -182,7 +183,7 @@ private:
      * \fn simplexObjectDetector
      * \brief The omptimised detection algorithm
      */
-    SimplexObjectDetector *simplexObjectDetector;
+    ObjectDetector *objectDetector;
 
     /*!
      * \var state
@@ -252,6 +253,8 @@ private:
      */
     double objectThreshold;
 
+    double linkingThreshold;
+
     /*!
      * \fn detectObject
      * \param currentFrame [in]
@@ -279,6 +282,11 @@ private:
 
 
     string directoryOutput = "";
+
+    int numberOfinitialARBs = 5;
+    int numberOfFrames = 0;
+    int iteration = 0;
+    int numIteration = 0;
 
 
     // used to allow out many threshold values, so the best result can be found

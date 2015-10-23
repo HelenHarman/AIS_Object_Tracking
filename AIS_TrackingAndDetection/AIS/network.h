@@ -34,7 +34,7 @@ public:
      * \param initialApperance [in] : The appearance that the user has selected.
      * \param currentLocation [in] : The initial location.
      */
-    Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation);//TODO has through DistanceInterface distanceMeasure
+    Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation, double linkingThreshold = 0);//TODO has through DistanceInterface distanceMeasure
 
     /*!
      * \fn addAppearance
@@ -48,27 +48,9 @@ public:
      */
     Location addAppearance(Mat appearance, Location currentLocation);
 
-    /*!
-     * \fn getARBsWithAboveAverageRL
-     * \brief Gets the nodes that performs the inital search for the
-     * object within a video frame.
-     * \return The previous appearance and the most stimulated appearance
-     */
-    vector<Mat> getARBsWithAboveAverageRL();
-
-    /*!
-     * \fn getAllAppearances
-     * \return A list of all appearances in the network
-     */
-    vector<Mat> getAllAppearances();
-
-    /*!
-     * \fn getLastAndHighestARBs
-     * \return The last ARB to be used and the ARB which has the highest resource level
-     */
-    vector<Mat> getLastAndHighestARBs();
 
     vector<Mat> getHighestRLAndConnectedARBs();
+    vector<Mat> getNearestAndConnectedARBs();
 
     /*!
      * \fn getPredictedLocation
@@ -110,6 +92,10 @@ public:
 
 
     vector<Mat> getLastAndConnectedARBs();
+
+    Location initialAppearanceAddition(Mat appearance, Location currentLocation);
+
+    void resetLocation(Location location);
     ~Network();
 
 private:
@@ -137,7 +123,9 @@ private:
      * \brief If a ARB's resource level falls below
      * this threshold, then the ARB will be deleted.
      */
-    const double REMOVAL_THRESHOLD = 0.6;//0.01;
+    const double REMOVAL_THRESHOLD = 0.6;
+
+    const double initialARBsResourceLevel = 15;
 
     /*!
      * \var averageResourceLevel
@@ -206,6 +194,29 @@ private:
      */
     void calculatePredictedLocation(Location currentLocation);
 
+
+    void checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLinkThreshold, ARB ** closestArb, double *smallestDistance);
 };
 
 #endif // NETWORK_H
+
+
+/*!
+ * \fn getARBsWithAboveAverageRL
+ * \brief Gets the nodes that performs the inital search for the
+ * object within a video frame.
+ * \return The previous appearance and the most stimulated appearance
+ */
+//vector<Mat> getARBsWithAboveAverageRL();
+
+/*!
+ * \fn getAllAppearances
+ * \return A list of all appearances in the network
+ */
+//vector<Mat> getAllAppearances();
+
+/*!
+ * \fn getLastAndHighestARBs
+ * \return The last ARB to be used and the ARB which has the highest resource level
+ */
+//vector<Mat> getLastAndHighestARBs();

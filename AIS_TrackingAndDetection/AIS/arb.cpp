@@ -12,12 +12,13 @@
 
 //--------------------------------------------------------------------
 
-ARB::ARB(Mat appearance)
+ARB::ARB(Mat appearance, double resourceLevel)
 {
     this->numLinks = 0;
     this->appearance = appearance;
 
-    this->resourceLevel = 1;//DECAY_RATE * this->getStimulationLevel(0);
+    this->resourceLevel = resourceLevel;//DECAY_RATE * this->getStimulationLevel(0);
+    this->increaseResourceLevel(0.0);
 }
 
 //--------------------------------------------------------------------
@@ -64,9 +65,15 @@ double ARB::increaseResourceLevel(double distance)
 
     //std::cout << "this->resourceLevel + stimulationLevel : " << (this->resourceLevel + stimulationLevel) << std::endl;
 
-    this->resourceLevel = this->DECAY_RATE * (this->resourceLevel + stimulationLevel);
+    //this->resourceLevel = this->DECAY_RATE * (this->resourceLevel + stimulationLevel);
 
     //std::cout << "increaseResourceLevel this->resourceLevel : " << this->resourceLevel << std::endl;
+
+    double maxRes = 1000.00;
+    double k = 0.0005;
+    this->resourceLevel = this->resourceLevel + (k * (maxRes - this->DECAY_RATE) * stimulationLevel);
+
+
     return this->resourceLevel;
 }
 
@@ -146,6 +153,19 @@ void ARB::removeLink(ARB *rmArbNode)
 }
 
 //--------------------------------------------------------------------
+
+bool ARB::shouldAlwaysKeep()
+{
+    return this->alwaysKeep;
+}
+
+//--------------------------------------------------------------------
+
+void ARB::setAlwaysKeep(bool alwaysKeep)
+{
+    this->alwaysKeep = alwaysKeep;
+}
+
 
 double ARB::getResourceLevel()
 {

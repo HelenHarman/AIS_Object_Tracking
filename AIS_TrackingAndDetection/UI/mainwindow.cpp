@@ -28,12 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->connect(ui->actionPredict_Location, SIGNAL(triggered()), this, SLOT(usePredictedLocationChanged()));
 
     //this->connect(ui->actionUse_Most_Likely_ARBs, SIGNAL(triggered()), this, SLOT(useMostLikelyAppearancesChanged()));
-    this->connect(ui->actionAll_ARBs, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToALL()));
+    /*this->connect(ui->actionAll_ARBs, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToALL()));
     this->connect(ui->actionAbove_Avarage_RL, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToAboveAverageRL()));
     this->connect(ui->actionLatest_Highest_RL, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToLatestAndHighestRL()));
     this->connect(ui->actionLatest_Connected, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToLatestAndConnected()));
     this->connect(ui->actionHighest_Connected, SIGNAL(triggered()), this, SLOT(whichARBsToSearchWithChangedToHighestAndConnected()));
-
+*/
 
     this->connect(ui->actionOT, SIGNAL(triggered()), this, SLOT(changeObjectThreshold()));
     this->connect(ui->actionST, SIGNAL(triggered()), this, SLOT(changeStimulationThreshold()));
