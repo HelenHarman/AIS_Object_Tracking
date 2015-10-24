@@ -29,6 +29,8 @@
 #include "simplexObjectDetector.h"
 #include "globalObjectDetector.h"
 
+#include "location.h"
+
 using namespace AIS_Options;
 
 /*!
@@ -164,7 +166,11 @@ public slots:
      * \param width [in]
      * \param height [in]
      */
-    void initialiseTrackingFromPosition(int x, int y, int width, int height);
+    //void initialiseTrackingFromPosition(int x, int y, int width, int height);
+
+
+    void initialiseTrackingFromLocation(Location location);
+
 
     /*!
      * \fn stimulationThresholdChanged
@@ -266,7 +272,7 @@ private:
      * \brief Checks what type of video input is being used, and creates an object of that type.
      * \param inputType [in]
      */
-    void setupVideoInput(VideoInputType inputType);
+    void setupVideoInput(string configPathName = "");
 
     /*!
      * \fn checkIfObjectPredictionWithinFrame
@@ -276,7 +282,7 @@ private:
      * \param appearanceWidth [in]
      * \param appearanceHeight [in]
      */
-    void checkIfObjectPredictionWithinFrame(Location *predictedLoc, Mat currentFrame,  int appearanceWidth, int appearanceHeight);
+    //void checkIfObjectPredictionWithinFrame(Location *predictedLoc, Mat currentFrame,  int appearanceWidth, int appearanceHeight);
 
     Mat createAppearance(Mat frame, Location location, int width, int height);
 
@@ -287,30 +293,6 @@ private:
     int numberOfFrames = 0;
     int iteration = 0;
     int numIteration = 0;
-
-
-    // used to allow out many threshold values, so the best result can be found
-    bool const RUN_MANY = false;
-    int numberOfVideoRun = 0;
-    struct thresholds
-    {
-        double stimulationThreshold;
-        double objectThresholds[5];
-    };
-
-    thresholds thresholdValues[12] = {{0.03, {0.034, 0.038, 0.04, 0.044, 0.048}},
-                                      {0.04, {0.044, 0.048, 0.05, 0.054, 0.058}},
-                                      {0.05, {0.06, 0.07, 0.08, 0.09, 0.10}},
-                                      {0.06, {0.062, 0.066, 0.07, 0.073, 0.076}},
-                                      {0.07, {0.072, 0.076, 0.08, 0.083, 0.086}},
-                                      {0.08, {0.09, 0.10, 0.12, 0.13, 0.12}},
-                                      {0.10, {0.12, 0.13, 0.14, 0.15, 0.16}},
-                                      {0.12, {0.14, 0.15, 0.16, 0.18, 0.20}},
-                                      {0.15, {0.17, 0.18, 0.19, 0.20, 0.22}},
-                                      {0.18, {0.20, 0.22, 0.24, 0.25, 0.26}},
-                                      {0.20, {0.22, 0.23, 0.24, 0.27, 0.30}},
-                                      {0.24, {0.26, 0.30, 0.32, 0.33, 0.36}}
-                                    };
 };
 
 #endif // TRACKINGANDDETECTION_H

@@ -41,7 +41,8 @@ SOURCES += main.cpp\
     argumentParser.cpp \
     objectDetector.cpp \
     globalObjectDetector.cpp \
-    groundTruthDistances.cpp
+    groundTruthDistances.cpp \
+    location.cpp
 
 HEADERS  += UI/mainwindow.h \
             VideoDeviceInteraction/webcamInput.h \
@@ -62,7 +63,8 @@ HEADERS  += UI/mainwindow.h \
     argumentParser.h \
     objectDetector.h \
     globalObjectDetector.h \
-    groundTruthDistances.h
+    groundTruthDistances.h \
+    location.h
 
 FORMS    += UI/mainwindow.ui
 

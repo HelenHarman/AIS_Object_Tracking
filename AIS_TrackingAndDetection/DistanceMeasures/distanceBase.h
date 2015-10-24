@@ -21,6 +21,7 @@
 
 #include "options.h"
 #include "transformations.h"
+#include "location.h"
 
 using namespace cv;
 
@@ -39,7 +40,7 @@ public:
      * \param appearance [in]
      * \return the distance
      */
-    virtual double getDistance(Mat frame, Mat appearance, AIS_Options::Location location) = 0;
+    virtual double getDistance(Mat frame, Mat appearance, Location location) = 0;
 
     virtual double getDistanceBetweenAppearances(Mat image, Mat appearance) = 0;
 
@@ -70,12 +71,12 @@ protected:
      * \param appearance [in]
      * \return the distance between the image and the appearance
      */
-    double calculateSSD(Mat image, Mat appearance, AIS_Options::Location location);
+    double calculateSSD(Mat image, Mat appearance, Location location);
 
-    double distanceBetweenAppearancesSSD(Mat image, Mat appearance);
+   // double distanceBetweenAppearancesSSD(Mat image, Mat appearance);
 
-private:
-    double calculateDistance(Mat image, Mat appearance, double appearanceScaleX, double imageScaleX, double appearanceScaleY, double imageScaleY, int imageWidth, int imageHeight, int rotation, int offSetX, int offSetY);
+//private:
+    //double calculateDistance(Mat image, Mat appearance, double appearanceScaleX, double imageScaleX, double appearanceScaleY, double imageScaleY, int imageWidth, int imageHeight, int rotation, int offSetX, int offSetY);
 };
 
 #endif // DISTANCEBASE_H

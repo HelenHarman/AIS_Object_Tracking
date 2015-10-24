@@ -148,7 +148,7 @@ private:
      * \param numberOfDimensions [in]
      * \return
      */
-    Location getLocationFromVector(const gsl_vector * locationVector, const size_t numberOfDimensions);
+    Location getLocationFromVector(const gsl_vector * locationVector, const size_t numberOfDimensions, Location location);
 
     /*!
      * \fn getDistance
@@ -170,7 +170,7 @@ private:
      * \param frame [in]
      * \return How far off the edge of the frame the position is, squared. Stops the distance being constant when the edge of the image is reached.
      */
-    int checkPostionInRange(int * positionX, int * positionY, int appearanceWidth, int appearanceHeight, int rotation, Mat frame);
+   // int checkPostionInRange(int * positionX, int * positionY, int appearanceWidth, int appearanceHeight, int rotation, Mat frame);
 
     /*!
      * \fn checkXorYPostionInRange
@@ -181,7 +181,7 @@ private:
      * \param minPosition [in]
      * \return
      */
-    int checkXorYPostionInRange(int position, int appearanceSize, int maxPosition, int minPosition);
+    //int checkXorYPostionInRange(int position, int appearanceSize, int maxPosition, int minPosition);
 
     /*!
      * \fn checkSizeInRange
@@ -190,7 +190,7 @@ private:
      * \param frameSize [in]
      * \return
      */
-    int checkSizeInRange(int size, int frameSize);
+    //int checkSizeInRange(int size, int frameSize);
 
     /*!
      * \fn checkLocationInRange
@@ -201,9 +201,9 @@ private:
      * \param frame [in]
      * \return
      */
-    Location checkLocationInRange(Location location, Mat appearance, Mat frame);
+    //Location checkLocationInRange(Location location, Mat appearance, Mat frame);
 
-    int checkLocationWithinFrame(Location location, Mat appearance, Mat frame);
+    int checkLocationWithinFrame(Location location, Mat frame);
 
 };
 

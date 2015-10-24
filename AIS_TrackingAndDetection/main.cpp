@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-
 /*
+
 int main(int argc, char *argv[])
 {
     GroundTruthDistances *groundTruthDistances = new GroundTruthDistances();
@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
     groundTruthDistances->compareDistances(gtFileName, outputFileName, videoFileName);
     return 1;
 }
-
 */
+
 
 
 //----------------------------------------------------------------

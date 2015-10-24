@@ -13,9 +13,9 @@
 Network::Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation, double linkingThreshold)
 {
     this->usePredictedLocation = usePredictedLocation;
-    currentLocation.rotation = 0;
-    currentLocation.scaleX = 1;
-    currentLocation.scaleY = 1;
+   // currentLocation.rotation = 0;
+    //currentLocation.scaleX = 1;
+    //currentLocation.scaleY = 1;
     ARB *newArb = new ARB(initialApperance, this->initialARBsResourceLevel);
     this->aRBs.push_back(newArb);
     numARBs = 1;
@@ -108,7 +108,6 @@ Location Network::initialAppearanceAddition(Mat appearance, Location currentLoca
 
     checkAllARBs(appearance, &arbsBelowLinkThreshold, &closestArb, &smallestDistance);
 
-
     if(closestArb != NULL)
     {
         closestArb->increaseResourceLevel(smallestDistance);
@@ -125,6 +124,13 @@ Location Network::initialAppearanceAddition(Mat appearance, Location currentLoca
         }
         this->numARBs++;
     }
+    else
+    {
+        ARB *newArb = new ARB(appearance, this->initialARBsResourceLevel);
+        //newArb->setAlwaysKeep(true);
+        this->aRBs.push_back(newArb);
+        this->numARBs++;
+    }
     this->setPredictedLocation(currentLocation);
     return this->predictedLocation;
 }
@@ -137,17 +143,17 @@ void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLin
     {
         distance = this->distanceMeasure->getDistanceBetweenAppearances(appearance, this->aRBs[i]->getAppearance());//(this->aRBs[i]->getAppearance(), appearance);
 
-        if(distance < *smallestDistance)//(distance < this->stimulationThreshold) && (distance < smallestDistance))
+        if(distance <= *smallestDistance)//(distance < this->stimulationThreshold) && (distance < smallestDistance))
         {
             *smallestDistance = distance;
             *closestArb = this->aRBs[i];
+            this->previousARB = this->aRBs[i];
         }
         if (distance < this->linkThreshold)
         {
             (*arbsBelowLinkThreshold)[this->aRBs[i]] = distance;
         }
     }
-    this->previousARB = *closestArb;
 }
 
 //--------------------------------------------------------------------
@@ -168,11 +174,12 @@ void Network::setPredictedLocation(Location currentLocation)
     }
     else
     {
-        this->predictedLocation.x = currentLocation.x;
+        this->predictedLocation = currentLocation;
+        /*this->predictedLocation.x = currentLocation.x;
         this->predictedLocation.y = currentLocation.y;
         this->predictedLocation.scaleX = currentLocation.scaleX;
         this->predictedLocation.scaleY = currentLocation.scaleY;
-        this->predictedLocation.rotation = currentLocation.rotation;
+        this->predictedLocation.rotation = currentLocation.rotation;*/
     }
     this->previousLocation = currentLocation;
 }
@@ -181,11 +188,11 @@ void Network::setPredictedLocation(Location currentLocation)
 
 void Network::calculatePredictedLocation(Location currentLocation)
 {
-    this->predictedLocation.x = currentLocation.x + (currentLocation.x - this->previousLocation.x);
-    this->predictedLocation.y = currentLocation.y + (currentLocation.y - this->previousLocation.y);
-    this->predictedLocation.scaleX = currentLocation.scaleX + (currentLocation.scaleX - this->previousLocation.scaleX);
-    this->predictedLocation.scaleY = currentLocation.scaleY + (currentLocation.scaleY - this->previousLocation.scaleY);
-    this->predictedLocation.rotation = currentLocation.rotation + (currentLocation.rotation - this->previousLocation.rotation);
+    this->predictedLocation.setX(currentLocation.getX() + (currentLocation.getX() - this->previousLocation.getX()));
+    this->predictedLocation.setY(currentLocation.getY() + (currentLocation.getY() - this->previousLocation.getY()));
+    this->predictedLocation.setScaleX(currentLocation.getScaleX() + (currentLocation.getScaleX() - this->previousLocation.getScaleX()));
+    this->predictedLocation.setScaleY(currentLocation.getScaleY() + (currentLocation.getScaleY() - this->previousLocation.getScaleY()));
+    this->predictedLocation.setRotation(currentLocation.getRotation() + (currentLocation.getRotation() - this->previousLocation.getRotation()));
 }
 
 //--------------------------------------------------------------------

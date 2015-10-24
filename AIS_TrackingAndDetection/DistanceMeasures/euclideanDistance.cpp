@@ -69,7 +69,15 @@ EuclideanDistance::EuclideanDistance(Mat frame, Mat appearance)
                 break;
             }
 
-            AIS_Options::Location location = {i, j, 1, 1, 0}; // x, y, scaleX, scaleY, rotation
+
+            /*int scaleX = ((double)appearance.size().width/(double)frame.size().width)*100.00;
+            int scaleY = ((double)appearance.size().height/(double)frame.size().height)*100.00;
+            int x = i + ((((double)frame.size().width / 100.00) * location.scaleX)/2);
+            int y = j + ((((double)frame.size().height / 100.00) * location.scaleY)/2);
+            int rotation = 0;*/
+            Location location(frame, appearance, i, j);//(x, y, scaleX, scaleY, rotation);//= {i, j, , , 0}; // x, y, scaleX, scaleY, rotation
+
+
             double distance = this->getUnnormalisedDistance(frame, appearance, location);// / sqrt(appearance.size().height * appearance.size().width);
 
             if (distance > this->maxDistance)
@@ -86,15 +94,18 @@ EuclideanDistance::EuclideanDistance(Mat frame, Mat appearance)
 
 //----------------------------------------------------------------------
 
-double EuclideanDistance::getDistance(Mat image, Mat appearance, AIS_Options::Location location)
+double EuclideanDistance::getDistance(Mat image, Mat appearance, Location location)
 {   
-    int imageWidth = appearance.size().width * location.scaleX;
-    int imageHeight = appearance.size().height * location.scaleY;
-    double size = MIN(imageHeight, appearance.size().height) * MIN(imageWidth, appearance.size().width);
-    double distance = (this->getUnnormalisedDistance(image, appearance, location) / sqrt(size)) / (this->maxDistance * size);
-    //distance = sigmoid(distance);
-    //cout << "distance : " << distance << endl;
-    //return distance;
+    //int imageWidth = appearance.size().width * location.scaleX;
+    //int imageHeight = appearance.size().height * location.scaleY;
+    int imageWidth, imageHeight;// = ((double)image.size().width / 100.00) * location.scaleX;
+    location.getSize(&imageWidth, &imageHeight, image);
+    //int imageHeight = ((double)image.size().height / 100.00) * location.scaleY;
+
+
+    //double size = MIN(imageHeight, appearance.size().height) * MIN(imageWidth, appearance.size().width);
+    double distance = (this->getUnnormalisedDistance(image, appearance, location) ) / (this->maxDistance * sqrt(imageWidth*imageHeight));
+
     if (distance > 1)
     {
         return 1;
@@ -109,27 +120,31 @@ double EuclideanDistance::getDistance(Mat image, Mat appearance, AIS_Options::Lo
 
 double EuclideanDistance::getDistanceBetweenAppearances(Mat image, Mat appearance)
 {
-    double distance = 0;
-    double size = MIN(image.size().height, appearance.size().height) * MIN(image.size().width, appearance.size().width);
+    //double distance = 0;
+    //double size = MIN(image.size().height, appearance.size().height) * MIN(image.size().width, appearance.size().width);
     //distance = (sqrt(distanceBetweenAppearancesSSD(image, appearance)) / sqrt(size))  / (this->maxDistance * size);
-    distance = (sqrt(distanceBetweenAppearancesSSD(image, appearance)))  / (this->maxDistance * sqrt(size));
+
+    Location location(image.size().width/2, image.size().height/2, 100, 100, 0);
+    return this->getDistance(image, appearance, location);
+
+    //distance = (sqrt(calculateSSD(image, appearance)))  / (this->maxDistance * sqrt(size));
 
     //distance = sigmoid(distance);
     //cout << "distance : " << distance << endl;
     //return distance;
-    if (distance > 1)
+    /*if (distance > 1)
     {
         return 1;
     }
     else
     {
         return distance;
-    }
+    }*/
 }
 
 //----------------------------------------------------------------------
 
-double EuclideanDistance::getUnnormalisedDistance(Mat frame, Mat appearance, AIS_Options::Location location)
+double EuclideanDistance::getUnnormalisedDistance(Mat frame, Mat appearance, Location location)
 {
     return sqrt(this->calculateSSD(frame, appearance, location));
 }

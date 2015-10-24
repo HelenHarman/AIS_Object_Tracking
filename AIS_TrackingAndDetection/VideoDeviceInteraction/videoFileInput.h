@@ -12,6 +12,8 @@
 #include <fstream>
 
 #include "videoInputBase.h"
+#include "options.h"
+#include "location.h"
 
 using namespace cv;
 
@@ -40,7 +42,7 @@ public:
      * \param width [out]
      * \param height [out]
      */
-    void getInitialPosition(int *x, int *y, int *width, int *height);
+    //void getInitialPosition(int *x, int *y, int *width, int *height);
 
     /*!
      * \fn startCamera
@@ -55,6 +57,8 @@ public:
      * \return The frame
      */
     Mat getNextFrame();
+
+    Location getInitialLocation(Mat frame);
 
 private:
     /*!

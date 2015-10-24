@@ -11,6 +11,88 @@
 
 //----------------------------------------------------------------------
 
+// TODO you mid point rather than corner!!!
+// TODO just put appearance comparison in some function
+
+
+double DistanceBase::calculateSSD(Mat frame, Mat appearance, Location location)
+{
+    int width, height, offSetX, offSetY;// = ((double)frame.size().width / 100.00) * location.scaleX;
+    //int height = ((double)frame.size().height / 100.00) * location.scaleY;
+    location.getSize(&width, &height, frame);
+    location.getCornerPoint(&offSetX, &offSetY, frame);
+    //int offSetX = location.x - (width/2);
+    //int offSetY = location.y - (height/2);
+
+
+    double appearanceScaleX = 1, appearanceScaleY = 1, imageScaleX = 1, imageScaleY = 1;
+
+    if (width < appearance.size().width)
+    {
+        appearanceScaleX = (double)frame.size().width / (double)appearance.size().width ;
+    }
+    else if (width > appearance.size().width)
+    {
+        imageScaleX = ((double)appearance.size().width / (double)frame.size().width);//1.0 / location.scaleX;
+    }
+
+    if (height < appearance.size().height)
+    {
+        appearanceScaleY = (double)frame.size().height / (double)appearance.size().height;
+    }
+    else if (height > appearance.size().height)
+    {
+        imageScaleY = ((double)appearance.size().height / (double)frame.size().height);//1.0 / location.scaleY;
+    }
+
+
+
+
+
+
+
+    double sumOfDistance = 0;
+    double imageA, imageB, appearanceA, appearanceB, distanceBetweenPixels;
+
+    // Finds if the width of the image or apperance should be scaled
+    for(int x = 0; x < MIN(width, appearance.size().width); x++)
+    {
+        for(int y = 0; y < MIN(height, appearance.size().height); y++)
+        {
+            int locX = offSetX + ((int)(((double)x*imageScaleX) + 0.5));
+            int locY = offSetY + ((int)(((double)y*imageScaleY) + 0.5));
+
+            if (location.getRotation() > 0)
+            {
+                rotatePosition(location.getRotation(), &locX, &locY, frame.size().width / 2, frame.size().height / 2);
+            }
+
+            Vec3b & colourFrame = frame.at<Vec3b>(Point(locX, locY));
+            imageA = (int)colourFrame[1];
+            imageB = (int)colourFrame[2];
+
+            locX = (int)(((double)x*appearanceScaleX) + 0.5);
+            locY = (int)(((double)y*appearanceScaleY) + 0.5);
+
+            Vec3b & colourAppearance = appearance.at<Vec3b>(Point(locX, locY));
+            appearanceA = (int)colourAppearance[1];
+            appearanceB = (int)colourAppearance[2];
+
+            // get the difference between the pixel values, square them, then add them to the sum of distances
+            distanceBetweenPixels = abs(imageA - appearanceA) ;
+            distanceBetweenPixels = distanceBetweenPixels + abs(imageB - appearanceB);
+            //distanceBetweenPixels = distanceBetweenPixels + (imageL - appearanceL);
+            sumOfDistance = sumOfDistance + (distanceBetweenPixels * distanceBetweenPixels);
+        }
+    }
+    return sumOfDistance;
+
+
+}
+
+
+
+/*
 double DistanceBase::calculateSSD(Mat frame, Mat appearance, AIS_Options::Location location)
 {
     int imageWidth = (int)(((double)appearance.size().width * location.scaleX)+0.5);
@@ -40,48 +122,18 @@ double DistanceBase::calculateSSD(Mat frame, Mat appearance, AIS_Options::Locati
     return calculateDistance(frame, appearance, appearanceScaleX, imageScaleX, appearanceScaleY, imageScaleY, MIN(imageWidth, appearance.size().width), MIN(imageHeight, appearance.size().height), location.rotation, location.x, location.y);
 
 
-    // Finds if the width of the image or apperance should be scaled
-   /* for(int x = 0; x < MIN(imageWidth, appearance.size().width); x++)
-    {
-        for(int y = 0; y < MIN(imageHeight, appearance.size().height); y++)
-        {
-            int locX = location.x + ((int)(((double)x*imageScaleX) + 0.5));
-            int locY = location.y + ((int)(((double)y*imageScaleY) + 0.5));
 
-            //std::cout << "pixel image : " << locX << ", " << locY << std::endl;
-
-            rotatePosition(location.rotation, &locX, &locY, frame.size().width / 2, frame.size().height / 2);
-
-            Vec3b & colourFrame = frame.at<Vec3b>(Point(locX, locY));
-            imageA = (int)colourFrame[1];
-            imageB = (int)colourFrame[2];
-
-            locX = (int)(((double)x*appearanceScaleX) + 0.5);
-            locY = (int)(((double)y*appearanceScaleY) + 0.5);
-
-            Vec3b & colourAppearance = appearance.at<Vec3b>(Point(locX, locY));
-            appearanceA = (int)colourAppearance[1];
-            appearanceB = (int)colourAppearance[2];
-
-            // get the difference between the pixel values, square them, then add them to the sum of distances
-            distanceBetweenPixels = abs(imageA - appearanceA) ;
-            distanceBetweenPixels = distanceBetweenPixels + abs(imageB - appearanceB);
-            //distanceBetweenPixels = distanceBetweenPixels + (imageL - appearanceL);
-            sumOfDistance = sumOfDistance + (distanceBetweenPixels * distanceBetweenPixels);
-        }
-    }
-    return sumOfDistance;*/
 }
 
 //----------------------------------------------------------------------
-/*
+/
 double DistanceBase::distanceBetweenAppearancesSSD(Mat image, Mat appearance)
 {
     AIS_Options::Location location = {0, 0, ((double)image.size().width / (double)appearance.size().width), ((double)image.size().height / (double)appearance.size().height), 0};
     return calculateSSD(image, appearance, location);
 }
 
-*/
+/
 double DistanceBase::distanceBetweenAppearancesSSD(Mat image, Mat appearance)
 {
     //double sumOfDistance = 0;
@@ -107,35 +159,6 @@ double DistanceBase::distanceBetweenAppearancesSSD(Mat image, Mat appearance)
     }
 
     return calculateDistance(image, appearance, appearanceScaleX, imageScaleX, appearanceScaleY, imageScaleY, MIN((double)image.size().width, appearance.size().width), MIN((double)image.size().height, appearance.size().height), 0, 0, 0);
-
-/*
-    // Finds if the width of the image or apperance should be scaled
-    for(int x = 0; x < MIN((double)image.size().width, appearance.size().width); x++)
-    {
-        for(int y = 0; y < MIN((double)image.size().height, appearance.size().height); y++)
-        {
-            int locX = ((int)(((double)x*imageScaleX) + 0.5));
-            int locY = ((int)(((double)y*imageScaleY) + 0.5));
-
-            Vec3b & colourFrame = image.at<Vec3b>(Point(locX, locY));
-            imageA = (int)colourFrame[1];
-            imageB = (int)colourFrame[2];
-
-            locX = (int)(((double)x*appearanceScaleX) + 0.5);
-            locY = (int)(((double)y*appearanceScaleY) + 0.5);
-
-            Vec3b & colourAppearance = appearance.at<Vec3b>(Point(locX, locY));
-            appearanceA = (int)colourAppearance[1];
-            appearanceB = (int)colourAppearance[2];
-
-            // get the difference between the pixel values, square them, then add them to the sum of distances
-            distanceBetweenPixels = abs(imageA - appearanceA) ;
-            distanceBetweenPixels = distanceBetweenPixels + abs(imageB - appearanceB);
-            //distanceBetweenPixels = distanceBetweenPixels + (imageL - appearanceL);
-            sumOfDistance = sumOfDistance + (distanceBetweenPixels * distanceBetweenPixels);
-        }
-    }
-    return sumOfDistance;*/
 }
 
 
@@ -177,7 +200,7 @@ double DistanceBase::calculateDistance(Mat image, Mat appearance, double appeara
     }
     return sumOfDistance;
 }
-
+*/
 
 //----------------------------------------------------------------------
 

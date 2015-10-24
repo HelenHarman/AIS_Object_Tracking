@@ -30,7 +30,7 @@ Location GlobalObjectDetector::findObjectNoTransformations(Location predictedLoc
 Location GlobalObjectDetector::forEachAppearanceFindObject(vector<Mat> appearances, Mat frame, Location predictedLocation, int *mostMatchedAppearanceIndex)
 {
     smallestDistance = 1;
-    Location foundLocation = predictedLocation;
+    Location foundLocation(predictedLocation);
     for (int i = 0; i < (int)appearances.size(); i++)
     {
         this->currentDistance = 1;
@@ -49,17 +49,19 @@ Location GlobalObjectDetector::findObject(Mat frame, Mat appearance, Location lo
 {
     currentDistance = 100;
     Location bestLocation;
-    for (int i = 0; i < frame.size().width - appearance.size().width*location.scaleX; i++)
+    int width, height;
+    location.getSize(&width, &height, frame);
+    for (int i = 0; i < frame.size().width - width; i++)
     {
-        for (int j = 0; j < frame.size().height - appearance.size().height*location.scaleY; j++)
+        for (int j = 0; j < frame.size().height - height; j++)
         {
-            location.x = i;
-            location.y = j;
+            location.setX(i + ((((double)frame.size().width / 100.00) * location.getScaleX())/2));
+            location.setY(j + ((((double)frame.size().height / 100.00) * location.getScaleY())/2));;
             double distance = distanceMeasure->getDistance(frame, appearance, location);
             if (distance < currentDistance)
             {
                 currentDistance = distance;
-                bestLocation = location;
+                bestLocation = Location(location);
             }
         }
     }

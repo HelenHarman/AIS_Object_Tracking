@@ -43,9 +43,9 @@ public:
      * \param appearance [in]
      * \return The normalised Euclidean distance (value between 0 and 1).
      */
-    double getDistance(Mat image, Mat appearance, AIS_Options::Location location);
+    double getDistance(Mat image, Mat appearance, Location location);
 
-    double getDistanceTransformation(Mat frame, Mat apperance, AIS_Options::Location location);
+    double getDistanceTransformation(Mat frame, Mat apperance, Location location);
     void rotatePosition(int degrees, int *x, int *y, int rotationCenterX, int rotationCenterY);
 
     double getDistanceBetweenAppearances(Mat image, Mat appearance);
@@ -61,7 +61,7 @@ private:
      * \param appearance [in]
      * \return the euclidean distance
      */
-    double getUnnormalisedDistance(Mat image, Mat appearance, AIS_Options::Location location);
+    double getUnnormalisedDistance(Mat image, Mat appearance, Location location);
 
 };
 

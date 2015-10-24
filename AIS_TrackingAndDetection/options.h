@@ -56,14 +56,14 @@ namespace AIS_Options{
     /*!
      * \struct Location
      */
-    struct Location
+    /*struct Location
     {
         int x;
         int y;
         double scaleX;
         double scaleY;
         int rotation;
-    };
+    };*/
 
 }
 #endif // PROGRAMSTATE
