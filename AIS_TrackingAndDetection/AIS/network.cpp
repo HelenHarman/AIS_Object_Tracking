@@ -13,23 +13,18 @@
 Network::Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation, double linkingThreshold)
 {
     this->usePredictedLocation = usePredictedLocation;
-   // currentLocation.rotation = 0;
-    //currentLocation.scaleX = 1;
-    //currentLocation.scaleY = 1;
-    ARB *newArb = new ARB(initialApperance, this->initialARBsResourceLevel);
-    this->aRBs.push_back(newArb);
-    numARBs = 1;
-    this->previousARB = newArb;
     this->predictedLocation = currentLocation;
     this->previousLocation = currentLocation;
-
-    //previousARB = this->aRBs[0];
     this->distanceMeasure = distanceMeasure;
     this->averageResourceLevel = 0;
 
+    ARB *newArb = new ARB(initialApperance, this->initialARBsResourceLevel);
+    this->aRBs.push_back(newArb);
+    this->previousARB = newArb;
+    this->numARBs = 1;
+
     this->objectThreshold = objectThreshold;
     this->stimulationThreshold = stimulationThreshold;
-
     if (linkingThreshold == 0)
     {
         this->linkThreshold = stimulationThreshold + ((objectThreshold-stimulationThreshold)/2);
@@ -52,37 +47,18 @@ Location Network::addAppearance(Mat appearance, Location currentLocation)
     // find the most stimulated ARB
     checkAllARBs(appearance, &arbsBelowLinkThreshold, &closestArb, &smallestDistance);
 
-    // Add to ARB, add new ARB and add links, or add unconnected ARB
-    if(closestArb != NULL)
-    {
-        closestArb->increaseResourceLevel(smallestDistance);
-    }
-
-    if ((!arbsBelowLinkThreshold.empty()) && (distance > this->stimulationThreshold))
+    if((smallestDistance < this->objectThreshold) && (distance > this->stimulationThreshold))
     {
         ARB *newArb = new ARB(appearance);
-        this->aRBs.push_back(newArb);//new ARB(appearance));//, this->previousARB, distanceToPreviousARB));
-        this->previousARB = this->aRBs[this->numARBs];
-
-        for(std::map<ARB *, double>::iterator arb = arbsBelowLinkThreshold.begin(); arb != arbsBelowLinkThreshold.end(); ++arb)
-        {
-            arb->first->addNewLink(this->aRBs[this->numARBs], arbsBelowLinkThreshold[arb->first]);
-        }
+        this->aRBs.push_back(newArb);
+        //this->previousARB = this->aRBs[this->numARBs];
         this->numARBs++;
+        //this->setPredictedLocation(this->predictedLocation);
+    }
+    if(smallestDistance < this->linkThreshold)
+    {
+        addLinks(arbsBelowLinkThreshold);
         this->setPredictedLocation(currentLocation);
-    }
-    else if(smallestDistance < this->objectThreshold)
-    {
-        //change constructor
-        ARB *newArb = new ARB(appearance);
-        this->aRBs.push_back(newArb);//new ARB(appearance));//, this->previousARB, distanceToPreviousARB));
-        this->previousARB = this->aRBs[this->numARBs];
-        this->numARBs++;
-        this->setPredictedLocation(this->predictedLocation);
-    }
-    else // assumme object has moved as predicted
-    {
-        this->setPredictedLocation(this->predictedLocation);
     }
 
     //decrease stimulation of all but closest
@@ -108,33 +84,18 @@ Location Network::initialAppearanceAddition(Mat appearance, Location currentLoca
 
     checkAllARBs(appearance, &arbsBelowLinkThreshold, &closestArb, &smallestDistance);
 
-    if(closestArb != NULL)
-    {
-        closestArb->increaseResourceLevel(smallestDistance);
-    }
-    if (!arbsBelowLinkThreshold.empty())
-    {
-        ARB *newArb = new ARB(appearance, this->initialARBsResourceLevel);
-        //newArb->setAlwaysKeep(true);
-        this->aRBs.push_back(newArb);
+    ARB *newArb = new ARB(appearance, this->initialARBsResourceLevel);
+    //newArb->setAlwaysKeep(true);
+    this->aRBs.push_back(newArb);
+    this->numARBs++;
 
-        for(std::map<ARB *, double>::iterator arb = arbsBelowLinkThreshold.begin(); arb != arbsBelowLinkThreshold.end(); ++arb)
-        {
-            arb->first->addNewLink(this->aRBs[this->numARBs], arbsBelowLinkThreshold[arb->first]);
-        }
-        this->numARBs++;
-    }
-    else
-    {
-        ARB *newArb = new ARB(appearance, this->initialARBsResourceLevel);
-        //newArb->setAlwaysKeep(true);
-        this->aRBs.push_back(newArb);
-        this->numARBs++;
-    }
+    addLinks(arbsBelowLinkThreshold);
+
     this->setPredictedLocation(currentLocation);
     return this->predictedLocation;
 }
 
+//--------------------------------------------------------------------
 
 void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLinkThreshold, ARB ** closestArb, double *smallestDistance)
 {
@@ -147,21 +108,31 @@ void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLin
         {
             *smallestDistance = distance;
             *closestArb = this->aRBs[i];
-            this->previousARB = this->aRBs[i];
         }
         if (distance < this->linkThreshold)
         {
             (*arbsBelowLinkThreshold)[this->aRBs[i]] = distance;
         }
     }
+
+    if(*closestArb != NULL)
+    {
+        (*closestArb)->increaseResourceLevel(*smallestDistance);
+        this->previousARB = *closestArb;//this->aRBs[i];
+    }
 }
 
 //--------------------------------------------------------------------
 
-void Network::resetLocation(Location location)
+void Network::addLinks(std::map<ARB *, double> arbsBelowLinkThreshold)
 {
-    this->predictedLocation = location;
-    this->previousLocation = location;
+    if (!arbsBelowLinkThreshold.empty())
+    {
+        for(std::map<ARB *, double>::iterator arb = arbsBelowLinkThreshold.begin(); arb != arbsBelowLinkThreshold.end(); ++arb)
+        {
+            arb->first->addNewLink(this->aRBs[this->numARBs-1], arbsBelowLinkThreshold[arb->first]);
+        }
+    }
 }
 
 //--------------------------------------------------------------------
@@ -169,17 +140,12 @@ void Network::resetLocation(Location location)
 void Network::setPredictedLocation(Location currentLocation)
 {
     if (this->usePredictedLocation)
-    {
+    { // predict that the object will continue along the same path
         this->calculatePredictedLocation(currentLocation);
     }
     else
     {
         this->predictedLocation = currentLocation;
-        /*this->predictedLocation.x = currentLocation.x;
-        this->predictedLocation.y = currentLocation.y;
-        this->predictedLocation.scaleX = currentLocation.scaleX;
-        this->predictedLocation.scaleY = currentLocation.scaleY;
-        this->predictedLocation.rotation = currentLocation.rotation;*/
     }
     this->previousLocation = currentLocation;
 }
@@ -194,14 +160,6 @@ void Network::calculatePredictedLocation(Location currentLocation)
     this->predictedLocation.setScaleY(currentLocation.getScaleY() + (currentLocation.getScaleY() - this->previousLocation.getScaleY()));
     this->predictedLocation.setRotation(currentLocation.getRotation() + (currentLocation.getRotation() - this->previousLocation.getRotation()));
 }
-
-//--------------------------------------------------------------------
-
-void Network::setUsePredictedLocation(bool usePredictedLocation)
-{
-    this->usePredictedLocation = usePredictedLocation;
-}
-
 
 //--------------------------------------------------------------------
 
@@ -223,23 +181,18 @@ void Network::getHighestRLAndConnectedARBs(vector<ARB*>* mostLikely)
     {
         mostLikely->push_back(aRBs[highestResourceIndex]->getLinks()[i]);
     }
-
-    //return mostLikely;
 }
 
 //--------------------------------------------------------------------
 
 void Network::getNearestAndConnectedARBs(vector<ARB*>* mostLikely)
 {
-    //vector<ARB*> *mostLikely = new vector<ARB*>();
     mostLikely->push_back(this->previousARB);
 
     for(int i = 0; i < (int)this->previousARB->getLinks().size(); i++)
     {
         mostLikely->push_back(this->previousARB->getLinks()[i]);
     }
-    //std::cout << mostLikely.size() << std::endl;
-    //return *mostLikely;
 }
 
 //--------------------------------------------------------------------
@@ -248,12 +201,10 @@ void Network::removeARBs()
 {
     for(int i = 0; i < this->numARBs; i++)
     {
-        //std::cout << this->aRBs[i]->getResourceLevel() << std::endl;
         if(this->numARBs == 1) break;
         if(this->previousARB == this->aRBs[i]) continue;
         if(this->aRBs[i]->shouldAlwaysKeep()) continue;
 
-        //std::cout << "this->aRBs[i]->getResourceLevel() : "<< this->aRBs[i]->getResourceLevel() << std::endl;
         if(this->aRBs[i]->getResourceLevel() < REMOVAL_THRESHOLD)
         {
             //std::cout << "removeNode" << std::endl;
@@ -264,6 +215,15 @@ void Network::removeARBs()
             this->numARBs--;
         }
     }
+}
+
+//------------------------------getters and setters ------------
+
+//--------------------------------------------------------------------
+
+void Network::setUsePredictedLocation(bool usePredictedLocation)
+{
+    this->usePredictedLocation = usePredictedLocation;
 }
 
 //--------------------------------------------------------------------
@@ -299,6 +259,13 @@ void Network::setObejctThreshold(double objectThreshold)
 void Network::setStimulationThreshold(double stimulationThreshold)
 {
     this->stimulationThreshold = stimulationThreshold;
+}
+//--------------------------------------------------------------------
+
+void Network::resetLocation(Location location)
+{
+    this->predictedLocation = location;
+    this->previousLocation = location;
 }
 
 //--------------------------------------------------------------------

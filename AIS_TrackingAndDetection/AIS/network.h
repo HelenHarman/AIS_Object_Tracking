@@ -194,7 +194,7 @@ private:
      */
     void calculatePredictedLocation(Location currentLocation);
 
-
+void addLinks(std::map<ARB *, double> arbsBelowLinkThreshold);
     void checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLinkThreshold, ARB ** closestArb, double *smallestDistance);
 };
 

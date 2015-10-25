@@ -62,9 +62,7 @@ void GroundTruthDistances::compareDistances(string gtFileName, string outputFile
     gtFile.close();
 }
 
+//----------------------------------------------------------------------
 
-GroundTruthDistances::~GroundTruthDistances()
-{
-
-}
+GroundTruthDistances::~GroundTruthDistances(){}
 

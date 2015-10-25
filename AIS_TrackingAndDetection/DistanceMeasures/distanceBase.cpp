@@ -13,46 +13,12 @@
 
 double DistanceBase::calculateSSD(Mat frame, Mat appearance, Location location)
 {
-    int width, height, offSetX, offSetY;// = ((double)frame.size().width / 100.00) * location.scaleX;
-    //int height = ((double)frame.size().height / 100.00) * location.scaleY;
+    int width, height, offSetX, offSetY;
     location.getSize(&width, &height, frame);
     location.getCornerPoint(&offSetX, &offSetY, frame);
-    //int offSetX = location.x - (width/2);
-    //int offSetY = location.y - (height/2);
-
 
     double appearanceScaleX = 1, appearanceScaleY = 1, imageScaleX = 1, imageScaleY = 1;
-
-    if (width < appearance.size().width)
-    {
-        appearanceScaleX = (double)width / (double)appearance.size().width ;
-    }
-    else if (width > appearance.size().width)
-    {
-        imageScaleX = ((double)appearance.size().width / (double)width);//1.0 / location.scaleX;
-    }
-
-    if (height < appearance.size().height)
-    {
-        appearanceScaleY = (double)height / (double)appearance.size().height;
-    }
-    else if (height > appearance.size().height)
-    {
-        imageScaleY = ((double)appearance.size().height / (double)height);//1.0 / location.scaleY;
-    }
-
-
-   /* std::cout << "appearanceScaleX " << appearanceScaleX << std::endl;
-    std::cout << "appearance.size().height " << appearance.size().height << std::endl;
-    std::cout << "appearanceScaleY " << appearanceScaleY << std::endl;
-    std::cout << "appearance.size().width " << appearance.size().width << std::endl;
-
-
-    std::cout << "imageScaleX " << imageScaleX << std::endl;
-    std::cout << "frame.size().height " << frame.size().height << std::endl;
-    std::cout << "imageScaleY " << imageScaleY << std::endl;
-    std::cout << "frame.size().width " << frame.size().width << std::endl;
-*/
+    this->getScales(width, height, appearance.size().width, appearance.size().height, &appearanceScaleX, &appearanceScaleY, &imageScaleX, &imageScaleY);
 
     double sumOfDistance = 0;
     double imageA, imageB, appearanceA, appearanceB, distanceBetweenPixels;
@@ -89,8 +55,41 @@ double DistanceBase::calculateSSD(Mat frame, Mat appearance, Location location)
         }
     }
     return sumOfDistance;
+}
+
+//--------------------------------------------------------------
+
+void DistanceBase::getScales(int frameWidth, int frameHeight, int appearanceWidth, int appearanceHeight, double *appearanceScaleX, double *appearanceScaleY, double *imageScaleX, double *imageScaleY)
+{
+    if (frameWidth < appearanceWidth)
+    {
+        *appearanceScaleX = (double)frameWidth / (double)appearanceWidth;
+    }
+    else if (frameWidth > appearanceWidth)
+    {
+        *imageScaleX = ((double)appearanceWidth / (double)frameWidth);
+    }
+
+    if (frameHeight < appearanceHeight)
+    {
+        *appearanceScaleY = (double)frameHeight / (double)appearanceHeight;
+    }
+    else if (frameHeight > appearanceHeight)
+    {
+        *imageScaleY = ((double)appearanceHeight / (double)frameHeight);
+    }
+
+    /* std::cout << "appearanceScaleX " << appearanceScaleX << std::endl;
+     std::cout << "appearanceHeight " << appearanceHeight << std::endl;
+     std::cout << "appearanceScaleY " << appearanceScaleY << std::endl;
+     std::cout << "appearanceWidth " << appearanceWidth << std::endl;
 
 
+     std::cout << "imageScaleX " << imageScaleX << std::endl;
+     std::cout << "fframeHeight " << frameHeight << std::endl;
+     std::cout << "imageScaleY " << imageScaleY << std::endl;
+     std::cout << "frameWidth " << frameWidth << std::endl;
+ */
 }
 
 

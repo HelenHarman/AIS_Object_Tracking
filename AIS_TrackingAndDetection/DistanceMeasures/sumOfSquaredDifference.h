@@ -25,7 +25,7 @@ public:
      * \param frame [in]: The frame whch the appearance has been selected from
      * \param appearance [in]: The appearance the user has selected
      */
-    SumOfSquaredDifference(Mat frame, Mat appearance){};
+    SumOfSquaredDifference(Mat frame, Mat appearance);
 
     /*!
      * \fn SumOfSquaredDifference()
@@ -40,12 +40,12 @@ public:
      * \param appearance [in]
      * \return The normalised Euclidean distance (value between 0 and 1).
      */
-    double getDistance(Mat image, Mat appearance, Location location){};
+    double getDistance(Mat image, Mat appearance, Location location);
 
-    double getDistanceBetweenAppearances(Mat image, Mat appearance){};
+    double getDistanceBetweenAppearances(Mat image, Mat appearance);
 
 
-    ~SumOfSquaredDifference(){};
+    ~SumOfSquaredDifference();
 
 private:
 
@@ -55,7 +55,7 @@ private:
      * \param appearance [in]
      * \return
      */
-    double getUnnormalisedDistance(Mat image, Mat appearance, Location location){};
+    double getUnnormalisedDistance(Mat image, Mat appearance, Location location);
 };
 
 #endif // SUMOFSQUAREDDIFFERENCE_H

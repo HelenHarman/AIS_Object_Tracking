@@ -17,7 +17,7 @@ void VideoInputBase::close()
 
 VideoInputBase::~VideoInputBase()
 {
-    std::cout << "kill" << std::endl;
+    //std::cout << "kill" << std::endl;
     this->capture.release();
 }
 

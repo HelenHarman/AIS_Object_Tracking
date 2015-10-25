@@ -5,27 +5,35 @@ GlobalObjectDetector::GlobalObjectDetector(DistanceBase *distanceMeasure)
     this->distanceMeasure = distanceMeasure;
 }
 
+//----------------------------------------------------------------------
+
 Location GlobalObjectDetector::findObjectAllTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
+
+//----------------------------------------------------------------------
 
 Location GlobalObjectDetector::findObjectWithScale(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
+//----------------------------------------------------------------------
+
 Location GlobalObjectDetector::findObjectWithRotation(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
+
+//----------------------------------------------------------------------
 
 Location GlobalObjectDetector::findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
-
+//----------------------------------------------------------------------
 
 Location GlobalObjectDetector::forEachAppearanceFindObject(vector<ARB*> appearances, Mat frame, Location predictedLocation)//, int *mostMatchedAppearanceIndex)
 {
@@ -44,6 +52,8 @@ Location GlobalObjectDetector::forEachAppearanceFindObject(vector<ARB*> appearan
     }
     return foundLocation;
 }
+
+//----------------------------------------------------------------------
 
 Location GlobalObjectDetector::findObject(Mat frame, Mat appearance, Location location)
 {
@@ -68,6 +78,9 @@ Location GlobalObjectDetector::findObject(Mat frame, Mat appearance, Location lo
     return bestLocation;
 }
 
+
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
 
 
 

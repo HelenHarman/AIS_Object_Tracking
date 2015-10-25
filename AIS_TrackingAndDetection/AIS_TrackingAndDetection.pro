@@ -39,7 +39,6 @@ SOURCES += main.cpp\
     DistanceMeasures/distanceBase.cpp \
     VideoDeviceInteraction/videoInputBase.cpp \
     argumentParser.cpp \
-    objectDetector.cpp \
     globalObjectDetector.cpp \
     groundTruthDistances.cpp \
     location.cpp

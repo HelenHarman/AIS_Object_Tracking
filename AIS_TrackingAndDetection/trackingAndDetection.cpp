@@ -266,7 +266,7 @@ void TrackingAndDetection::detectObject(Mat currentFrame)
 }
 
 //--------------------------------------------------------------
-// TODO test this
+
 Mat TrackingAndDetection::createAppearance(Mat frame, Location location, int width, int height)
 {
     //int cols = (int)(((double)width * location.scaleX) + 0.5);

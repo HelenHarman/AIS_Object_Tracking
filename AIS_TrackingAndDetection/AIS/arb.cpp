@@ -16,25 +16,10 @@ ARB::ARB(Mat appearance, double resourceLevel)
 {
     this->numLinks = 0;
     this->appearance = appearance;
-
     this->resourceLevel = resourceLevel;//DECAY_RATE * this->getStimulationLevel(0);
     this->increaseResourceLevel(0.0);
 }
 
-//--------------------------------------------------------------------
-/*
-ARB::ARB(Mat appearance)//, ARB * nodeLinkedTo, double distance)
-{
-    this->numLinks = 0;
-    this->appearance = appearance;
-
-    // all links are in both directions
-    //this->addNewLink(nodeLinkedTo, distance);
-    //nodeLinkedTo->addNewLink(this, distance);
-
-    this->resourceLevel = DECAY_RATE * this->getStimulationLevel(0);
-}
-*/
 //--------------------------------------------------------------------
 
 Mat ARB::getAppearance()
@@ -46,10 +31,7 @@ Mat ARB::getAppearance()
 
 double ARB::decayResourceLevel()
 {
-    //std::cout << "pre decayResourceLevel this->resourceLevel : " << this->resourceLevel << std::endl;
-
     this->resourceLevel = this->DECAY_RATE * this->resourceLevel;
-    //std::cout << "decayResourceLevel this->resourceLevel : " << this->resourceLevel << std::endl;
     return this->resourceLevel;
 }
 
@@ -57,22 +39,14 @@ double ARB::decayResourceLevel()
 
 double ARB::increaseResourceLevel(double distance)
 {
-    //std::cout << "pre increaseResourceLevel this->resourceLevel : " << this->resourceLevel << std::endl;
-
     double stimulationLevel = this->getStimulationLevel(distance);
 
-    //std::cout << "distance : " << distance << " stimulationLevel : " << stimulationLevel << std::endl;
-
-    //std::cout << "this->resourceLevel + stimulationLevel : " << (this->resourceLevel + stimulationLevel) << std::endl;
-
+    // commented out line is the method from the older paper
     //this->resourceLevel = this->DECAY_RATE * (this->resourceLevel + stimulationLevel);
-
-    //std::cout << "increaseResourceLevel this->resourceLevel : " << this->resourceLevel << std::endl;
 
     double maxRes = 1000.00;
     double k = 0.0005;
     this->resourceLevel = this->resourceLevel + (k * (maxRes - this->DECAY_RATE) * stimulationLevel);
-
 
     return this->resourceLevel;
 }

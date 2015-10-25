@@ -142,6 +142,8 @@ void ArgumentParser::getArguments(bool *rotation, bool *scale, ARBsToSearchWith 
     }
 }
 
+//----------------------------------------------------------------------
+
 int ArgumentParser::getArgument(const char *id, char *argv[], int argc)
 {
     for(int i = 0; i < argc; i++)
@@ -154,7 +156,9 @@ int ArgumentParser::getArgument(const char *id, char *argv[], int argc)
     return -1;
 }
 
-ArgumentParser::~ArgumentParser()
-{
-}
+//----------------------------------------------------------------------
 
+ArgumentParser::~ArgumentParser(){}
+
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------

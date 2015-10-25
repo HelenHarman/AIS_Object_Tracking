@@ -65,8 +65,6 @@ Mat VideoFileInput::getNextFrame()
     if (!this->capture.read(frame))
     {
         return frame;
-        //this->startCamera();
-        //this->capture.read(frame);
     }
 
     cvtColor(frame, frame, CV_BGR2RGB);
@@ -75,25 +73,10 @@ Mat VideoFileInput::getNextFrame()
 }
 
 //--------------------------------------------------------------
-/*
-void VideoFileInput::getInitialPosition(int *x, int *y, int *width, int *height)
-{
-    *x = this->x;
-    *y = this->y;
-    *width = this->width;
-    *height = this->height;
-}*/
-
-//--------------------------------------------------------------
 
 Location VideoFileInput::getInitialLocation(Mat frame)
 {
     Location location(frame, this->width, this->height, this->x, this->y);
-    /*location.x = this->x + (this->width/2);
-    location.y = this->y + (this->height/2);
-    location.scaleX = ((double)this->width/(double)frame.size().width)*100.00;
-    location.scaleY = ((double)this->height/(double)frame.size().height)*100.00;
-    location.rotation = 0;*/
     return location;
 }
 

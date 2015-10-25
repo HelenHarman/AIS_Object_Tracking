@@ -75,7 +75,8 @@ protected:
 
    // double distanceBetweenAppearancesSSD(Mat image, Mat appearance);
 
-//private:
+private:
+    void getScales(int frameWidth, int frameHeight, int appearanceWidth, int appearanceHeight, double *appearanceScaleX, double *appearanceScaleY, double *imageScaleX, double *imageScaleY);
     //double calculateDistance(Mat image, Mat appearance, double appearanceScaleX, double imageScaleX, double appearanceScaleY, double imageScaleY, int imageWidth, int imageHeight, int rotation, int offSetX, int offSetY);
 };
 
