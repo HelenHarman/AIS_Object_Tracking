@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
     ARBsToSearchWith whichARBsToSearchWith = HIGHEST_AND_CONNECTED;
     DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE;
     bool usePredictedLocation = false;
-    double stimulationThreshold = 0;//0.4;
-    double objectThreshold = 1;//0.6
-    double linkingThreshold = 0.4;
+    double stimulationThreshold = 0.2;//0.4;
+    double objectThreshold = 0.8;//1;//0.6
+    double linkingThreshold = 0.3;
     VideoInputType inputType = WEBCAM;
     string configPathName = "";
     string directoryOutput = "";
@@ -54,8 +54,8 @@ int main(int argc, char *argv[])
     LinkTrackingAndUi linkTrackingAndUi(window.getImageWidget(), &trackingAndDetection);
     return a.exec();
 }
-
 /*
+
 int main(int argc, char *argv[])
 {
     GroundTruthDistances *groundTruthDistances = new GroundTruthDistances();
@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
     groundTruthDistances->compareDistances(gtFileName, outputFileName, videoFileName);
     return 1;
 }
-
 */
+
 
 
 //----------------------------------------------------------------

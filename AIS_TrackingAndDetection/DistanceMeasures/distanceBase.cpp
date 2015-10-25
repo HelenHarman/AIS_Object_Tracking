@@ -25,27 +25,34 @@ double DistanceBase::calculateSSD(Mat frame, Mat appearance, Location location)
 
     if (width < appearance.size().width)
     {
-        appearanceScaleX = (double)frame.size().width / (double)appearance.size().width ;
+        appearanceScaleX = (double)width / (double)appearance.size().width ;
     }
     else if (width > appearance.size().width)
     {
-        imageScaleX = ((double)appearance.size().width / (double)frame.size().width);//1.0 / location.scaleX;
+        imageScaleX = ((double)appearance.size().width / (double)width);//1.0 / location.scaleX;
     }
 
     if (height < appearance.size().height)
     {
-        appearanceScaleY = (double)frame.size().height / (double)appearance.size().height;
+        appearanceScaleY = (double)height / (double)appearance.size().height;
     }
     else if (height > appearance.size().height)
     {
-        imageScaleY = ((double)appearance.size().height / (double)frame.size().height);//1.0 / location.scaleY;
+        imageScaleY = ((double)appearance.size().height / (double)height);//1.0 / location.scaleY;
     }
 
 
+   /* std::cout << "appearanceScaleX " << appearanceScaleX << std::endl;
+    std::cout << "appearance.size().height " << appearance.size().height << std::endl;
+    std::cout << "appearanceScaleY " << appearanceScaleY << std::endl;
+    std::cout << "appearance.size().width " << appearance.size().width << std::endl;
 
 
-
-
+    std::cout << "imageScaleX " << imageScaleX << std::endl;
+    std::cout << "frame.size().height " << frame.size().height << std::endl;
+    std::cout << "imageScaleY " << imageScaleY << std::endl;
+    std::cout << "frame.size().width " << frame.size().width << std::endl;
+*/
 
     double sumOfDistance = 0;
     double imageA, imageB, appearanceA, appearanceB, distanceBetweenPixels;
