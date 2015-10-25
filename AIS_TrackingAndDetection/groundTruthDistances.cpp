@@ -20,11 +20,12 @@ void GroundTruthDistances::compareDistances(string gtFileName, string outputFile
 
     while (gtFile)
     {
-        Mat frame = videoInput->getNextFrame();
-
         // read in the file
         string line;
         if (!getline(gtFile, line)) break;
+
+        Mat frame = videoInput->getNextFrame();
+        cvtColor(frame, frame, CV_RGB2Lab);
 
         istringstream ss(line);
         vector <int> record;

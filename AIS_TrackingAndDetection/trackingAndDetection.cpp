@@ -92,10 +92,11 @@ void TrackingAndDetection::changeVideoConfigFilePath(string filePathName)
 {
     VideoFileInput *videoFileInput = new VideoFileInput(filePathName);
 
-    Mat currentFrame = this->videoInput->getNextFrame();
+    Mat currentFrame = videoFileInput->getNextFrame();
     Mat labFrame;
     cvtColor(currentFrame, labFrame, CV_RGB2Lab);
     labFrame.copyTo(this->initialFrame);
+
     Location location = videoFileInput->getInitialLocation(currentFrame);
 
     VideoInputBase *temp = this->videoInput;

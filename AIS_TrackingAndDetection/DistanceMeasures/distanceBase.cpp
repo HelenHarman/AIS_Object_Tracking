@@ -11,10 +11,6 @@
 
 //----------------------------------------------------------------------
 
-// TODO you mid point rather than corner!!!
-// TODO just put appearance comparison in some function
-
-
 double DistanceBase::calculateSSD(Mat frame, Mat appearance, Location location)
 {
     int width, height, offSetX, offSetY;// = ((double)frame.size().width / 100.00) * location.scaleX;

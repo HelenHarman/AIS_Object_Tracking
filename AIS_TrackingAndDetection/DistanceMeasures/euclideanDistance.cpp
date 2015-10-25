@@ -102,7 +102,6 @@ double EuclideanDistance::getDistance(Mat image, Mat appearance, Location locati
     location.getSize(&imageWidth, &imageHeight, image);
     //int imageHeight = ((double)image.size().height / 100.00) * location.scaleY;
 
-
     //double size = MIN(imageHeight, appearance.size().height) * MIN(imageWidth, appearance.size().width);
     double distance = (this->getUnnormalisedDistance(image, appearance, location) ) / (this->maxDistance * sqrt(imageWidth*imageHeight));
 
@@ -130,7 +129,7 @@ double EuclideanDistance::getDistanceBetweenAppearances(Mat image, Mat appearanc
     //distance = (sqrt(calculateSSD(image, appearance)))  / (this->maxDistance * sqrt(size));
 
     //distance = sigmoid(distance);
-    //cout << "distance : " << distance << endl;
+
     //return distance;
     /*if (distance > 1)
     {

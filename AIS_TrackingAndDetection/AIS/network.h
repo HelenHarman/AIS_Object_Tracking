@@ -49,7 +49,7 @@ public:
     Location addAppearance(Mat appearance, Location currentLocation);
 
 
-    vector<ARB*> getHighestRLAndConnectedARBs();
+    void getHighestRLAndConnectedARBs(vector<ARB*>* mostLikely);
     void getNearestAndConnectedARBs(vector<ARB*>* mostLikely);
 
     /*!

@@ -205,9 +205,8 @@ void Network::setUsePredictedLocation(bool usePredictedLocation)
 
 //--------------------------------------------------------------------
 
-vector<ARB*> Network::getHighestRLAndConnectedARBs()
+void Network::getHighestRLAndConnectedARBs(vector<ARB*>* mostLikely)
 {
-    vector<ARB*> mostLikely;
     int highestResourceIndex = 0;
     double highestResource = -1;
     for(int i = 0; i < this->numARBs; i++)
@@ -218,14 +217,14 @@ vector<ARB*> Network::getHighestRLAndConnectedARBs()
             highestResource = aRBs[i]->getResourceLevel();
         }
     }
-    mostLikely.push_back(aRBs[highestResourceIndex]);
+    mostLikely->push_back(aRBs[highestResourceIndex]);
 
     for(int i = 0; i < (int)aRBs[highestResourceIndex]->getLinks().size(); i++)
     {
-        mostLikely.push_back(aRBs[highestResourceIndex]->getLinks()[i]);
+        mostLikely->push_back(aRBs[highestResourceIndex]->getLinks()[i]);
     }
 
-    return mostLikely;
+    //return mostLikely;
 }
 
 //--------------------------------------------------------------------
