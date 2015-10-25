@@ -210,30 +210,31 @@ void TrackingAndDetection::detectObject(Mat currentFrame)
         break;
     }*/
 
-    vector<Mat> appearances;
+    vector<ARB*> appearances;
    //appearances = this->network->getHighestRLAndConnectedARBs();
-    appearances = this->network->getNearestAndConnectedARBs();
+    //vector<Mat*> appearances2;
+    this->network->getNearestAndConnectedARBs(&appearances);
 
     Location predictedLoc = this->network->getPredictedLocation();
     Location closestLoc = predictedLoc;
-    int mostMatchedAppearanceIndex = 0;
+   // int mostMatchedAppearanceIndex = 0;
 
     // find object : bellow object threshold, and closest measure and closest transformation
     if(!this->useRotation && !this->useScale)
     {
-        closestLoc = this->objectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
     }
     else if(!this->useRotation && this->useScale)
     {
-        closestLoc = this->objectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
     }
     else if(this->useRotation && !this->useScale)
     {
-        closestLoc = this->objectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
     }
     else
     {
-        closestLoc = this->objectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances, &mostMatchedAppearanceIndex);
+        closestLoc = this->objectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
     }
 //std::cout << "detectObject after simplex" << std::endl;
     //int width = appearances[mostMatchedAppearanceIndex].size().width;

@@ -6,6 +6,7 @@
 #include "distanceBase.h"
 #include "options.h"
 #include "transformations.h"
+#include "arb.h"
 
 using namespace AIS_Options;
 
@@ -23,7 +24,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    virtual Location findObjectAllTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex) = 0;
+    virtual Location findObjectAllTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances) = 0;
 
     /*!
      * \fn findObjectWithScale
@@ -34,7 +35,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    virtual Location findObjectWithScale(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex) = 0;
+    virtual Location findObjectWithScale(Location predictedLocation, Mat frame, vector<ARB*> appearances) = 0;
 
     /*!
      * \fn findObjectWithRotation
@@ -45,7 +46,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    virtual Location findObjectWithRotation(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex) = 0;
+    virtual Location findObjectWithRotation(Location predictedLocation, Mat frame, vector<ARB*> appearances) = 0;
 
     /*!
      * \fn findObjectNoTransformations
@@ -56,7 +57,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    virtual Location findObjectNoTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex) = 0;
+    virtual Location findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances) = 0;
 
     virtual ~ObjectDetector(){}
 };

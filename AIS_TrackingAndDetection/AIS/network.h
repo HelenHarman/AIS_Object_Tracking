@@ -49,8 +49,8 @@ public:
     Location addAppearance(Mat appearance, Location currentLocation);
 
 
-    vector<Mat> getHighestRLAndConnectedARBs();
-    vector<Mat> getNearestAndConnectedARBs();
+    vector<ARB*> getHighestRLAndConnectedARBs();
+    void getNearestAndConnectedARBs(vector<ARB*>* mostLikely);
 
     /*!
      * \fn getPredictedLocation

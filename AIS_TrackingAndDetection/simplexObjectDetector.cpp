@@ -24,43 +24,43 @@ SimplexObjectDetector::SimplexObjectDetector(DistanceBase *distanceMeasure)
 
 //---------------------------------------------------------------------
 
-Location SimplexObjectDetector::findObjectNoTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location SimplexObjectDetector::findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     size_t numberOfDimensions = 2;
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions);//, mostMatchedAppearanceIndex);
 }
 
 //---------------------------------------------------------------------
 
-Location SimplexObjectDetector::findObjectWithRotation(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location SimplexObjectDetector::findObjectWithRotation(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     size_t numberOfDimensions = 3;
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions);//, mostMatchedAppearanceIndex);
 }
 
 //---------------------------------------------------------------------
 
-Location SimplexObjectDetector::findObjectWithScale(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location SimplexObjectDetector::findObjectWithScale(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     size_t numberOfDimensions = 4;
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions);//, mostMatchedAppearanceIndex);
 }
 
 //---------------------------------------------------------------------
 
-Location SimplexObjectDetector::findObjectAllTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location SimplexObjectDetector::findObjectAllTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
     size_t numberOfDimensions = 5;
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation, numberOfDimensions);//, mostMatchedAppearanceIndex);
 }
 
 //---------------------------------------------------------------------
 
-Location SimplexObjectDetector::forEachAppearanceFindObject(vector<Mat> appearances, Mat frame, Location predictedLocation, size_t numberOfDimensions, int *mostMatchedAppearanceIndex)
+Location SimplexObjectDetector::forEachAppearanceFindObject(vector<ARB*> appearances, Mat frame, Location predictedLocation, size_t numberOfDimensions)//, int *mostMatchedAppearanceIndex)
 {
     Location foundLocation = predictedLocation;
     this->smallestDistance = 1;
-    *mostMatchedAppearanceIndex = 0;
+    //int mostMatchedAppearanceIndex = 0;
     gsl_vector *stepSize, *startingLocations;
     stepSize = gsl_vector_alloc (numberOfDimensions);
     startingLocations = gsl_vector_alloc (numberOfDimensions);
@@ -68,7 +68,7 @@ Location SimplexObjectDetector::forEachAppearanceFindObject(vector<Mat> appearan
     {
         this->currentDistance = 1;
         this->setupInitialVectors(stepSize, startingLocations, predictedLocation, numberOfDimensions);
-        gsl_multimin_fminimizer *minimizer = findObject(frame, appearances[i], stepSize, startingLocations, numberOfDimensions);
+        gsl_multimin_fminimizer *minimizer = findObject(frame, appearances[i]->getAppearance(), stepSize, startingLocations, numberOfDimensions);
 
         if(this->currentDistance <= this->smallestDistance)
         {
@@ -76,7 +76,7 @@ Location SimplexObjectDetector::forEachAppearanceFindObject(vector<Mat> appearan
             //std::cout << "foundLocation : " << foundLocation.scaleX << ", " << foundLocation.scaleY << std::endl;
 
             this->smallestDistance = this->currentDistance;
-            *mostMatchedAppearanceIndex = i;
+            //mostMatchedAppearanceIndex = i;
             //std::cout << "this->smallestDistance : " << this->smallestDistance << std::endl;
         }
         gsl_multimin_fminimizer_free (minimizer);

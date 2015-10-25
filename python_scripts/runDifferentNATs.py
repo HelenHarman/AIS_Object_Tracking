@@ -14,7 +14,6 @@ application = "../build/AIS_Debug_build/AIS_TrackingAndDetection.app/Contents/Ma
 confArg = " -conf ../DataSets/tiger1.ais_config"
 resultsFile = "../Results/NAT/"
 outputBaseArg = " -output " + resultsFile # OT_ST should be added to the string
-
 gtFileName = "../DataSets/Tiger1/groundtruth_rect.txt"
 
 NATs = [0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]

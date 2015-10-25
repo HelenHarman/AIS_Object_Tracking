@@ -205,9 +205,9 @@ void Network::setUsePredictedLocation(bool usePredictedLocation)
 
 //--------------------------------------------------------------------
 
-vector<Mat> Network::getHighestRLAndConnectedARBs()
+vector<ARB*> Network::getHighestRLAndConnectedARBs()
 {
-    vector<Mat> mostLikely;
+    vector<ARB*> mostLikely;
     int highestResourceIndex = 0;
     double highestResource = -1;
     for(int i = 0; i < this->numARBs; i++)
@@ -218,11 +218,11 @@ vector<Mat> Network::getHighestRLAndConnectedARBs()
             highestResource = aRBs[i]->getResourceLevel();
         }
     }
-    mostLikely.push_back(aRBs[highestResourceIndex]->getAppearance());
+    mostLikely.push_back(aRBs[highestResourceIndex]);
 
     for(int i = 0; i < (int)aRBs[highestResourceIndex]->getLinks().size(); i++)
     {
-        mostLikely.push_back(aRBs[highestResourceIndex]->getLinks()[i]->getAppearance());
+        mostLikely.push_back(aRBs[highestResourceIndex]->getLinks()[i]);
     }
 
     return mostLikely;
@@ -230,17 +230,17 @@ vector<Mat> Network::getHighestRLAndConnectedARBs()
 
 //--------------------------------------------------------------------
 
-vector<Mat> Network::getNearestAndConnectedARBs()
+void Network::getNearestAndConnectedARBs(vector<ARB*>* mostLikely)
 {
-    vector<Mat> mostLikely;
-
-    mostLikely.push_back(this->previousARB->getAppearance());
+    //vector<ARB*> *mostLikely = new vector<ARB*>();
+    mostLikely->push_back(this->previousARB);
 
     for(int i = 0; i < (int)this->previousARB->getLinks().size(); i++)
     {
-        mostLikely.push_back(this->previousARB->getLinks()[i]->getAppearance());
+        mostLikely->push_back(this->previousARB->getLinks()[i]);
     }
-    return mostLikely;
+    //std::cout << mostLikely.size() << std::endl;
+    //return *mostLikely;
 }
 
 //--------------------------------------------------------------------

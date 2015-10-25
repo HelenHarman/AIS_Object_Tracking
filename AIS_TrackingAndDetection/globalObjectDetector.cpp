@@ -5,41 +5,41 @@ GlobalObjectDetector::GlobalObjectDetector(DistanceBase *distanceMeasure)
     this->distanceMeasure = distanceMeasure;
 }
 
-Location GlobalObjectDetector::findObjectAllTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location GlobalObjectDetector::findObjectAllTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
-Location GlobalObjectDetector::findObjectWithScale(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location GlobalObjectDetector::findObjectWithScale(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
-Location GlobalObjectDetector::findObjectWithRotation(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location GlobalObjectDetector::findObjectWithRotation(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
-Location GlobalObjectDetector::findObjectNoTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex)
+Location GlobalObjectDetector::findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances)//, int *mostMatchedAppearanceIndex)
 {
-    return forEachAppearanceFindObject(appearances, frame, predictedLocation, mostMatchedAppearanceIndex);
+    return forEachAppearanceFindObject(appearances, frame, predictedLocation);//, mostMatchedAppearanceIndex);
 }
 
 
 
-Location GlobalObjectDetector::forEachAppearanceFindObject(vector<Mat> appearances, Mat frame, Location predictedLocation, int *mostMatchedAppearanceIndex)
+Location GlobalObjectDetector::forEachAppearanceFindObject(vector<ARB*> appearances, Mat frame, Location predictedLocation)//, int *mostMatchedAppearanceIndex)
 {
     smallestDistance = 1;
     Location foundLocation(predictedLocation);
     for (int i = 0; i < (int)appearances.size(); i++)
     {
         this->currentDistance = 1;
-        Location location = findObject(frame, appearances[i], predictedLocation);
+        Location location = findObject(frame, appearances[i]->getAppearance(), predictedLocation);
         if(this->currentDistance <= smallestDistance)
         {
             foundLocation = location;
             smallestDistance = this->currentDistance;
-            *mostMatchedAppearanceIndex = i;
+            //*mostMatchedAppearanceIndex = i;
         }
     }
     return foundLocation;

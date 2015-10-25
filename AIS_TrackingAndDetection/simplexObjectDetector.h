@@ -18,6 +18,7 @@
 //#include "network.h"
 
 #include "objectDetector.h"
+#include "arb.h"
 
 /*!
  * \class SimplexObjectDetector
@@ -42,7 +43,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    Location findObjectAllTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex);
+    Location findObjectAllTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances);//, int *mostMatchedAppearanceIndex);
 
     /*!
      * \fn findObjectWithScale
@@ -53,7 +54,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    Location findObjectWithScale(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex);
+    Location findObjectWithScale(Location predictedLocation, Mat frame, vector<ARB*> appearances);//, int *mostMatchedAppearanceIndex);
 
     /*!
      * \fn findObjectWithRotation
@@ -64,7 +65,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    Location findObjectWithRotation(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex);
+    Location findObjectWithRotation(Location predictedLocation, Mat frame, vector<ARB*> appearances);//, int *mostMatchedAppearanceIndex);
 
     /*!
      * \fn findObjectNoTransformations
@@ -75,7 +76,7 @@ public:
      * \param mostMatchedAppearanceIndex [out]
      * \return The location of the object.
      */
-    Location findObjectNoTransformations(Location predictedLocation, Mat frame, vector<Mat> appearances, int *mostMatchedAppearanceIndex);
+    Location findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances);//, int *mostMatchedAppearanceIndex);
 
     //void setupStepSize(double X_POSITION_STEP_SIZE = 20, double Y_POSITION_STEP_SIZE = 20, double SCALE_X_STEP_SIZE = 0.01, double SCALE_Y_STEP_SIZE = 0.01, double ROTATION_STEP_SIZE = 1.0);
 
@@ -117,7 +118,7 @@ private:
      * \param mostMatchedAppearanceIndex [out]
      * \return
      */
-    Location forEachAppearanceFindObject(vector<Mat> appearances, Mat frame, Location predictedLocation, size_t numberOfDimensions, int *mostMatchedAppearanceIndex);
+    Location forEachAppearanceFindObject(vector<ARB*> appearances, Mat frame, Location predictedLocation, size_t numberOfDimensions);// int *mostMatchedAppearanceIndex);
 
     /*!
      * \fn findObject
