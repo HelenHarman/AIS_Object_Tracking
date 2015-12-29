@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------
 
-Network::Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation, double linkingThreshold)
+Network::Network(Mat initialApperance, Location currentLocation, DistanceBase *distanceMeasure, double objectThreshold, double stimulationThreshold, bool usePredictedLocation, double networkAffiliationThreshold)
 {
     this->usePredictedLocation = usePredictedLocation;
     this->predictedLocation = currentLocation;
@@ -25,13 +25,13 @@ Network::Network(Mat initialApperance, Location currentLocation, DistanceBase *d
 
     this->objectThreshold = objectThreshold;
     this->stimulationThreshold = stimulationThreshold;
-    if (linkingThreshold == 0)
+    if (networkAffiliationThreshold == 0)
     {
-        this->linkThreshold = stimulationThreshold + ((objectThreshold-stimulationThreshold)/2);
+        this->networkAffiliationThreshold = stimulationThreshold + ((objectThreshold-stimulationThreshold)/2);
     }
     else
     {
-        this->linkThreshold = linkingThreshold;
+        this->networkAffiliationThreshold = networkAffiliationThreshold;
     }
 }
 
@@ -42,10 +42,10 @@ Location Network::addAppearance(Mat appearance, Location currentLocation)
     double smallestDistance = 1;
     double distance = 1;
     ARB * closestArb = NULL;
-    std::map<ARB *, double> arbsBelowLinkThreshold;
+    std::map<ARB *, double> arbsBelowNAT;
 
     // find the most stimulated ARB
-    checkAllARBs(appearance, &arbsBelowLinkThreshold, &closestArb, &smallestDistance);
+    checkAllARBs(appearance, &arbsBelowNAT, &closestArb, &smallestDistance);
 
     if((smallestDistance < this->objectThreshold) && (distance > this->stimulationThreshold))
     {
@@ -55,9 +55,9 @@ Location Network::addAppearance(Mat appearance, Location currentLocation)
         this->numARBs++;
         //this->setPredictedLocation(this->predictedLocation);
     }
-    if(smallestDistance < this->linkThreshold)
+    if(smallestDistance < this->networkAffiliationThreshold)
     {
-        addLinks(arbsBelowLinkThreshold);
+        addLinks(arbsBelowNAT);
         this->setPredictedLocation(currentLocation);
     }
 
@@ -80,16 +80,16 @@ Location Network::initialAppearanceAddition(Mat appearance, Location currentLoca
 {
     double smallestDistance = 1;
     ARB * closestArb = NULL;
-    std::map<ARB *, double> arbsBelowLinkThreshold;
+    std::map<ARB *, double> arbsBelowNAT;
 
-    checkAllARBs(appearance, &arbsBelowLinkThreshold, &closestArb, &smallestDistance);
+    checkAllARBs(appearance, &arbsBelowNAT, &closestArb, &smallestDistance);
 
     ARB *newArb = new ARB(appearance, this->initialARBsResourceLevel);
     //newArb->setAlwaysKeep(true);
     this->aRBs.push_back(newArb);
     this->numARBs++;
 
-    addLinks(arbsBelowLinkThreshold);
+    addLinks(arbsBelowNAT);
 
     this->setPredictedLocation(currentLocation);
     return this->predictedLocation;
@@ -97,7 +97,7 @@ Location Network::initialAppearanceAddition(Mat appearance, Location currentLoca
 
 //--------------------------------------------------------------------
 
-void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLinkThreshold, ARB ** closestArb, double *smallestDistance)
+void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowNAT, ARB ** closestArb, double *smallestDistance)
 {
     double distance = 1;
     for(int i = 0; i < this->numARBs; i++)
@@ -109,9 +109,9 @@ void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLin
             *smallestDistance = distance;
             *closestArb = this->aRBs[i];
         }
-        if (distance < this->linkThreshold)
+        if (distance < this->networkAffiliationThreshold)
         {
-            (*arbsBelowLinkThreshold)[this->aRBs[i]] = distance;
+            (*arbsBelowNAT)[this->aRBs[i]] = distance;
         }
     }
 
@@ -124,13 +124,13 @@ void Network::checkAllARBs(Mat appearance, std::map<ARB *, double> *arbsBelowLin
 
 //--------------------------------------------------------------------
 
-void Network::addLinks(std::map<ARB *, double> arbsBelowLinkThreshold)
+void Network::addLinks(std::map<ARB *, double> arbsBelowNAT)
 {
-    if (!arbsBelowLinkThreshold.empty())
+    if (!arbsBelowNAT.empty())
     {
-        for(std::map<ARB *, double>::iterator arb = arbsBelowLinkThreshold.begin(); arb != arbsBelowLinkThreshold.end(); ++arb)
+        for(std::map<ARB *, double>::iterator arb = arbsBelowNAT.begin(); arb != arbsBelowNAT.end(); ++arb)
         {
-            arb->first->addNewLink(this->aRBs[this->numARBs-1], arbsBelowLinkThreshold[arb->first]);
+            arb->first->addNewLink(this->aRBs[this->numARBs-1], arbsBelowNAT[arb->first]);
         }
     }
 }

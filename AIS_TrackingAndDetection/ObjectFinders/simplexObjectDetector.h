@@ -15,8 +15,6 @@
 #include <gsl/gsl_multimin.h>
 #include <gsl/gsl_vector.h>
 
-//#include "network.h"
-
 #include "objectDetector.h"
 #include "arb.h"
 
@@ -27,6 +25,15 @@
 class SimplexObjectDetector : public ObjectDetector
 {
 public:
+    /*!
+     * \var X_POSITION_STEP_SIZE, Y_POSITION_STEP_SIZE, SCALE_X_STEP_SIZE, SCALE_Y_STEP_SIZE, ROTATION_STEP_SIZE
+     */
+    static double X_POSITION_STEP_SIZE;
+    static double Y_POSITION_STEP_SIZE;
+    static double SCALE_X_STEP_SIZE;
+    static double SCALE_Y_STEP_SIZE;
+    static double ROTATION_STEP_SIZE;
+
     /*!
      * \fn SimplexObjectDetector(DistanceBase *distanceMeasure)
      * \brief Constructor
@@ -78,16 +85,9 @@ public:
      */
     Location findObjectNoTransformations(Location predictedLocation, Mat frame, vector<ARB*> appearances);//, int *mostMatchedAppearanceIndex);
 
-    //void setupStepSize(double X_POSITION_STEP_SIZE = 20, double Y_POSITION_STEP_SIZE = 20, double SCALE_X_STEP_SIZE = 0.01, double SCALE_Y_STEP_SIZE = 0.01, double ROTATION_STEP_SIZE = 1.0);
 
-    /*!
-     * \var X_POSITION_STEP_SIZE, Y_POSITION_STEP_SIZE, SCALE_X_STEP_SIZE, SCALE_Y_STEP_SIZE, ROTATION_STEP_SIZE
-     */
-    static double X_POSITION_STEP_SIZE; //= 20;//25;//6;//15.0;//10.0;
-    static double Y_POSITION_STEP_SIZE;// = 20;//25;//6;//15.0;//10.0;
-    static double SCALE_X_STEP_SIZE;// = 0.01;//0.01;//0.02//0.05;
-    static double SCALE_Y_STEP_SIZE;// = 0.01;//0.01;//0.02//0.05;
-    static double ROTATION_STEP_SIZE;// = 1.0;
+    Location forEachAppearanceFindObject(vector<ARB*> appearances, Mat frame, Location predictedLocation);//, int *mostMatchedAppearanceIndex);
+
 
     ~SimplexObjectDetector(){}
 private:
@@ -160,52 +160,7 @@ private:
      */
     double getDistance(const gsl_vector*v, void* params);
 
-    /*!
-     * \fn checkPostionInRange
-     * \brief Checks the x,y position is within the frame
-     * \param positionX [in, out]
-     * \param positionY [in, out]
-     * \param appearanceWidth [in]
-     * \param appearanceHeight [in]
-     * \param rotation [in]
-     * \param frame [in]
-     * \return How far off the edge of the frame the position is, squared. Stops the distance being constant when the edge of the image is reached.
-     */
-   // int checkPostionInRange(int * positionX, int * positionY, int appearanceWidth, int appearanceHeight, int rotation, Mat frame);
-
-    /*!
-     * \fn checkXorYPostionInRange
-     * \brief Used by checkPostionInRange()
-     * \param position [in] The closest position within the frame.
-     * \param appearanceSize [in]
-     * \param maxPosition [in]
-     * \param minPosition [in]
-     * \return
-     */
-    //int checkXorYPostionInRange(int position, int appearanceSize, int maxPosition, int minPosition);
-
-    /*!
-     * \fn checkSizeInRange
-     * \brief Checks the size is bigger than 1 and less than the size of the frame.
-     * \param size [in]
-     * \param frameSize [in]
-     * \return
-     */
-    //int checkSizeInRange(int size, int frameSize);
-
-    /*!
-     * \fn checkLocationInRange
-     * \brief Checks that the location of the object is within the frame.
-     * \param location [in]
-     * \param numberOfDimensions [in]
-     * \param appearance [in]
-     * \param frame [in]
-     * \return
-     */
-    //Location checkLocationInRange(Location location, Mat appearance, Mat frame);
-
     int checkLocationWithinFrame(Location location, Mat frame);
-
 };
 
 #endif // SIMPLEXOBJECTDETECTOR_H

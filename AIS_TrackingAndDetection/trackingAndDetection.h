@@ -26,8 +26,8 @@
 
 #include "options.h"
 
-#include "simplexObjectDetector.h"
-#include "globalObjectDetector.h"
+#include "ObjectFinders/simplexObjectDetector.h"
+#include "ObjectFinders/globalObjectDetector.h"
 
 #include "location.h"
 
@@ -46,9 +46,8 @@ public:
      * \brief Default constructor
      * \param inputType
      */
-    //TrackingAndDetection();
-    TrackingAndDetection(bool rotation = false, bool scale = false, ARBsToSearchWith whichARBsToSearchWith = HIGHEST_AND_CONNECTED, DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE,
-                                               bool usePredictedLocation = false, double stimulationThreshold = 0.6, double objectThreshold = 0.8, double linkingThreshold = 0, VideoInputType inputType = WEBCAM, string configPathName = "", string directoryOutput = "", int numberOfinitialARBs = 0, int numIteration = 0);
+    TrackingAndDetection(bool rotation = false, bool scale = false, DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE,
+                                               bool usePredictedLocation = false, double stimulationThreshold = 0.6, double objectThreshold = 0.8, double networkAffiliationThreshold = 0, VideoInputType inputType = WEBCAM, string configPathName = "", string directoryOutput = "", int numberOfinitialARBs = 0, int numIteration = 0);
 
 
     ~TrackingAndDetection();
@@ -115,12 +114,6 @@ public slots:
     void useScaleChanged(bool useScale);
 
     /*!
-     * \fn whichARBsToSearchWithChanged
-     * \param whichARBsToSearchWith [in]
-     */
-    //void whichARBsToSearchWithChanged(ARBsToSearchWith whichARBsToSearchWith);
-
-    /*!
      * \fn usePredictedLocationChanged
      * \param usePredictedLocation [in]
      */
@@ -157,16 +150,6 @@ public slots:
      *              Calls the detectObject() method.
      */
     void runVideoFeed();
-
-    /*!
-     * \fn initialiseTrackingFromPosition
-     * \brief Initialises the artifical immunue network with the initial appearance.
-     * \param x [in]
-     * \param y [in]
-     * \param width [in]
-     * \param height [in]
-     */
-    //void initialiseTrackingFromPosition(int x, int y, int width, int height);
 
 
     void initialiseTrackingFromLocation(Location location);
@@ -216,11 +199,6 @@ private:
      */
     bool useScale;
 
-    /*!
-     * \var whichARBsToSearchWith
-     * \see options.h
-     */
-    ARBsToSearchWith whichARBsToSearchWith;
 
     /*!
      * \var usePredictedLocation
@@ -249,23 +227,27 @@ private:
     DistanceBase * distanceMeasure;
 
     /*!
-     * \var stimulationThreshold
+     * \var stimulationThreshold, objectThreshold, networkAffiliationThreshold
      * \brief Are only stored in this class as a user may set them via the UI before the code has instantiated the network
      */
     double stimulationThreshold;
-    /*!
-     * \var objectThreshold
-     * \brief Are only stored in this class as a user may set them via the UI before the code has instantiated the network
-     */
     double objectThreshold;
+    double networkAffiliationThreshold;
 
-    double linkingThreshold;
+    string directoryOutput = "";
+
+    int numberOfinitialARBs = 5;
+    int iteration = 0;
+    int numIteration = 0;
+    int numberOfFrames = 0;
 
     /*!
      * \fn detectObject
      * \param currentFrame [in]
      */
     void detectObject(Mat currentFrame);
+
+    Location findObject(Location predictedLoc, Mat currentFrame, vector<ARB*> appearances);
 
     /*!
      * \fn setupVideoInput
@@ -274,25 +256,8 @@ private:
      */
     void setupVideoInput(string configPathName = "");
 
-    /*!
-     * \fn checkIfObjectPredictionWithinFrame
-     * \brief Checks the location is within the frame
-     * \param predictedLoc [in, out]
-     * \param currentFrame [in]
-     * \param appearanceWidth [in]
-     * \param appearanceHeight [in]
-     */
-    //void checkIfObjectPredictionWithinFrame(Location *predictedLoc, Mat currentFrame,  int appearanceWidth, int appearanceHeight);
-
     Mat createAppearance(Mat frame, Location location, int width, int height);
 
-
-    string directoryOutput = "";
-
-    int numberOfinitialARBs = 5;
-    int numberOfFrames = 0;
-    int iteration = 0;
-    int numIteration = 0;
 };
 
 #endif // TRACKINGANDDETECTION_H

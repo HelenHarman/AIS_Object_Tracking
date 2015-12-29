@@ -17,19 +17,9 @@ EuclideanDistance::EuclideanDistance(Mat frame, Mat appearance)
     // Search the frame for the max euclidean distance
     for (int i = 0; i < (frame.size().width - appearance.size().width); i+=appearance.size().width/2)//++)
     {
-        if (i > (frame.size().width - appearance.size().width))
-        {
-            break;
-        }
         for(int j = 0; j < (frame.size().height - appearance.size().height); j+=appearance.size().height/2)//++)
         {
-            if (j > (frame.size().height - appearance.size().height))
-            {
-                break;
-            }
-
             Location location(frame, appearance, i, j);
-
             double distance = this->getUnnormalisedDistance(frame, appearance, location);
 
             if (distance > this->maxDistance)
@@ -76,10 +66,7 @@ double EuclideanDistance::getUnnormalisedDistance(Mat frame, Mat appearance, Loc
 
 //----------------------------------------------------------------------
 
-EuclideanDistance::~EuclideanDistance()
-{
-
-}
+EuclideanDistance::~EuclideanDistance() { /*empty deconstructor*/ }
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------

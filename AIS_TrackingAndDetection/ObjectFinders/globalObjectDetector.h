@@ -4,6 +4,10 @@
 #include "objectDetector.h"
 #include "arb.h"
 
+/**
+ * @brief The GlobalObjectDetector class
+ * Searches the whole of the frame for the appearance.
+ */
 class GlobalObjectDetector : public ObjectDetector
 {
 public:

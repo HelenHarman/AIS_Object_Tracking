@@ -105,7 +105,7 @@ private:
      * and the appearances already in the network is below this threshold
      * (and not below the STIMULATION_THRESHOLD), then a new ARB is created.
      */
-    double objectThreshold;//OBJECT_THRESHOLD = 0.4;//0.027;//0.4;
+    double objectThreshold;
 
     /*!
      * \var stimulationThreshold
@@ -113,10 +113,10 @@ private:
      * appearance and a appearace in the network is below this
      * threshold, then the resource level of the closest ARB is increased.
      */
-    double stimulationThreshold;//STIMULATION_THRESHOLD = 0.2;//0.019;//0.2;
+    double stimulationThreshold;
 
 
-    double linkThreshold;
+    double networkAffiliationThreshold;
 
     /*!
      * \var REMOVE_THRESHOLD
@@ -126,6 +126,8 @@ private:
     const double REMOVAL_THRESHOLD = 0.6;
 
     const double initialARBsResourceLevel = 15;
+
+
 
     /*!
      * \var averageResourceLevel

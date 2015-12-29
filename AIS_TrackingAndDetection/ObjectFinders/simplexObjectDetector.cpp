@@ -9,10 +9,10 @@
 
 #include "simplexObjectDetector.h"
 
-double SimplexObjectDetector::X_POSITION_STEP_SIZE = 20;//25;//6;//15.0;//10.0;
-double SimplexObjectDetector::Y_POSITION_STEP_SIZE = 20;//25;//6;//15.0;//10.0;
-double SimplexObjectDetector::SCALE_X_STEP_SIZE = 1;//0.01;//0.02//0.05;
-double SimplexObjectDetector::SCALE_Y_STEP_SIZE = 1;//0.01;//0.02//0.05;
+double SimplexObjectDetector::X_POSITION_STEP_SIZE = 20;
+double SimplexObjectDetector::Y_POSITION_STEP_SIZE = 20;
+double SimplexObjectDetector::SCALE_X_STEP_SIZE = 0.3;
+double SimplexObjectDetector::SCALE_Y_STEP_SIZE = 0.3;
 double SimplexObjectDetector::ROTATION_STEP_SIZE = 1.0;
 
 //---------------------------------------------------------------------

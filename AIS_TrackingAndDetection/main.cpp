@@ -29,13 +29,14 @@
 int main(int argc, char *argv[])
 {
     bool rotation = false;
-    bool scale = true;
-    ARBsToSearchWith whichARBsToSearchWith = HIGHEST_AND_CONNECTED;
+    bool scale = false;
     DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE;
     bool usePredictedLocation = false;
+
     double stimulationThreshold = 0.2;//0.4;
     double objectThreshold = 0.8;//1;//0.6
-    double linkingThreshold = 0.3;
+    double networkAffiliationThreshold = 0.3;
+
     VideoInputType inputType = WEBCAM;
     string configPathName = "";
     string directoryOutput = "";
@@ -44,13 +45,13 @@ int main(int argc, char *argv[])
     int numIteration = 0;
 
     ArgumentParser argParser(argc, argv);
-    argParser.getArguments(&rotation, &scale, &whichARBsToSearchWith, &distanceMeasureType, &usePredictedLocation, &stimulationThreshold, &objectThreshold, &linkingThreshold, &inputType, &configPathName, &directoryOutput, &numberOfinitialARBs, &numIteration);
+    argParser.getArguments(&rotation, &scale, &distanceMeasureType, &usePredictedLocation, &stimulationThreshold, &objectThreshold, &networkAffiliationThreshold, &inputType, &configPathName, &directoryOutput, &numberOfinitialARBs, &numIteration);
 
     QApplication a(argc, argv);
     MainWindow window;
     window.show();
 
-    TrackingAndDetection trackingAndDetection(rotation, scale, whichARBsToSearchWith, distanceMeasureType, usePredictedLocation, stimulationThreshold, objectThreshold, linkingThreshold, inputType, configPathName, directoryOutput, numberOfinitialARBs, numIteration);
+    TrackingAndDetection trackingAndDetection(rotation, scale, distanceMeasureType, usePredictedLocation, stimulationThreshold, objectThreshold, networkAffiliationThreshold, inputType, configPathName, directoryOutput, numberOfinitialARBs, numIteration);
     LinkTrackingAndUi linkTrackingAndUi(window.getImageWidget(), &trackingAndDetection);
     return a.exec();
 }

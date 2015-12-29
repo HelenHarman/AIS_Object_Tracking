@@ -11,6 +11,11 @@
 using namespace std;
 using namespace AIS_Options;
 
+/**
+ * @brief The GroundTruthDistances class
+ *  Reads the location of the object from the ground truth file
+ *   and finds the distance between the object's appearaces.
+ */
 class GroundTruthDistances
 {
 public:

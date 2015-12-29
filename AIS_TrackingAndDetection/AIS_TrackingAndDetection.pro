@@ -33,13 +33,13 @@ SOURCES += main.cpp\
     linkTrackingAndUi.cpp \
     VideoDeviceInteraction/videoFileInput.cpp \
     DistanceMeasures/sumOfSquaredDifference.cpp \
-    simplexObjectDetector.cpp \
+    ObjectFinders/simplexObjectDetector.cpp \
     transformations.cpp \
     UI/outputData.cpp \
     DistanceMeasures/distanceBase.cpp \
     VideoDeviceInteraction/videoInputBase.cpp \
     argumentParser.cpp \
-    globalObjectDetector.cpp \
+    ObjectFinders/globalObjectDetector.cpp \
     groundTruthDistances.cpp \
     location.cpp
 
@@ -53,15 +53,15 @@ HEADERS  += UI/mainwindow.h \
     linkTrackingAndUi.h \
     VideoDeviceInteraction/videoFileInput.h \
     DistanceMeasures/sumOfSquaredDifference.h \
-    simplexObjectDetector.h \
+    ObjectFinders/simplexObjectDetector.h \
     transformations.h \
     UI/outputData.h \
     options.h \
     DistanceMeasures/distanceBase.h \
     VideoDeviceInteraction/videoInputBase.h \
     argumentParser.h \
-    objectDetector.h \
-    globalObjectDetector.h \
+    ObjectFinders/objectDetector.h \
+    ObjectFinders/globalObjectDetector.h \
     groundTruthDistances.h \
     location.h
 

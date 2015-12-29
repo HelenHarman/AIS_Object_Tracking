@@ -6,21 +6,6 @@
  * \brief The source code for the Transformations class.
  */
 #include "transformations.h"
-/*
-void Transformations::rotateFrameAndPosition(int rotation, Mat *frame, int *x, int *y)
-{
-    rotateFrame(rotation, frame);
-    rotatePosition(rotation, x, y, frame->size().width/2, frame->size().height/2);
-}
-
-//---------------------------------------------------------------------
-
-void Transformations::rotateFrame(int rotation, Mat *frame)
-{
-    Point2f pt(frame->cols/2., frame->rows/2.);
-    Mat r = getRotationMatrix2D(pt, rotation, 1.0);
-    warpAffine(*frame, *frame, r, frame->size());
-}*/
 
 //---------------------------------------------------------------------
 

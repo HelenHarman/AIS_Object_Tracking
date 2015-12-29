@@ -24,22 +24,6 @@ class Transformations
 {
 protected:
     /*!
-     * \fn rotateFrameAndPosition
-     * \param rotation [in]
-     * \param frame [in, out]
-     * \param x [in, out]
-     * \param y [in, out]
-     */
-    //void rotateFrameAndPosition(int rotation, Mat *frame, int *x, int *y);
-
-    /*!
-     * \fn rotateFrame
-     * \param rotation [in]
-     * \param frame [in, out]
-     */
-    //void rotateFrame(int rotation, Mat *frame);
-
-    /*!
      * \fn rotatePosition
      * \param degrees [in]
      * \param x [in, out]

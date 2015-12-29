@@ -11,12 +11,11 @@
 
 //--------------------------------------------------------------
 
-TrackingAndDetection::TrackingAndDetection(bool rotation, bool scale, ARBsToSearchWith whichARBsToSearchWith, DistanceMeasureType distanceMeasureType,
-                                           bool usePredictedLocation, double stimulationThreshold, double objectThreshold, double linkingThreshold, VideoInputType inputType, string configPathName, string directoryOutput, int numberOfinitialARBs, int numIteration)
+TrackingAndDetection::TrackingAndDetection(bool rotation, bool scale, DistanceMeasureType distanceMeasureType,
+                                           bool usePredictedLocation, double stimulationThreshold, double objectThreshold, double networkAffiliationThreshold, VideoInputType inputType, string configPathName, string directoryOutput, int numberOfinitialARBs, int numIteration)
 {
     this->useRotation = rotation;
     this->useScale = scale;
-    this->whichARBsToSearchWith = whichARBsToSearchWith;
     this->distanceMeasureType = distanceMeasureType;
     this->usePredictedLocation = usePredictedLocation;
 
@@ -28,7 +27,7 @@ TrackingAndDetection::TrackingAndDetection(bool rotation, bool scale, ARBsToSear
 
     this->stimulationThreshold = stimulationThreshold;
     this->objectThreshold = objectThreshold;
-    this->linkingThreshold = linkingThreshold;
+    this->networkAffiliationThreshold = networkAffiliationThreshold;
 
     this->numberOfinitialARBs = numberOfinitialARBs;
 
@@ -78,7 +77,7 @@ void TrackingAndDetection::setupVideoInput(string configPathName)
             {
                 emit(grabVideoFileConfig()); // We require user input to where the video file is located
             }
-            else
+            else // command line parameter has been provided with location of video config file
             {
                 changeVideoConfigFilePath(configPathName);
             }
@@ -91,9 +90,9 @@ void TrackingAndDetection::setupVideoInput(string configPathName)
 void TrackingAndDetection::changeVideoConfigFilePath(string filePathName)
 {
     VideoFileInput *videoFileInput = new VideoFileInput(filePathName);
-
     Mat currentFrame = videoFileInput->getNextFrame();
     Mat labFrame;
+
     cvtColor(currentFrame, labFrame, CV_RGB2Lab);
     labFrame.copyTo(this->initialFrame);
 
@@ -170,11 +169,8 @@ void TrackingAndDetection::initialiseTrackingFromLocation(Location location)
             this->distanceMeasure = new SumOfSquaredDifference(this->initialFrame, selectedAppearance);
             break;
     }
-    this->objectDetector = new SimplexObjectDetector(this->distanceMeasure);//new GlobalObjectDetector(this->distanceMeasure);//
-    this->network = new Network(selectedAppearance, location, this->distanceMeasure, this->objectThreshold, this->stimulationThreshold, this->usePredictedLocation, this->linkingThreshold);
-
-    //namedWindow( "selectedAppearance", WINDOW_AUTOSIZE );
-   // imshow( "selectedAppearance", selectedAppearance);
+    this->objectDetector = new SimplexObjectDetector(this->distanceMeasure);//new GlobalObjectDetector(this->distanceMeasure);
+    this->network = new Network(selectedAppearance, location, this->distanceMeasure, this->objectThreshold, this->stimulationThreshold, this->usePredictedLocation, this->networkAffiliationThreshold);
 
     this->network->setUsePredictedLocation(this->usePredictedLocation);
     this->state = TRACKING;
@@ -185,61 +181,18 @@ void TrackingAndDetection::initialiseTrackingFromLocation(Location location)
 
 void TrackingAndDetection::detectObject(Mat currentFrame)
 {
-  //  std::cout << "detectObject start" << std::endl;
- /*   namedWindow( "initialFrame", WINDOW_AUTOSIZE );
-    imshow( "initialFrame", initialFrame);
-
-    namedWindow( "currentFrame", WINDOW_AUTOSIZE );
-    imshow( "currentFrame", currentFrame);
-*/
-
-    /*switch (this->whichARBsToSearchWith) {
-    case ABOVE_AVERAGE:
-        appearances = this->network->getARBsWithAboveAverageRL();
-        break;
-    case LAST_AND_HIGHEST:
-        appearances = this->network->getLastAndHighestARBs();
-        break;
-    case ALL:
-        appearances = this->network->getAllAppearances();
-        break;
-    case LAST_AND_CONNECTED:
-        appearances = this->network->getLastAndConnectedARBs();
-        break;
-    default:
-        appearances = this->network->getHighestRLAndConnectedARBs();
-        break;
-    }*/
+    //std::cout << "detectObject called" << std::endl;
+     /*namedWindow( "initialFrame", WINDOW_AUTOSIZE ); imshow( "initialFrame", initialFrame);
+    namedWindow( "currentFrame", WINDOW_AUTOSIZE ); imshow( "currentFrame", currentFrame);*/
 
     vector<ARB*> appearances;
-   //appearances = this->network->getHighestRLAndConnectedARBs();
-    //vector<Mat*> appearances2;
     this->network->getNearestAndConnectedARBs(&appearances);
-
     Location predictedLoc = this->network->getPredictedLocation();
-    Location closestLoc = predictedLoc;
-   // int mostMatchedAppearanceIndex = 0;
 
-    // find object : bellow object threshold, and closest measure and closest transformation
-    if(!this->useRotation && !this->useScale)
-    {
-        closestLoc = this->objectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
-    }
-    else if(!this->useRotation && this->useScale)
-    {
-        closestLoc = this->objectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
-    }
-    else if(this->useRotation && !this->useScale)
-    {
-        closestLoc = this->objectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
-    }
-    else
-    {
-        closestLoc = this->objectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances);//, &mostMatchedAppearanceIndex);
-    }
-//std::cout << "detectObject after simplex" << std::endl;
-    //int width = appearances[mostMatchedAppearanceIndex].size().width;
-    //int height = appearances[mostMatchedAppearanceIndex].size().height;
+    // FIND THE OBJECT //
+    Location closestLoc = findObject(predictedLoc, currentFrame, appearances);
+
+    // ADD THE APPEARANCE TO THE NETWORK //
     int x, y, width, height;
     closestLoc.getCornerPoint(&x, &y, currentFrame);
     closestLoc.getSize(&width, &height, currentFrame);
@@ -249,32 +202,49 @@ void TrackingAndDetection::detectObject(Mat currentFrame)
         Mat foundAppearance = this->createAppearance(currentFrame, closestLoc, width, height);
         if(this->numberOfFrames < this->numberOfinitialARBs)
         {
-            //this->network->initialAppearanceAddition(foundAppearance, closestLoc);
             predictedLoc = this->network->initialAppearanceAddition(foundAppearance, closestLoc);
         }
         else
         {
-            //this->network->addAppearance(foundAppearance, closestLoc);
             predictedLoc = this->network->addAppearance(foundAppearance, closestLoc);
         }
     }
-    //std::cout << "detectObject before emit" << std::endl;
     predictedLoc.getCornerPoint(&x, &y, currentFrame);
     predictedLoc.getSize(&width, &height, currentFrame);
+
+    // UPDATE UI/FILE/(future robot) WITH LOCATION OF OBJECT //
     emit(updateObjectsPosition(x, y, predictedLoc.getRotation(), width, height));
-    //emit(updateObjectsPosition(x, y, closestLoc.getRotation(), width, height));
+}
+
+//--------------------------------------------------------------
+
+Location TrackingAndDetection::findObject(Location predictedLoc, Mat currentFrame, vector<ARB*> appearances)
+{
+    if(!this->useRotation && !this->useScale)
+    {
+        return this->objectDetector->findObjectNoTransformations(predictedLoc, currentFrame, appearances);
+    }
+    else if(!this->useRotation && this->useScale)
+    {
+        return this->objectDetector->findObjectWithScale(predictedLoc, currentFrame, appearances);
+    }
+    else if(this->useRotation && !this->useScale)
+    {
+        return this->objectDetector->findObjectWithRotation(predictedLoc, currentFrame, appearances);
+    }
+    else
+    {
+        return this->objectDetector->findObjectAllTransformations(predictedLoc, currentFrame, appearances);
+    }
 }
 
 //--------------------------------------------------------------
 
 Mat TrackingAndDetection::createAppearance(Mat frame, Location location, int width, int height)
 {
-    //int cols = (int)(((double)width * location.scaleX) + 0.5);
-    //int rows = (int)(((double)height * location.scaleY) + 0.5);
-   // Rect rect(1, 1, cols, rows);
     int xStart, yStart;
     location.getCornerPoint(&xStart, &yStart, frame);
-    Mat appearance(height, width, frame.type());//frame(rect);//(rows, cols, frame.type());
+    Mat appearance(height, width, frame.type());
     for(int x = 0; x < width; x++)
     {
         for(int y = 0; y < height; y++)
@@ -285,11 +255,13 @@ Mat TrackingAndDetection::createAppearance(Mat frame, Location location, int wid
             appearance.at<Vec3b>(Point(x,y)) = frame.at<Vec3b>(Point(locX, locY));
         }
     }
-    //( "appearance", WINDOW_AUTOSIZE );
-    //imshow( "appearance", appearance);
-
     return appearance;
 }
+
+//--------------------------------------------------------------
+
+////////////////////////////////////////////////////
+////// Setters for options changable in the UI /////
 
 //--------------------------------------------------------------
 
@@ -304,13 +276,6 @@ void TrackingAndDetection::useScaleChanged(bool useScale)
 {
     this->useScale = useScale;
 }
-
-//--------------------------------------------------------------
-/*
-void TrackingAndDetection::whichARBsToSearchWithChanged(ARBsToSearchWith whichARBsToSearchWith)
-{
-    this->whichARBsToSearchWith = whichARBsToSearchWith;
-}*/
 
 //--------------------------------------------------------------
 
@@ -383,59 +348,3 @@ TrackingAndDetection::~TrackingAndDetection()
 
 //--------------------------------------------------------------
 //--------------------------------------------------------------
-
-/*
-TrackingAndDetection::TrackingAndDetection()
-{
-    //this->usePredictedArea = true;
-    this->useRotation = true;
-    this->useScale = false;
-    this->whichARBsToSearchWith = HIGHEST_AND_CONNECTED;
-    this->state = UNINITIALISED;
-    this->distanceMeasureType = EUCLIDEAN_DISTANCE;
-    this->usePredictedLocation = true;
-
-    this->simplexObjectDetector = NULL;
-    this->videoInput = NULL;
-    this->network = NULL;
-    this->distanceMeasure = NULL;
-
-
-    if(RUN_MANY)
-    {
-        this->stimulationThreshold = thresholdValues[numberOfVideoRun/9].stimulationThreshold;
-        this->objectThreshold = thresholdValues[numberOfVideoRun/9].objectThresholds[numberOfVideoRun%9];
-    }
-    else
-    {
-        this->stimulationThreshold = 0.06;//0.6;
-        this->objectThreshold = 0.1;//0.7;
-    }
-    this->setupVideoInput(WEBCAM);
-}
-
-
-
-//--------------------------------------------------------------
-
-void TrackingAndDetection::checkIfObjectPredictionWithinFrame(Location *predictedLoc, Mat currentFrame, int appearanceWidth, int appearanceHeight)
-{
-    if(predictedLoc->x < 1)
-    {
-        predictedLoc->x = 1;
-    }
-    else if (predictedLoc->x + appearanceWidth > currentFrame.size().width - 2)
-    {
-        predictedLoc->x = currentFrame.size().width - appearanceWidth - 2;
-    }
-
-    if(predictedLoc->y < 1)
-    {
-        predictedLoc->y = 1;
-    }
-    else if (predictedLoc->y + appearanceHeight > currentFrame.size().height - 2)
-    {
-        predictedLoc->y = currentFrame.size().height - appearanceHeight - 2;
-    }
-}
-*/

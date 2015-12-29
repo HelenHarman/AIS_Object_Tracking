@@ -1,8 +1,6 @@
 #include "groundTruthDistances.h"
 
-GroundTruthDistances::GroundTruthDistances()
-{
-}
+GroundTruthDistances::GroundTruthDistances() { }
 
 void GroundTruthDistances::compareDistances(string gtFileName, string outputFileName, string videoFileName)
 {
