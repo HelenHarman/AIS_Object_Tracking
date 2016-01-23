@@ -29,12 +29,12 @@
 int main(int argc, char *argv[])
 {
     bool rotation = false;
-    bool scale = false;
+    bool scale = true;
     DistanceMeasureType distanceMeasureType = EUCLIDEAN_DISTANCE;
     bool usePredictedLocation = false;
 
     double stimulationThreshold = 0.2;//0.4;
-    double objectThreshold = 0.8;//1;//0.6
+    double objectThreshold = 1;//0.8//0.6
     double networkAffiliationThreshold = 0.3;
 
     VideoInputType inputType = WEBCAM;

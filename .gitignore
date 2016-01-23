@@ -1,5 +1,5 @@
 build/
 external-libs/
-DataSets/
+DataSets/*/
 Results/
 .DS_Store

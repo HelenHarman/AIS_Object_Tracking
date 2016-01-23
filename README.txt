@@ -27,7 +27,18 @@ Dependencies include :
 This project was created and compiled using QtCreator. The AIS_TrackingAndDetection/AIS_TrackingAndDetection.pro file should be edited for your operating system.
 
 
-### Python Script Dependencies ###
+
+
+### Python Scripts ###
+The python scripts are used to run the AIS tracking on multiple threshold values, perform a comparison to the GT, and to plot graphs of the results.
+
+To run of different NAT and ST values use :
+	> python runDifferentNATAndST.py
+
+(Note : before running the application(if you are not using OS-X) you will need to edit the application path within the python script.)
+
+
+Dependencies include :
 * numpy
 * matplotlib
 * mplot3d (http://matplotlib.org/1.3.0/mpl_toolkits/mplot3d/index.html#toolkit-mplot3d-index)
