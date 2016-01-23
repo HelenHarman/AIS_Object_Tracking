@@ -12,7 +12,7 @@ import numpy as np
 import os
 
 application = "../build/AIS_Debug_build/AIS_TrackingAndDetection.app/Contents/MacOS/AIS_TrackingAndDetection"
-confArg = " -conf ../DataSets/tiger1.ais_config"
+confArg = " -conf ../DataSets/2PixelsLarger_tiger1.ais_config"#tiger1.ais_config"
 resultsFile = "../Results/NAT_ST/"
 numberOfInitialARBs = "-NIA 5"
 outputBaseArg = " -output " + resultsFile # OT_ST should be added to the string
