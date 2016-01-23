@@ -36,7 +36,7 @@ To run of different NAT and ST values use :
 
 	> python runDifferentNATAndST.py
 
-(Note : before running the application(if you are not using OS-X) you will need to edit the application path within the python script.)
+(Note : Before running the application(if you are not using OS-X) you will need to edit the “application” path within the python script. The ais_config file being used by the script may also require modifying, as this contains the path to the video.)
 
 
 Dependencies include :
