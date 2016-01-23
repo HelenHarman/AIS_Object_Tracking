@@ -33,6 +33,7 @@ This project was created and compiled using QtCreator. The AIS_TrackingAndDetect
 The python scripts are used to run the AIS tracking on multiple threshold values, perform a comparison to the GT, and to plot graphs of the results.
 
 To run of different NAT and ST values use :
+
 	> python runDifferentNATAndST.py
 
 (Note : before running the application(if you are not using OS-X) you will need to edit the application path within the python script.)
@@ -46,6 +47,7 @@ Dependencies include :
 ### How to generate the Doxygen output ###
 
 Use the following command to generate the Doxygen HTML :
+
     > doxygen AIS_TrackingAndDetection/Doxygen
 
 
